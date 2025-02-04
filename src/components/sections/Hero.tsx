@@ -59,7 +59,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="typewriter text-5xl font-bold tracking-tight text-white sm:text-6xl">
+            <h1 className="typewriter text-5xl font-bold tracking-tight text-white sm:text-6xl min-h-[4rem]">
               Hey, I&#39;m David 🧑🏻‍💻
             </h1>
             <p className="mt-4 text-xl text-[#94A3B8] min-h-[2rem]">
