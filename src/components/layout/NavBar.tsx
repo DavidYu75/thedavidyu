@@ -29,11 +29,11 @@ export function NavBar() {
           DY
         </Link>
         <div className="hidden space-x-8 sm:flex">
-          <Link href="#projects" className="hover:text-primary-600">
-            Projects
-          </Link>
           <Link href="#experience" className="hover:text-primary-600">
             Experience
+          </Link>
+          <Link href="#projects" className="hover:text-primary-600">
+            Projects
           </Link>
           <Link href="#contact" className="hover:text-primary-600">
             Contact
