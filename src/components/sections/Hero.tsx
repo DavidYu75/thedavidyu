@@ -4,34 +4,37 @@ import { motion } from 'framer-motion';
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen bg-[#0D1B2A] pt-24 sm:pt-32">
-      {/* Gradient overlay at the top */}
-      <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#0D1B2A] to-transparent z-10"></div>
+    <section className="relative min-h-screen bg-[#0D1B2A]">
+      {/* Top gradient - more visible now */}
+      <div 
+        className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-black via-[#0D1B2A]/80 to-transparent z-0"
+        style={{ backgroundImage: 'linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(13,27,42,0))' }}
+      />
       
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-20">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="typewriter text-4xl font-bold tracking-tight text-white sm:text-6xl">
+            <h1 className="text-5xl font-bold tracking-tight text-white sm:text-6xl">
               Hey, I&#39;m David 🧑🏻‍💻
             </h1>
-            <p className="mt-4 text-xl text-[#778DA9]">
+            <p className="mt-4 text-xl text-[#94A3B8]">
               Full Stack Developer
             </p>
-            <p className="mt-4 text-lg text-[#778DA9]">
+            <p className="mt-4 text-lg text-[#94A3B8]">
               Based in New York City
             </p>
-            <p className="mt-6 text-lg text-[#778DA9]">
+            <p className="mt-6 text-lg text-[#94A3B8] max-w-xl">
               I&#39;m passionate about building exceptional digital experiences that live at the 
               intersection of design and technology.
             </p>
             <div className="mt-8 flex gap-4">
               <motion.a
                 href="#contact"
-                className="rounded-md bg-[#415A77] px-4 py-2 text-sm font-semibold text-white hover:bg-[#778DA9] transition-colors"
+                className="rounded-md bg-[#1E293B] px-6 py-3 text-sm font-medium text-white hover:bg-[#334155] transition-colors"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -39,7 +42,7 @@ const Hero = () => {
               </motion.a>
               <motion.a
                 href="#projects"
-                className="rounded-md border border-[#415A77] px-4 py-2 text-sm font-semibold text-[#778DA9] hover:bg-[#1B263B] transition-colors"
+                className="rounded-md border border-[#1E293B] px-6 py-3 text-sm font-medium text-[#94A3B8] hover:bg-[#1E293B] transition-colors"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -52,16 +55,27 @@ const Hero = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="aspect-square w-full rounded-2xl bg-[#1B263B] relative overflow-hidden"
+              className="aspect-square w-full rounded-2xl bg-[#1E293B] overflow-hidden"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-[#415A77] to-transparent opacity-20"></div>
+              {/* Inner gradient for the placeholder box */}
+              <div 
+                className="absolute inset-0"
+                style={{ 
+                  backgroundImage: 'linear-gradient(145deg, rgba(65,90,119,0.4) 0%, rgba(27,38,59,0) 100%)'
+                }}
+              />
             </motion.div>
           </div>
         </div>
       </div>
 
-      {/* Gradient overlay at the bottom */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0D1B2A] pointer-events-none"></div>
+      {/* Bottom gradient - more visible now */}
+      <div 
+        className="absolute bottom-0 left-0 right-0 h-64 z-0"
+        style={{ 
+          backgroundImage: 'linear-gradient(to top, #0D1B2A 0%, rgba(13,27,42,0) 100%)'
+        }}
+      />
     </section>
   );
 };
