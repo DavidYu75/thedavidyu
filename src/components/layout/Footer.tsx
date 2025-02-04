@@ -1,39 +1,41 @@
-export function Footer() {
-    return (
-      <footer className="mt-24 bg-gray-50">
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-          <div className="flex flex-col items-center justify-between space-y-6 sm:flex-row sm:space-y-0">
-            <p className="text-sm text-gray-500">
-              © {new Date().getFullYear()} David Yu. All rights reserved.
-            </p>
-            <div className="flex space-x-6">
+'use client';
+
+const Footer = () => {
+  return (
+    <footer className="bg-[#1B263B] py-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col sm:flex-row items-center justify-between">
+          <p className="text-sm text-[#778DA9]">
+            © {new Date().getFullYear()} David Yu. All rights reserved.
+          </p>
+          <div className="flex items-center space-x-6 mt-4 sm:mt-0">
             <a
-                href="mailto:davyu735@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-gray-500"
-              >
-                Email
-              </a>
-              <a
-                href="https://github.com/davidyu75"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-gray-500"
-              >
-                GitHub
-              </a>
-              <a
-                href="https://linkedin.com/in/david-t-yu"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-gray-500"
-              >
-                LinkedIn
-              </a>
-            </div>
+              href="mailto:davyu735@gmail.com"
+              className="text-[#778DA9] hover:text-white transition-colors"
+            >
+              Email
+            </a>
+            <a
+              href="https://github.com/davidyu75"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#778DA9] hover:text-white transition-colors"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://linkedin.com/in/david-t-yu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#778DA9] hover:text-white transition-colors"
+            >
+              LinkedIn
+            </a>
           </div>
         </div>
-      </footer>
-    )
-  }
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
