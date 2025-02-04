@@ -19,8 +19,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} scroll-smooth`}>
-      <body className="bg-white text-gray-900 antialiased">
-        {children}
+      <body className="min-h-screen bg-[#0D1B2A] overscroll-none">
+        <div className="relative min-h-screen bg-[#0D1B2A]">
+          {children}
+        </div>
       </body>
     </html>
   )

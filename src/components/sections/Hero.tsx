@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen bg-[#0D1B2A]">
-      {/* Top gradient - more visible now */}
+    <section className="relative min-h-screen">
+      {/* Top gradient */}
       <div 
-        className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-black via-[#0D1B2A]/80 to-transparent z-0"
+        className="absolute top-0 left-0 right-0 h-64 z-0"
         style={{ backgroundImage: 'linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(13,27,42,0))' }}
       />
       
@@ -18,7 +18,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-5xl font-bold tracking-tight text-white sm:text-6xl">
+            <h1 className="typewriter text-5xl font-bold tracking-tight text-white sm:text-6xl">
               Hey, I&#39;m David 🧑🏻‍💻
             </h1>
             <p className="mt-4 text-xl text-[#94A3B8]">
@@ -57,7 +57,6 @@ const Hero = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="aspect-square w-full rounded-2xl bg-[#1E293B] overflow-hidden"
             >
-              {/* Inner gradient for the placeholder box */}
               <div 
                 className="absolute inset-0"
                 style={{ 
@@ -69,7 +68,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Bottom gradient - more visible now */}
+      {/* Bottom gradient */}
       <div 
         className="absolute bottom-0 left-0 right-0 h-64 z-0"
         style={{ 
