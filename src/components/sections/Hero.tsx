@@ -1,6 +1,47 @@
 'use client';
 
+import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
+
+const Typewriter = () => {
+  const words = useMemo(() => ["Full Stack Developer", "AI/ML Engineer", "Coding Nerd"], []);
+  const [text, setText] = useState('');
+  const [wordIndex, setWordIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [speed, setSpeed] = useState(100);
+
+  useEffect(() => {
+    const currentWord = words[wordIndex];
+    let timeoutId: NodeJS.Timeout;
+
+    if (isDeleting) {
+      timeoutId = setTimeout(() => {
+        setText(currentWord.substring(0, text.length - 1));
+      }, speed);
+    } else {
+      timeoutId = setTimeout(() => {
+        setText(currentWord.substring(0, text.length + 1));
+      }, speed);
+    }
+
+    if (!isDeleting && text === currentWord) {
+      timeoutId = setTimeout(() => {
+        setIsDeleting(true);
+      }, 2000);
+    } else if (isDeleting && text === "") {
+      setIsDeleting(false);
+      setWordIndex((prev) => (prev + 1) % words.length);
+    }
+
+    return () => clearTimeout(timeoutId);
+  }, [text, isDeleting, wordIndex, speed, words]);
+
+  useEffect(() => {
+    setSpeed(isDeleting ? 50 : 100);
+  }, [isDeleting]);
+
+  return <span>{text}</span>;
+};
 
 const Hero = () => {
   return (
@@ -21,8 +62,8 @@ const Hero = () => {
             <h1 className="typewriter text-5xl font-bold tracking-tight text-white sm:text-6xl">
               Hey, I&#39;m David 🧑🏻‍💻
             </h1>
-            <p className="mt-4 text-xl text-[#94A3B8]">
-              Full Stack Developer
+            <p className="mt-4 text-xl text-[#94A3B8] min-h-[2rem]">
+              <Typewriter />
             </p>
             <p className="mt-4 text-lg text-[#94A3B8]">
               Based in New York City
