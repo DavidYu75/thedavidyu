@@ -29,42 +29,57 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-24 bg-[#2E4059]">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl font-bold text-white mb-12">My Experience</h2>
-        </motion.div>
+    <section id="experience" className="relative bg-[#2E4059]">
+      <div 
+        className="absolute top-0 left-0 right-0 h-32 z-0"
+        style={{ 
+          backgroundImage: 'linear-gradient(to bottom, rgb(46, 64, 89) 0%, rgba(46, 64, 89, 0) 100%)'
+        }}
+      />
+      <div className="relative z-10 pt-20 pb-32">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl font-bold text-white mb-12">My Experience</h2>
+          </motion.div>
 
-        <div className="space-y-12">
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="relative pl-8 border-l-2 border-[#415A77]"
-            >
-              <div className="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-[#778DA9]" />
-              
-              <div className="ml-6">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                  <h3 className="text-xl font-bold text-white">{exp.title}</h3>
-                  <span className="mt-1 sm:mt-0 text-[#778DA9]">{exp.period}</span>
+          <div className="space-y-12">
+            {experiences.map((exp, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="relative pl-8 border-l-2 border-[#415A77]"
+              >
+                <div className="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-[#778DA9]" />
+                
+                <div className="ml-6">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                    <h3 className="text-xl font-bold text-white">{exp.title}</h3>
+                    <span className="mt-1 sm:mt-0 text-[#778DA9]">{exp.period}</span>
+                  </div>
+                  <p className="mt-4 text-[#778DA9] text-lg leading-relaxed">
+                    {exp.description}
+                  </p>
                 </div>
-                <p className="mt-4 text-[#778DA9] text-lg leading-relaxed">
-                  {exp.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
+
+      <div 
+        className="absolute bottom-0 left-0 right-0 h-64 z-0"
+        style={{ 
+          backgroundImage: 'linear-gradient(to top, rgb(13, 27, 42) 0%, rgba(46, 64, 89, 0) 100%)'
+        }}
+      />
     </section>
   );
 };
