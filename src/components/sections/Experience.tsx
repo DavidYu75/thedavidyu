@@ -36,7 +36,7 @@ const Experience = () => {
           backgroundImage: 'linear-gradient(to bottom, rgb(46, 64, 89) 0%, rgba(46, 64, 89, 0) 100%)'
         }}
       />
-      <div className="relative z-10 pt-20 pb-32">
+      <div className="relative z-10 pt-5 pb-60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -75,7 +75,7 @@ const Experience = () => {
       </div>
 
       <div 
-        className="absolute bottom-0 left-0 right-0 h-64 z-0"
+        className="absolute bottom-0 left-0 right-0 h-60 z-0"
         style={{ 
           backgroundImage: 'linear-gradient(to top, rgb(13, 27, 42) 0%, rgba(46, 64, 89, 0) 100%)'
         }}
