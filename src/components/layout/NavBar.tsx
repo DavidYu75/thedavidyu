@@ -33,6 +33,12 @@ const NavBar = () => {
         </Link>
         <div className="hidden sm:flex sm:space-x-8">
           <Link 
+            href="#about" 
+            className="text-[#778DA9] hover:text-white transition-colors"
+          >
+            About
+          </Link>
+          <Link 
             href="#experience" 
             className="text-[#778DA9] hover:text-white transition-colors"
           >

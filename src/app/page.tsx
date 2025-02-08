@@ -4,6 +4,7 @@ import Experience from '@/components/sections/Experience'
 import Contact from '@/components/sections/Contact'
 import NavBar from '@/components/layout/NavBar'
 import Footer from '@/components/layout/Footer'
+import About from '@/components/sections/About'
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <NavBar />
       <main className="relative z-0">
         <Hero />
+        <About />
         <Experience />
         <Projects />
         <Contact />
