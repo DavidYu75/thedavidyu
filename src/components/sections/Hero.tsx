@@ -66,8 +66,10 @@ const Hero = () => {
               Based in New York City
             </p>
             <p className={styles.description}>
-              I&#39;m passionate about building exceptional digital experiences that live at the 
-              intersection of design and technology.
+              Engineering serendipity, one line of code at a time.
+              I create software that not only solves problems but 
+              also adapts and evolves alongside its users, 
+              offering new flavors of delight with each use.
             </p>
             <div className={styles.buttons}>
               <motion.a
