@@ -1,0 +1,121 @@
+.section {
+    position: relative;
+    background-color: #1B263B;
+    padding-top: 6rem;
+    padding-bottom: 15rem;
+  }
+  
+  .topGradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8rem;
+    z-index: 0;
+    background-image: linear-gradient(to bottom, #0D1B2A, rgba(27,38,59,0));
+  }
+  
+  .content {
+    position: relative;
+    z-index: 10;
+    margin: 0 auto;
+    max-width: 80rem;
+    padding: 0 1rem;
+  }
+  
+  @media (min-width: 640px) {
+    .content {
+      padding: 0 1.5rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .content {
+      padding: 0 2rem;
+    }
+  }
+  
+  .grid {
+    display: grid;
+    gap: 3rem;
+  }
+  
+  @media (min-width: 768px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  .title {
+    margin-bottom: 1.5rem;
+    font-size: 1.875rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: white;
+  }
+  
+  .text {
+    font-size: 1.125rem;
+    color: #778DA9;
+  }
+  
+  .textContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .skillsCard {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    background-color: #0D1B2A;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  .skillsTitle {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+  }
+  
+  .skillsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .skillTag {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    background-color: #415A77;
+    color: #FBF9FF;
+    font-size: 0.875rem;
+  }
+  
+  .interestsList {
+    list-style-type: disc;
+    list-style-position: inside;
+    color: #778DA9;
+  }
+  
+  .interestItem {
+    margin-top: 0.5rem;
+  }
+  
+  .interestItem:first-child {
+    margin-top: 0;
+  }
+  
+  .bottomGradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8rem;
+    z-index: 0;
+    background-image: linear-gradient(to top, #2E4059, rgba(27,38,59,0));
+  }
