@@ -4,6 +4,8 @@ import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import styles from '@/styles/Hero.module.css';
+import Spline from '@splinetool/react-spline';
+
 
 const Typewriter = () => {
   const words = useMemo(() => ["Full Stack Developer", "AI/ML Engineer", "Coding Nerd"], []);
@@ -46,6 +48,12 @@ const Typewriter = () => {
 };
 
 const Hero = () => {
+  const [isSplineLoaded, setIsSplineLoaded] = useState(false);
+
+  function onSplineLoad() {
+    setIsSplineLoaded(true);
+  }
+
   return (
     <section className={styles.hero}>
       <div className={styles.topGradient} />
@@ -91,21 +99,18 @@ const Hero = () => {
               </motion.a>
             </div>
           </motion.div>
-          <div className={styles.imageContainer}>
+          
+          <div className={styles.splineContainer}>
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
+              animate={{ opacity: isSplineLoaded ? 1 : 0, scale: isSplineLoaded ? 1 : 0.95 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className={styles.image}
+              className={styles.splineWrapper}
             >
-              <Image 
-                src="/images/hero2.JPEG" 
-                alt="Hero" 
-                fill
-                className={styles.heroImage}
-                style={{ objectFit: 'cover', objectPosition: 'center' }}
+              <Spline
+                scene="https://prod.spline.design/GT0Bn09x0P232VKO/scene.splinecode"
+                onLoad={onSplineLoad}
               />
-              <div className={styles.imageOverlay} />
             </motion.div>
           </div>
         </div>

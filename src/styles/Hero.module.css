@@ -148,3 +148,25 @@
     display: block;
   }
 }
+
+.splineContainer {
+  position: relative;
+  display: none;
+  width: 100%;
+  height: 450px;
+}
+
+.splineWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+@media (min-width: 1024px) {
+  .splineContainer {
+    display: block;
+  }
+}
