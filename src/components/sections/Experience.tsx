@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import styles from '@/styles/Experience.module.css';
-import { experiences } from '../../data/experience';
+import { experiences } from '@/data/experience';
 
 const Experience = () => {
   return (
