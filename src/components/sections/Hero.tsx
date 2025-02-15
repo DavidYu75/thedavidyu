@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import styles from '@/styles/Hero.module.css';
 
 const Typewriter = () => {
@@ -97,6 +98,13 @@ const Hero = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className={styles.image}
             >
+              <Image 
+                src="/images/hero2.JPEG" 
+                alt="Hero" 
+                fill
+                className={styles.heroImage}
+                style={{ objectFit: 'cover', objectPosition: 'center' }}
+              />
               <div className={styles.imageOverlay} />
             </motion.div>
           </div>
