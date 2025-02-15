@@ -2,29 +2,9 @@
 
 import { motion } from 'framer-motion';
 import styles from '@/styles/Projects.module.css';
+import { projects } from '@/data/projects';
 
 const Projects = () => {
-  const projects = [
-    {
-      id: '01',
-      title: 'Crypto Screener Application',
-      description: 'A comprehensive cryptocurrency tracking and analysis tool that provides real-time data, customizable alerts, and detailed market insights for crypto traders and investors.',
-      image: '/placeholder-1.jpg',
-    },
-    {
-      id: '02',
-      title: 'E-commerce Website Template',
-      description: 'A modern e-commerce solution with a focus on performance and user experience. Features include product filtering, cart management, and responsive design.',
-      image: '/placeholder-2.jpg',
-    },
-    {
-      id: '03',
-      title: 'Blog Website Template',
-      description: 'A clean and minimal blog platform with markdown support, categorization, and built-in SEO optimization. Perfect for content creators and writers.',
-      image: '/placeholder-3.jpg',
-    },
-  ];
-
   return (
     <section id="projects" className={styles.section}>
       <div className={styles.content}>
@@ -72,10 +52,10 @@ const Projects = () => {
           </div>
         </div>
       </div>
-
+  
       <div className={styles.bottomGradient} />
     </section>
   );
 };
-
+  
 export default Projects;
