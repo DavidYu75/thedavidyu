@@ -21,21 +21,37 @@ const Contact = () => {
             viewport={{ once: true }}
           >
             <div className={styles.titleContainer}>
-              <h2 className={styles.title}>Let&#39;s talk for</h2>
-              <h2 className={styles.titleHighlight}>Something special</h2>
-            </div>
+              <h2 className={styles.title}>Let&#39;s Connect!</h2>
+            </div>       
             <p className={styles.description}>
               I seek to push the limits of creativity to create high-engaging, user-friendly, 
               and memorable interactive experiences.
             </p>
-            <div className={styles.contactInfo}>
-              <a 
+            {/* New contact buttons */}
+            <div className={styles.contactButtons}>
+              <a
                 href="mailto:davyu735@gmail.com"
-                className={styles.emailLink}
+                className={styles.contactButton}
               >
-                davyu735@gmail.com
+                Email
               </a>
-            </div>
+              <a
+                href="https://linkedin.com/in/david-t-yu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.contactButton}
+              >
+                LinkedIn
+              </a>
+              <a
+                href="https://github.com/DavidYu75"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.contactButton}
+              >
+                GitHub
+              </a>
+            </div>  
           </motion.div>
 
           {/* Right Column - Contact Form */}

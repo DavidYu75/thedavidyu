@@ -109,3 +109,25 @@
   .submitButton:hover {
     background-color: #0D1B2A;
   }
+
+  .contactButtons {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  
+  .contactButton {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    border: 1px solid #1e293b;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .contactButton:hover {
+    background-color: #1e293b;
+  }
