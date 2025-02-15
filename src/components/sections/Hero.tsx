@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import styles from '@/styles/Hero.module.css';
 import Spline from '@splinetool/react-spline';
 
