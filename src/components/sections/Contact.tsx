@@ -1,6 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { MdEmail } from 'react-icons/md';
+import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import styles from '@/styles/Contact.module.css';
 
 const Contact = () => {
@@ -22,18 +24,18 @@ const Contact = () => {
           >
             <div className={styles.titleContainer}>
               <h2 className={styles.title}>Let&#39;s Connect!</h2>
-            </div>       
-            <p className={styles.description}>
-              I seek to push the limits of creativity to create high-engaging, user-friendly, 
-              and memorable interactive experiences.
-            </p>
-            {/* New contact buttons */}
+              <h3 className={styles.description}>
+                I seek to push the limits of creativity to create high-engaging, user-friendly, 
+                and memorable interactive experiences.
+              </h3>
+            </div>
+            {/* New contact icons */}
             <div className={styles.contactButtons}>
               <a
                 href="mailto:davyu735@gmail.com"
                 className={styles.contactButton}
               >
-                Email
+                <MdEmail size={24} />
               </a>
               <a
                 href="https://linkedin.com/in/david-t-yu"
@@ -41,7 +43,7 @@ const Contact = () => {
                 rel="noopener noreferrer"
                 className={styles.contactButton}
               >
-                LinkedIn
+                <FaLinkedin size={24} />
               </a>
               <a
                 href="https://github.com/DavidYu75"
@@ -49,9 +51,9 @@ const Contact = () => {
                 rel="noopener noreferrer"
                 className={styles.contactButton}
               >
-                GitHub
+                <FaGithub size={24} />
               </a>
-            </div>  
+            </div>
           </motion.div>
 
           {/* Right Column - Contact Form */}
