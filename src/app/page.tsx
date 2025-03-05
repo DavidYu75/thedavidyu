@@ -1,4 +1,5 @@
 import Hero from '@/components/sections/Hero'
+import Intro from '@/components/sections/Intro'
 import Projects from '@/components/sections/Projects'
 import Experience from '@/components/sections/Experience'
 import Contact from '@/components/sections/Contact'
@@ -12,6 +13,7 @@ export default function Home() {
       <NavBar />
       <main className="relative z-0">
         <Hero />
+        <Intro />
         <About />
         <Experience />
         <Projects />
