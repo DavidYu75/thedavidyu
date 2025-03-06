@@ -16,7 +16,15 @@ const Hero = () => {
           allow="autoplay"
           loading="eager"
           title="Scrolling Video Hero"
+          width="1708"
+          height="858"
         />
+      </div>
+      <div className={styles.scrollPrompt}>
+        <div className={styles.scrollIcon}>
+          <div className={styles.scrollDot}></div>
+        </div>
+        <p>Scroll Down</p>
       </div>
     </section>
   );

@@ -1,56 +1,3 @@
-.hero {
-  position: relative;
-  height: 600vh;
-}
-
-.stickyContainer {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  width: 100%;
-  z-index: 1;
-}
-
-.videoContainer {
-  position: sticky;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: 0;
-}
-
-.video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(13, 27, 42, 0.6);
-}
-
-.content {
-  position: relative;
-  z-index: 5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  height: 100%;
-  color: white;
-  padding: 0 2rem;
-}
-
-.spacer {
-  height: 100vh;
-}
-
 .scrollPrompt {
   position: absolute;
   bottom: 2rem;
@@ -82,35 +29,63 @@
   margin-top: 6px;
 }
 
-/* src/styles/Hero.module.css */
 .videoHeroSection {
   position: relative;
-  height: 100vh;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
   margin: 0;
   padding: 0;
   background-color: #04080c;
+  height: 100vh;
 }
 
 .stickyContainer {
-  position: sticky;
-  top: 0;
-  left: 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  height: 100vh; /* Set to match your hero section's height */
+  max-width: 1708px;
+  max-height: 858px;
+  aspect-ratio: 1708 / 858;
   z-index: 1;
 }
 
 .videoIframe {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%; /* Keep this tall to match your HTML file's content */
+  height: 100%;
   border: none;
   margin: 0;
   padding: 0;
+  max-width: 1708px;
+  max-height: 858px;
+}
+
+@media (max-width: 768px) {
+  .videoHeroSection {
+    height: 80vh;
+  }
+  
+  .stickyContainer {
+    height: 80vh;
+  }
+  
+  .videoIframe {
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 480px) {
+  .videoHeroSection {
+    height: 70vh;
+  }
+  
+  .stickyContainer {
+    height: 70vh;
+  }
 }
 
 @keyframes bounce {
