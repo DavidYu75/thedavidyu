@@ -39,3 +39,16 @@
   width: 0;
   animation: typing 3.5s steps(75, end) forwards;
 }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #080c14;
+}
+
+main {
+  display: block;
+  margin: 0;
+  padding: 0;
+}

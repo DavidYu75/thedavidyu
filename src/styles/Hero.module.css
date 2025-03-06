@@ -1,150 +1,126 @@
 .hero {
   position: relative;
-  min-height: 100vh;
+  height: 600vh;
 }
 
-.topGradient {
+.stickyContainer {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 1;
+}
+
+.videoContainer {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  height: 16rem;
-  z-index: 0;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(13, 27, 42, 0));
+  width: 100%;
+  height: 100%;
+  background: rgba(13, 27, 42, 0.6);
 }
 
 .content {
   position: relative;
-  z-index: 10;
-  margin: 0 auto;
-  max-width: 80rem;
-  padding: 6rem 1rem 0;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 3rem;
-}
-
-.title {
-  font-size: 3rem;
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  color: white;
-  min-height: 4rem;
-}
-
-.role {
-  margin-top: 1rem;
-  font-size: 1.25rem;
-  color: #94A3B8;
-  min-height: 2rem;
-}
-
-.location {
-  margin-top: 1rem;
-  font-size: 1.125rem;
-  color: #94A3B8;
-}
-
-.description {
-  margin-top: 1.5rem;
-  font-size: 1.125rem;
-  color: #94A3B8;
-  max-width: 36rem;
-}
-
-.buttons {
-  margin-top: 2rem;
+  z-index: 5;
   display: flex;
-  gap: 1rem;
-}
-
-.primaryButton {
-  border-radius: 0.375rem;
-  background-color: #1E293B;
-  padding: 0.75rem 1.5rem;
-  font-size: 0.875rem;
-  font-weight: 500;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
   color: white;
-  transition-property: background-color, transform;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+  padding: 0 2rem;
 }
 
-.primaryButton:hover {
-  background-color: #334155;
+.spacer {
+  height: 100vh;
 }
 
-.secondaryButton {
-  border-radius: 0.375rem;
-  border: 1px solid #1E293B;
-  padding: 0.75rem 1.5rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #94A3B8;
-  transition-property: background-color, transform;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+.scrollPrompt {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: bounce 2s infinite;
 }
 
-.secondaryButton:hover {
-  background-color: #1E293B;
+.scrollIcon {
+  border: 2px solid white;
+  border-radius: 20px;
+  height: 30px;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
 }
 
-.imageContainer {
+.scrollDot {
+  background-color: white;
+  border-radius: 50%;
+  height: 6px;
+  width: 6px;
+  margin-top: 6px;
+}
+
+/* src/styles/Hero.module.css */
+.videoHeroSection {
   position: relative;
-  display: none;
-}
-
-.image {
-  aspect-ratio: 1 / 1;
-  position: relative;
+  height: 100vh; /* Only show one viewport height */
   width: 100%;
-  height: 450px;
-  border-radius: 1rem;
-  background-color: #1E293B;
   overflow: hidden;
+  margin: 0;
+  padding: 0;
+  background-color: #04080c;
 }
 
-.imageOverlay {
-  position: absolute;
-  inset: 0;
-  background-image: linear-gradient(145deg, rgba(65, 90, 119, 0.4) 0%, rgba(27, 38, 59, 0) 100%);
-}
-
-.bottomGradient {
-  position: absolute;
-  bottom: 0;
+.stickyContainer {
+  position: sticky;
+  top: 0;
   left: 0;
-  right: 0;
-  height: 16rem;
-  z-index: 0;
-  background-image: linear-gradient(to top, #0D1B2A 0%, rgba(13, 27, 42, 0) 100%);
+  width: 100%;
+  height: 100vh; /* Set to match your hero section's height */
+  z-index: 1;
 }
 
-@media (min-width: 640px) {
-  .content {
-    padding: 8rem 1.5rem 0;
-  }
-
-  .title {
-    font-size: 3.75rem;
-  }
+.videoIframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Keep this tall to match your HTML file's content */
+  border: none;
+  margin: 0;
+  padding: 0;
 }
 
-@media (min-width: 1024px) {
-  .content {
-    padding: 8rem 2rem 0;
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) translateX(-50%);
   }
-
-  .grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+  40% {
+    transform: translateY(-10px) translateX(-50%);
   }
-
-  .imageContainer {
-    display: block;
+  60% {
+    transform: translateY(-5px) translateX(-50%);
   }
 }
