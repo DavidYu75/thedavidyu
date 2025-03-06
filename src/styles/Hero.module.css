@@ -85,7 +85,7 @@
 /* src/styles/Hero.module.css */
 .videoHeroSection {
   position: relative;
-  height: 100vh; /* Only show one viewport height */
+  height: 100vh;
   width: 100%;
   overflow: hidden;
   margin: 0;
