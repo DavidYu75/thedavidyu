@@ -74,11 +74,6 @@ const Contact = () => {
                 placeholder="Email"
                 className={styles.input}
               />
-              <input
-                type="text"
-                placeholder="Your website (If exists)"
-                className={styles.input}
-              />
               <textarea
                 placeholder="How can I help?"
                 rows={4}
