@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import styles from '@/styles/Projects.module.css';
 import { projects } from '@/data/projects';
+import Image from 'next/image';
 
 const Projects = () => {
   return (
@@ -44,6 +45,13 @@ const Projects = () => {
                 </div>
                 <div className={styles.imageContainer}>
                   <div className={styles.image}>
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      className={styles.projectImage}
+                      width={350}
+                      height={300}
+                    />
                     <div className={styles.imageGradient} />
                   </div>
                 </div>

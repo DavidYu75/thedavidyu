@@ -8,23 +8,23 @@ export interface Project {
   export const projects: Project[] = [
     {
       id: '01',
-      title: 'Crypto Screener Application',
+      title: 'Black-Scholes Model',
       description:
-        'A comprehensive cryptocurrency tracking and analysis tool that provides real-time data, customizable alerts, and detailed market insights for crypto traders and investors.',
-      image: '/placeholder-1.jpg',
+        'A sophisticated financial tool implementing the Black-Scholes mathematical model to accurately price options contracts and analyze market volatility.',
+      image: '/images/inprogress.png',
     },
     {
       id: '02',
-      title: 'E-commerce Website Template',
+      title: 'IntReview',
       description:
-        'A modern e-commerce solution with a focus on performance and user experience. Features include product filtering, cart management, and responsive design.',
-      image: '/placeholder-2.jpg',
+        'An AI-powered interview preparation platform that provides real-time feedback on verbal and non-verbal communication using computer vision and speech analysis.',
+      image: '/images/intreview.png',
     },
     {
       id: '03',
-      title: 'Blog Website Template',
+      title: 'Classify',
       description:
-        'A clean and minimal blog platform with markdown support, categorization, and built-in SEO optimization. Perfect for content creators and writers.',
-      image: '/placeholder-3.jpg',
+        'A machine learning application that intelligently categorizes Spotify playlists into themed collections to enhance music discovery through audio feature analysis.',
+      image: '/images/classify.png',
     },
   ];

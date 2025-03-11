@@ -90,11 +90,19 @@
   .projectLink:hover {
     color: #778DA9;
   }
+
+  .projectImage {
+    margin: 0 auto;
+    display: block;
+  }
   
   .imageContainer {
     background-color: #1B263B;
     padding: 1rem;
     border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .image {
