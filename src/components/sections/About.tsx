@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import styles from '@/styles/About.module.css';
 import { aboutContent } from '@/data/about';
+import Image from 'next/image';
 
 export function About() {
   return (
@@ -33,29 +34,17 @@ export function About() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className={styles.skillsCard}
+            className={styles.image}
           >
-            <div>
-              <h3 className={styles.skillsTitle}>Skills & Technologies</h3>
-              <div className={styles.skillsList}>
-                {aboutContent.skills.map((skill) => (
-                  <span key={skill} className={styles.skillTag}>
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-            
-            <div>
-              <h3 className={styles.skillsTitle}>Interests</h3>
-              <ul className={styles.interestsList}>
-                {aboutContent.interests.map((interest) => (
-                  <li key={interest} className={styles.interestItem}>
-                    {interest}
-                  </li>
-                ))}
-              </ul>
-            </div>
+
+            <Image 
+              src="/images/hero2.JPEG" 
+              alt="Picture of Me" 
+              fill
+              // width={400}
+              // height={400}
+              style={{ objectFit: 'cover', borderRadius: '1rem' }}
+            />
           </motion.div>
         </motion.div>
       </div>
