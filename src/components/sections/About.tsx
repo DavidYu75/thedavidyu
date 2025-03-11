@@ -19,7 +19,7 @@ export function About() {
           className={styles.grid}
         >
           <div>
-            <h2 className={styles.title}>About Me</h2>
+            <h2 className={styles.title}>Hello World!</h2>
             <div className={styles.textContainer}>
               {aboutContent.description.map((paragraph, index) => (
                 <p key={index} className={styles.text}>
