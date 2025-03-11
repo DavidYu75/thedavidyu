@@ -34,7 +34,9 @@ const Projects = () => {
                   <h3 className={styles.projectTitle}>{project.title}</h3>
                   <p className={styles.projectDescription}>{project.description}</p>
                   <motion.a 
-                    href="#" 
+                    href={project.link} 
+                    target="_blank"
+                    rel='noopener noreferrer'
                     className={styles.projectLink}
                     whileHover={{ x: 10 }}
                     transition={{ duration: 0.2 }}
