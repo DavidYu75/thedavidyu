@@ -11,13 +11,13 @@ export type ExperienceDetailMap = {
 export const experienceDetails: ExperienceDetailMap = {
     'citizens-bank': {
         responsibilities: [
-        'Develop automation solutions for banking processes',
-        'Implement secure financial transaction systems',
-        'Collaborate with cross-functional teams on digital transformation initiatives'
+            'Develop automation solutions for banking processes',
+            'Implement secure financial transaction systems',
+            'Collaborate with cross-functional teams on digital transformation initiatives'
         ],
         technologies: ['Java', 'Spring Boot', 'Oracle', 'Docker'],
         achievements: [
-        'Incoming role - Summer and Fall 2025'
+        
         ]
     },
   
