@@ -3,6 +3,7 @@ export interface Project {
   title: string;
   description: string;
   image: string;
+  slug: string;
   link: string;
 }
   
@@ -13,7 +14,8 @@ export const projects: Project[] = [
     description:
       'A sophisticated financial tool implementing the Black-Scholes mathematical model to accurately price options contracts and analyze market volatility.',
     image: '/images/inprogress.png',
-    link: '#',
+    slug: 'black-scholes-model',
+    link: '/projects/black-scholes-model',
   },
   {
     id: '02',
@@ -21,7 +23,8 @@ export const projects: Project[] = [
     description:
       'An AI-powered interview preparation platform that provides real-time feedback on verbal and non-verbal communication using computer vision and speech analysis.',
     image: '/images/intreview.png',
-    link: 'https://github.com/DavidYu75/intreview',
+    slug: 'intreview',
+    link: '/projects/intreview',
   },
   {
     id: '03',
@@ -29,7 +32,8 @@ export const projects: Project[] = [
     description:
       'A machine learning application that intelligently categorizes Spotify playlists into themed collections to enhance music discovery through audio feature analysis.',
     image: '/images/classify.png',
-    link: "https://github.com/thaninbew/classify",
+    slug: 'classify',
+    link: '/projects/classify',
   },
   {
     id: '04',
@@ -37,6 +41,7 @@ export const projects: Project[] = [
     description:
       'A restaurant analytics platform leveraging data-driven insights to help owners optimize menu offerings, pricing, and inventory management for increased profitability.',
     image: '/images/inprogress.png',
-    link: "https://github.com/GenerateNU/platemate",
+    slug: 'platemate',
+    link: '/projects/platemate',
   },
 ];

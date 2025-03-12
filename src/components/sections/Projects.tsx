@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import styles from '@/styles/Projects.module.css';
 import { projects } from '@/data/projects';
 import Image from 'next/image';
@@ -33,17 +34,18 @@ const Projects = () => {
                   <span className={styles.projectId}>{project.id}</span>
                   <h3 className={styles.projectTitle}>{project.title}</h3>
                   <p className={styles.projectDescription}>{project.description}</p>
-                  <motion.a 
-                    href={project.link} 
-                    target="_blank"
-                    rel='noopener noreferrer'
-                    className={styles.projectLink}
+                  <motion.div 
                     whileHover={{ x: 10 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <span>View Project</span>
-                    <span>→</span>
-                  </motion.a>
+                    <Link 
+                      href={project.link}
+                      className={styles.projectLink}
+                    >
+                      <span>View Project</span>
+                      <span>→</span>
+                    </Link>
+                  </motion.div>
                 </div>
                 <div className={styles.imageContainer}>
                   <div className={styles.image}>
