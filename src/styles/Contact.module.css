@@ -1,135 +1,111 @@
 .section {
-    position: relative;
-    padding: 6rem 0;
-    background-color: #415A77;
-  }
-  
-  .content {
-    position: relative;
-    z-index: 10;
-    margin: 0 auto;
-    max-width: 80rem;
-    padding: 0 1rem;
-  }
-  
-  @media (min-width: 640px) {
-    .content {
-      padding: 0 1.5rem;
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    .content {
-      padding: 0 2rem;
-    }
-  }
-  
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-  
-  @media (min-width: 1024px) {
-    .grid {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-  
-  .titleContainer {
-    margin-bottom: 2rem;
-  }
-  
-  .title {
-    font-size: 1.875rem;
-    font-weight: 700;
-    color: white;
-  }
-  
-  .titleHighlight {
-    color: #FBF9FF;
-  }
-  
-  .description {
-    margin-top: 0.5rem;
-    font-size: 1.125rem;
-    color: #FBF9FF;
-  }
-  
-  .emailLink {
-    display: block;
-    color: white;
-    transition: color 0.2s;
-  }
-  
-  .emailLink:hover {
-    color: #FBF9FF;
-  }
-  
-  .form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  .input {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    background-color: #1B263B;
-    color: white;
-    border-radius: 0.5rem;
-  }
-  
-  .input::placeholder {
-    color: #778DA9;
-  }
-  
-  .input:focus {
-    outline: none;
-    ring: 2px;
-    ring-color: #778DA9;
-  }
-  
-  .textarea {
-    composes: input;
-    resize: none;
-    min-height: 8rem;
-  }
-  
-  .submitButton {
-    width: 100%;
-    padding: 1rem 2rem;
-    background-color: #1B263B;
-    color: white;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    transition: background-color 0.2s;
-  }
-  
-  .submitButton:hover {
-    background-color: #0D1B2A;
-  }
+  position: relative;
+  padding: 6rem 0;
+  background-color: #415A77;
+}
 
-  .contactButtons {
-    display: flex;
-    gap: 1rem;
-    margin: 1rem 0;
+.content {
+  position: relative;
+  z-index: 10;
+  margin: 0 auto;
+  max-width: 80rem;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .content {
+    padding: 0 1.5rem;
   }
-  
-  .contactButton {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem;
-    border-radius: 0.375rem;
-    border: 1px solid #1e293b;
-    font-size: 0;
-    color: #94a3b8;
-    text-decoration: none;
-    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1),
-                transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (min-width: 1024px) {
+  .content {
+    padding: 0 2rem;
   }
-  
-  .contactButton:hover {
-    background-color: #1e293b;
+}
+
+.centeredContent {
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
   }
+}
+
+.titleContainer {
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: white;
+}
+
+.titleHighlight {
+  color: #FBF9FF;
+}
+
+.description {
+  margin-top: 0.5rem;
+  font-size: 1.125rem;
+  color: #FBF9FF;
+}
+
+.socialContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  gap: 1.5rem;
+}
+
+.contactButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  border: 1px solid #1e293b;
+  font-size: 0;
+  color: #94a3b8;
+  text-decoration: none;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1),
+              transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contactButton:hover {
+  background-color: #1e293b;
+}
+
+.emailContainer {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.contactText {
+  font-size: 1.125rem;
+  color: #FBF9FF;
+}
+
+.emailButton {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #1B263B;
+  color: white;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.emailButton:hover {
+  background-color: #0D1B2A;
+}
