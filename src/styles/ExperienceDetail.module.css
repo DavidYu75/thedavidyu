@@ -1,0 +1,140 @@
+.container {
+    min-height: 100vh;
+    background-color: #1B263B;
+    color: #FBF9FF;
+    padding: 6rem 1rem;
+}
+
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #2E4059;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.backLink {
+    display: inline-block;
+    margin-bottom: 2rem;
+    color: #778DA9;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.backLink:hover {
+    color: #FBF9FF;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 1.5rem;
+}
+
+.logoContainer {
+    flex-shrink: 0;
+}
+
+.logo {
+    border-radius: 12px;
+    object-fit: contain;
+    background-color: white;
+    padding: 8px;
+}
+
+.titleContainer {
+    flex-grow: 1;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #FBF9FF;
+    margin: 0;
+}
+
+.company {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #778DA9;
+    margin: 0.5rem 0 0;
+}
+
+.period {
+    font-size: 1rem;
+    color: #778DA9;
+    margin: 0.5rem 0 0;
+}
+
+.description {
+    margin-bottom: 2rem;
+}
+
+.sectionTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #FBF9FF;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #415A77;
+    padding-bottom: 0.5rem;
+}
+
+.text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #778DA9;
+}
+
+.section {
+    margin-bottom: 2rem;
+}
+
+.list {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    color: #778DA9;
+}
+
+.list li {
+    margin-bottom: 0.5rem;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag {
+    padding: 0.25rem 0.75rem;
+    background-color: #415A77;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    color: #FBF9FF;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 1.5rem;
+    color: #FBF9FF;
+}
+
+@media (max-width: 640px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .title {
+        font-size: 1.75rem;
+    }
+
+    .company {
+        font-size: 1.25rem;
+    }
+}
