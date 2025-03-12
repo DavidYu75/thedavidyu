@@ -1,119 +1,154 @@
 .section {
-    position: relative;
-    background-color: #2E4059;
-  }
-  
-  .topGradient {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 8rem;
-    z-index: 0;
-    background-image: linear-gradient(to bottom, rgb(46, 64, 89) 0%, rgba(46, 64, 89, 0) 100%);
-  }
-  
-  .content {
-    position: relative;
-    z-index: 10;
-    padding-top: 1.25rem;
-    padding-bottom: 15rem;
-  }
-  
+  position: relative;
+  background-color: #2E4059;
+}
+
+.topGradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8rem;
+  z-index: 0;
+  background-image: linear-gradient(to bottom, rgb(46, 64, 89) 0%, rgba(46, 64, 89, 0) 100%);
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  padding-top: 1.25rem;
+  padding-bottom: 15rem;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 80rem;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
   .container {
-    margin: 0 auto;
-    max-width: 80rem;
-    padding: 0 1rem;
+    padding: 0 1.5rem;
   }
-  
-  @media (min-width: 640px) {
-    .container {
-      padding: 0 1.5rem;
-    }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 2rem;
   }
-  
-  @media (min-width: 1024px) {
-    .container {
-      padding: 0 2rem;
-    }
-  }
-  
-  .title {
-    font-size: 1.875rem;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 3rem;
-  }
-  
-  .timelineContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-  }
-  
-  .timelineItem {
-    position: relative;
-    padding-left: 2rem;
-    border-left: 2px solid #415A77;
-  }
-  
-  .timelineDot {
-    position: absolute;
-    left: -0.5625rem;
-    top: 0;
-    height: 1rem;
-    width: 1rem;
-    border-radius: 9999px;
-    background-color: #778DA9;
-  }
-  
-  .itemContent {
-    margin-left: 1.5rem;
-  }
-  
+}
+
+.title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 3rem;
+}
+
+.timelineContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.timelineItem {
+  position: relative;
+  padding-left: 2rem;
+  border-left: 2px solid #415A77;
+}
+
+.timelineDot {
+  position: absolute;
+  left: -0.5625rem;
+  top: 0;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 9999px;
+  background-color: #778DA9;
+}
+
+/* New Card Styles */
+.experienceCard {
+  display: block;
+  border-radius: 0.75rem;
+  background-color: #1B263B;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.experienceCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.cardContent {
+  display: flex;
+  padding: 1.5rem;
+}
+
+.logoContainer {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-right: 1.5rem;
+  width: 40px;
+  height: 40px;
+}
+
+.logo {
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.itemContent {
+  flex-grow: 1;
+}
+
+.itemHeader {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 640px) {
   .itemHeader {
-    display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
-  
-  @media (min-width: 640px) {
-    .itemHeader {
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-    }
-  }
-  
-  .jobTitle {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: white;
-  }
-  
+}
+
+.jobTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+}
+
+.period {
+  margin-top: 0.25rem;
+  color: #778DA9;
+}
+
+@media (min-width: 640px) {
   .period {
-    margin-top: 0.25rem;
-    color: #778DA9;
+    margin-top: 0;
   }
-  
-  @media (min-width: 640px) {
-    .period {
-      margin-top: 0;
-    }
-  }
-  
-  .description {
-    margin-top: 1rem;
-    color: #778DA9;
-    font-size: 1.125rem;
-    line-height: 1.75;
-  }
-  
-  .bottomGradient {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 15rem;
-    z-index: 0;
-    background-image: linear-gradient(to top, rgb(13, 27, 42) 0%, rgba(46, 64, 89, 0) 100%);
-  }
+}
+
+.description {
+  margin-top: 1rem;
+  color: #778DA9;
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+
+.bottomGradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 15rem;
+  z-index: 0;
+  background-image: linear-gradient(to top, rgb(13, 27, 42) 0%, rgba(46, 64, 89, 0) 100%);
+}

@@ -1,6 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
+import Image from 'next/image';
 import styles from '@/styles/Experience.module.css';
 import { experiences } from '@/data/experience';
 
@@ -32,15 +34,31 @@ const Experience = () => {
               >
                 <div className={styles.timelineDot} />
                 
-                <div className={styles.itemContent}>
-                  <div className={styles.itemHeader}>
-                    <h3 className={styles.jobTitle}>{exp.title}</h3>
-                    <span className={styles.period}>{exp.period}</span>
+                <Link href={`/experience/${exp.slug}`} className={styles.experienceCard}>
+                  <div className={styles.cardContent}>
+                    <div className={styles.logoContainer}>
+                      {exp.logo && (
+                        <Image 
+                          src={exp.logo} 
+                          alt={`${exp.company} logo`}
+                          width={40}
+                          height={40}
+                          className={styles.logo}
+                        />
+                      )}
+                    </div>
+                    
+                    <div className={styles.itemContent}>
+                      <div className={styles.itemHeader}>
+                        <h3 className={styles.jobTitle}>{exp.title}</h3>
+                        <span className={styles.period}>{exp.period}</span>
+                      </div>
+                      <p className={styles.description}>
+                        {exp.description}
+                      </p>
+                    </div>
                   </div>
-                  <p className={styles.description}>
-                    {exp.description}
-                  </p>
-                </div>
+                </Link>
               </motion.div>
             ))}
           </div>
