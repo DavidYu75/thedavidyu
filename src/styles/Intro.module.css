@@ -1,150 +1,150 @@
 .hero {
-    position: relative;
-    min-height: 100vh;
-  }
-  
-  .topGradient {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 16rem;
-    z-index: 0;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(13, 27, 42, 0));
-  }
-  
+  position: relative;
+  min-height: 100vh;
+}
+
+.topGradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 16rem;
+  z-index: 0;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(13, 27, 42, 0));
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  margin: 0 auto;
+  max-width: 80rem;
+  padding: 6rem 1rem 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: white;
+  min-height: 4rem;
+}
+
+.role {
+  margin-top: 1rem;
+  font-size: 1.25rem;
+  color: #94A3B8;
+  min-height: 2rem;
+}
+
+.location {
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  color: #94A3B8;
+}
+
+.description {
+  margin-top: 1.5rem;
+  font-size: 1.125rem;
+  color: #94A3B8;
+  max-width: 36rem;
+}
+
+.buttons {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.primaryButton {
+  border-radius: 0.375rem;
+  background-color: #1E293B;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: white;
+  transition-property: background-color, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.primaryButton:hover {
+  background-color: #334155;
+}
+
+.secondaryButton {
+  border-radius: 0.375rem;
+  border: 1px solid #1E293B;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #94A3B8;
+  transition-property: background-color, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.secondaryButton:hover {
+  background-color: #1E293B;
+}
+
+.imageContainer {
+  position: relative;
+  display: none;
+}
+
+.image {
+  aspect-ratio: 1 / 1;
+  position: relative;
+  width: 100%;
+  height: 450px;
+  border-radius: 1rem;
+  background-color: #1E293B;
+  overflow: hidden;
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(145deg, rgba(65, 90, 119, 0.4) 0%, rgba(27, 38, 59, 0) 100%);
+}
+
+.bottomGradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 16rem;
+  z-index: 0;
+  background-image: linear-gradient(to top, #0D1B2A 0%, rgba(13, 27, 42, 0) 100%);
+}
+
+@media (min-width: 640px) {
   .content {
-    position: relative;
-    z-index: 10;
-    margin: 0 auto;
-    max-width: 80rem;
-    padding: 6rem 1rem 0;
+    padding: 8rem 1.5rem 0;
   }
-  
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-  
+
   .title {
-    font-size: 3rem;
-    font-weight: 700;
-    letter-spacing: -0.025em;
-    color: white;
-    min-height: 4rem;
+    font-size: 3.75rem;
   }
-  
-  .role {
-    margin-top: 1rem;
-    font-size: 1.25rem;
-    color: #94A3B8;
-    min-height: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .content {
+    padding: 8rem 2rem 0;
   }
-  
-  .location {
-    margin-top: 1rem;
-    font-size: 1.125rem;
-    color: #94A3B8;
+
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
   }
-  
-  .description {
-    margin-top: 1.5rem;
-    font-size: 1.125rem;
-    color: #94A3B8;
-    max-width: 36rem;
-  }
-  
-  .buttons {
-    margin-top: 2rem;
-    display: flex;
-    gap: 1rem;
-  }
-  
-  .primaryButton {
-    border-radius: 0.375rem;
-    background-color: #1E293B;
-    padding: 0.75rem 1.5rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: white;
-    transition-property: background-color, transform;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
-  }
-  
-  .primaryButton:hover {
-    background-color: #334155;
-  }
-  
-  .secondaryButton {
-    border-radius: 0.375rem;
-    border: 1px solid #1E293B;
-    padding: 0.75rem 1.5rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #94A3B8;
-    transition-property: background-color, transform;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
-  }
-  
-  .secondaryButton:hover {
-    background-color: #1E293B;
-  }
-  
+
   .imageContainer {
-    position: relative;
-    display: none;
+    display: block;
   }
-  
-  .image {
-    aspect-ratio: 1 / 1;
-    position: relative;
-    width: 100%;
-    height: 450px;
-    border-radius: 1rem;
-    background-color: #1E293B;
-    overflow: hidden;
-  }
-  
-  .imageOverlay {
-    position: absolute;
-    inset: 0;
-    background-image: linear-gradient(145deg, rgba(65, 90, 119, 0.4) 0%, rgba(27, 38, 59, 0) 100%);
-  }
-  
-  .bottomGradient {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 16rem;
-    z-index: 0;
-    background-image: linear-gradient(to top, #0D1B2A 0%, rgba(13, 27, 42, 0) 100%);
-  }
-  
-  @media (min-width: 640px) {
-    .content {
-      padding: 8rem 1.5rem 0;
-    }
-  
-    .title {
-      font-size: 3.75rem;
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    .content {
-      padding: 8rem 2rem 0;
-    }
-  
-    .grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-    }
-  
-    .imageContainer {
-      display: block;
-    }
-  }
+}
