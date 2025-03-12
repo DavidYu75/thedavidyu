@@ -105,7 +105,6 @@ const Intro = () => {
                 className={styles.heroImage}
                 style={{ objectFit: 'cover', objectPosition: 'center' }}
               />
-              <div className={styles.imageOverlay} />
             </motion.div>
           </div>
         </div>
