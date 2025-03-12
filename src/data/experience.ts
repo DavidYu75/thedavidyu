@@ -6,21 +6,27 @@ export interface Experience {
   
 export const experiences: Experience[] = [
   {
-    title: 'Lead Software Engineer at Google',
-    period: 'Nov 2019 - Present',
+    title: 'Incoming Automation Software Developer @ Citizens Bank',
+    period: 'Jul 2025 - Dec 2025',
     description:
-      "As a Senior Software Engineer at Google, I played a pivotal role in developing innovative solutions for Google's core search algorithms. Collaborating with a dynamic team of engineers, I contributed to the enhancement of search accuracy and efficiency, optimizing user experiences for millions of users worldwide.",
+      "Incoming Summer and Fall 2025",
   },
   {
-    title: 'Software Engineer at Youtube',
-    period: 'Jan 2017 - Oct 2019',
+    title: 'Software Engineer @ Generate Product Development',
+    period: 'Jan 2025 - Present',
     description:
-      "At Youtube, I served as a Software Engineer, focusing on the design and implementation of backend systems for the social media giant's dynamic platform. Working on projects that involved large scale data processing and user engagement features.",
+      "During my time at Generate Product Development, I architected and built a scalable restaurant analytics platform with multiple microservices to optimize business operations through data-driven insights.",
   },
   {
-    title: 'Junior Software Engineer at Apple',
-    period: 'Jan 2016 - Dec 2017',
+    title: 'Machine Learning Engineer @ Outlier',
+    period: 'Sep 2024 - Dec 2024',
     description:
-      "During my tenure at Apple, I held the role of Software Architect, where I played a key role in shaping the architecture of mission-critical software projects. Responsible for designing scalable and efficient systems.",
+      "During my time at Outlier, I engineered robust evaluation systems and testing frameworks for large language models, dramatically improving response accuracy and reducing development cycles.",
+  },
+  {
+    title: 'Software Engineer Intern @ Amazon',
+    period: 'May 2024 - Aug 2024',
+    description:
+      "During my time at Amazon, I developed high-performance monitoring solutions for critical infrastructure while significantly reducing costs and improving system reliability.",
   },
 ];
