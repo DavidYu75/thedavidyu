@@ -3,10 +3,11 @@
 import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { aboutContent } from '@/data/about';
 import styles from '@/styles/Intro.module.css';
 
 const Typewriter = () => {
-  const words = useMemo(() => ["Full Stack Developer", "AI/ML Engineer", "Coding Nerd"], []);
+  const words = useMemo(() => ["Full Stack Developer", "AI/ML Engineer", "Coding Nerd", "Hackathon Enthusiast", "Matcha Lover", "Escape Room Solver", "Volleyball Player", "Music Discoverer"], []);
   const [text, setText] = useState('');
   const [wordIndex, setWordIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -47,7 +48,7 @@ const Typewriter = () => {
 
 const Intro = () => {
   return (
-    <section className={styles.hero}>
+    <section id="intro" className={styles.hero}>
       <div className={styles.topGradient} />
       
       <div className={styles.content}>
@@ -63,15 +64,13 @@ const Intro = () => {
             <p className={styles.role}>
               <Typewriter />
             </p>
-            <p className={styles.location}>
-              Based in New York City
-            </p>
-            <p className={styles.description}>
-              Engineering serendipity, one line of code at a time.
-              I create software that not only solves problems but 
-              also adapts and evolves alongside its users, 
-              offering new flavors of delight with each use.
-            </p>
+            <div className={styles.textContainer}>
+              {aboutContent.description.map((paragraph, index) => (
+                <p key={index} className={styles.text}>
+                  {paragraph}
+                </p>
+              ))}
+            </div>
             <div className={styles.buttons}>
               <motion.a
                 href="#contact"
@@ -80,6 +79,14 @@ const Intro = () => {
                 whileTap={{ scale: 0.98 }}
               >
                 Get in touch
+              </motion.a>
+              <motion.a
+                href="#experience"
+                className={styles.secondaryButton}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                View Experience
               </motion.a>
               <motion.a
                 href="#projects"

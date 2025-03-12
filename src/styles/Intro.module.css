@@ -115,7 +115,19 @@
   right: 0;
   height: 16rem;
   z-index: 0;
-  background-image: linear-gradient(to top, #0D1B2A 0%, rgba(13, 27, 42, 0) 100%);
+  background-image: linear-gradient(to top, rgb(46, 64, 89) 0%, rgba(46, 64, 89, 0) 100%);
+}
+
+.text {
+  font-size: 1.125rem;
+  color: #778DA9;
+}
+
+.textContainer {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 @media (min-width: 640px) {
