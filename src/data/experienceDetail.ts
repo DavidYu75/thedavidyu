@@ -20,7 +20,7 @@ export const experienceDetails: ExperienceDetailMap = {
     achievements: [
       'Incoming role - Summer and Fall 2025'
     ],
-    memories: []
+    memories: [],
   },
 
   'generate-product-development': {
@@ -35,11 +35,7 @@ export const experienceDetails: ExperienceDetailMap = {
       'Built APIs with sub-100ms response times for processing over 1000 dish metrics',
       'Established secure access controls for 50+ restaurants and 1000+ users'
     ],
-    memories: [
-      '/images/experiences/generate/team-meeting.jpg',
-      '/images/experiences/generate/hackathon.jpg',
-      '/images/experiences/generate/presentation.jpg'
-    ]
+    memories: [],
   },
 
   'outlier': {
@@ -54,10 +50,7 @@ export const experienceDetails: ExperienceDetailMap = {
       'Reduced iteration cycles by 40% with enhanced testing frameworks',
       'Generated 5x more diverse training data for better model generalization'
     ],
-    memories: [
-      '/images/experiences/outlier/team-lunch.jpg',
-      '/images/experiences/outlier/office-space.jpg'
-    ]
+    memories: [],
   },
 
   'amazon': {
@@ -79,6 +72,6 @@ export const experienceDetails: ExperienceDetailMap = {
       '/images/experiences/amazon/balls.JPEG',
       '/images/experiences/amazon/seattle.jpg',
       '/images/experiences/amazon/mountain.jpg'
-    ]
+    ],
   }
 };
