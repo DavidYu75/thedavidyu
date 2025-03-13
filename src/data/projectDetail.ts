@@ -3,7 +3,7 @@ export interface ProjectDetail {
     features: string[];
     technologies: string[];
     challenges: string[];
-    screenshots: string[]; // Paths to screenshot images
+    screenshots: string[];
     githubUrl?: string;
     liveUrl?: string;
 }
