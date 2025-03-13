@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -11,16 +10,17 @@ import styles from '@/styles/ExperienceDetail.module.css';
 import NavBar from '@/components/layout/NavBar';
 import Footer from '@/components/layout/Footer';
 
-export default function ExperienceDetail() {
-  const params = useParams();
+interface ExperienceDetailProps {
+  slug: string;
+}
+
+export default function ExperienceDetail({ slug }: ExperienceDetailProps) {
   const [experience, setExperience] = useState<Experience | undefined>(undefined);
   
   useEffect(() => {
-    if (params.slug && typeof params.slug === 'string') {
-      const foundExperience = experiences.find(exp => exp.slug === params.slug);
-      setExperience(foundExperience);
-    }
-  }, [params]);
+    const foundExperience = experiences.find(exp => exp.slug === slug);
+    setExperience(foundExperience);
+  }, [slug]);
 
   if (!experience) {
     return <div className={styles.loading}>Loading...</div>;

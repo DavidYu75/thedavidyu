@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -12,16 +11,17 @@ import styles from '@/styles/ProjectDetail.module.css';
 import NavBar from '@/components/layout/NavBar';
 import Footer from '@/components/layout/Footer';
 
-export default function ProjectDetail() {
-  const params = useParams();
+interface ProjectDetailProps {
+  slug: string;
+}
+
+export default function ProjectDetail({ slug }: ProjectDetailProps) {
   const [project, setProject] = useState<Project | undefined>(undefined);
   
   useEffect(() => {
-    if (params.slug && typeof params.slug === 'string') {
-      const foundProject = projects.find(proj => proj.slug === params.slug);
-      setProject(foundProject);
-    }
-  }, [params]);
+    const foundProject = projects.find(proj => proj.slug === slug);
+    setProject(foundProject);
+  }, [slug]);
 
   if (!project) {
     return <div className={styles.loading}>Loading...</div>;

@@ -30,5 +30,5 @@ export function generateStaticParams() {
 }
 
 export default function ExperiencePage({ params }: Props) {
-  return <ExperienceDetail />;
+  return <ExperienceDetail slug={params.slug} />;
 }

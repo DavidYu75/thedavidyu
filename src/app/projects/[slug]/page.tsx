@@ -30,5 +30,5 @@ export function generateStaticParams() {
 }
 
 export default function ProjectPage({ params }: Props) {
-  return <ProjectDetail />;
+  return <ProjectDetail slug={params.slug} />;
 }
