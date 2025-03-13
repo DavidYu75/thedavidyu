@@ -29,6 +29,6 @@ export function generateStaticParams() {
   }));
 }
 
-export default function ExperiencePage({ }: Props) {
+export default function ExperiencePage({ params }: Props) {
   return <ExperienceDetail />;
 }

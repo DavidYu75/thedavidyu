@@ -29,6 +29,6 @@ export function generateStaticParams() {
   }));
 }
 
-export default function ProjectPage({ }: Props) {
+export default function ProjectPage({ params }: Props) {
   return <ProjectDetail />;
 }
