@@ -7,14 +7,14 @@ type Params = {
   slug: string;
 };
 
-// Define props type for the page component
-type Props = {
-  params: Params;
-};
-
 // Generate metadata using the params
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = params;
+export async function generateMetadata({ 
+  params 
+}: { 
+  params: Promise<Params> 
+}): Promise<Metadata> {
+  const resolvedParams = await params;
+  const { slug } = resolvedParams;
   const experience = experiences.find(exp => exp.slug === slug);
   
   if (!experience) {
@@ -30,13 +30,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 // Generate static paths
-export function generateStaticParams(): Params[] {
+export function generateStaticParams(): Array<Params> {
   return experiences.map((experience) => ({
     slug: experience.slug,
   }));
 }
 
 // Page component with proper typing for Next.js 15
-export default function Page({ params }: Props) {
-  return <ExperienceDetail slug={params.slug} />;
+export default async function Page({ 
+  params 
+}: { 
+  params: Promise<Params> 
+}) {
+  const resolvedParams = await params;
+  return <ExperienceDetail slug={resolvedParams.slug} />;
 }
