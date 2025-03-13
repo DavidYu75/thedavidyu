@@ -44,11 +44,22 @@ html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  background-color: #080c14;
+  height: 100%;
 }
 
 main {
   display: block;
+  margin: 0;
+  padding: 0;
+}
+
+main > section {
+  margin: 0;
+  padding: 0;
+}
+
+.min-h-screen {
+  min-height: 100vh;
   margin: 0;
   padding: 0;
 }
