@@ -93,6 +93,25 @@ export default function ExperienceDetail() {
                   ))}
                 </ul>
               </div>
+              
+              {detail.memories && detail.memories.length > 0 && (
+                <div className={styles.section}>
+                  <h3 className={styles.sectionTitle}>Memories</h3>
+                  <div className={styles.memoriesGrid}>
+                    {detail.memories.map((memory, index) => (
+                      <div key={index} className={styles.memoryContainer}>
+                        <Image
+                          src={memory}
+                          alt={`${experience.company} memory ${index + 1}`}
+                          width={350}
+                          height={220}
+                          className={styles.memoryImage}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </>
           )}
         </motion.div>
