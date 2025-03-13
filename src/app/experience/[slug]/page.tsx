@@ -2,13 +2,19 @@ import ExperienceDetail from '@/components/ExperienceDetail';
 import { experiences } from '@/data/experience';
 import { Metadata } from 'next';
 
-type Props = {
-  params: { slug: string }
+// Define params type
+type Params = {
+  slug: string;
 };
 
-export async function generateMetadata(
-  { params }: Props): Promise<Metadata> {
-  const slug = params.slug;
+// Define props type for the page component
+type Props = {
+  params: Params;
+};
+
+// Generate metadata using the params
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = params;
   const experience = experiences.find(exp => exp.slug === slug);
   
   if (!experience) {
@@ -23,12 +29,14 @@ export async function generateMetadata(
   };
 }
 
-export function generateStaticParams() {
+// Generate static paths
+export function generateStaticParams(): Params[] {
   return experiences.map((experience) => ({
     slug: experience.slug,
   }));
 }
 
-export default function ExperiencePage({ params }: Props) {
+// Page component with proper typing for Next.js 15
+export default function Page({ params }: Props) {
   return <ExperienceDetail slug={params.slug} />;
 }
