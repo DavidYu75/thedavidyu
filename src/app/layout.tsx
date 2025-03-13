@@ -1,11 +1,24 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+// import { Inter } from 'next/font/google'
+import { DM_Sans } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({
+// const inter = Inter({
+//   subsets: ['latin'],
+//   variable: '--font-inter',
+// })
+
+const dmSans = DM_Sans({
   subsets: ['latin'],
-  variable: '--font-inter',
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-dm-sans',
 })
+
+// const inter = Inter({
+//   subsets: ['latin'],
+//   weight: ['300', '400', '500', '600', '700'],
+//   variable: '--font-inter',
+// })
 
 export const metadata: Metadata = {
   title: 'David Yu',
@@ -21,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} scroll-smooth`}>
+    <html lang="en" className={`${dmSans.variable} scroll-smooth`}>
       <body className="min-h-screen bg-[#0D1B2A] overscroll-none">
         <div className="relative min-h-screen bg-[#0D1B2A]">
           {children}
