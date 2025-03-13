@@ -35,12 +35,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
   margin: 0;
   padding: 0;
   background-color: #04080c;
   height: 100vh;
-  max-height: 100vh;
 }
 
 .stickyContainer {
@@ -50,8 +48,7 @@
   align-items: center;
   width: 100%;
   max-width: 1708px;
-  max-height: 858px;
-  aspect-ratio: 1708 / 858;
+  height: 100%;
   z-index: 1;
 }
 
@@ -61,31 +58,17 @@
   border: none;
   margin: 0;
   padding: 0;
-  max-width: 1708px;
-  max-height: 858px;
 }
 
 @media (max-width: 768px) {
   .videoHeroSection {
-    height: 80vh;
-  }
-  
-  .stickyContainer {
-    height: 80vh;
-  }
-  
-  .videoIframe {
-    object-fit: cover;
+    height: 100vh;
   }
 }
 
 @media (max-width: 480px) {
   .videoHeroSection {
-    height: 70vh;
-  }
-  
-  .stickyContainer {
-    height: 70vh;
+    height: 100vh;
   }
 }
 

@@ -1,6 +1,9 @@
 .hero {
   position: relative;
   min-height: 100vh;
+  margin-top: -20px;
+  z-index: 5;
+  background-color: #0d1b2a;
 }
 
 .topGradient {
