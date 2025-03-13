@@ -1,6 +1,7 @@
 export const aboutContent = {
   description: [
-    "I'm David, a passionate software engineer specializing in crafting elegant, user-centric solutions. With experience ranging from Amazon to cutting-edge startups, I bring meticulous attention to detail and a commitment to excellence to every project.",
-    "If you're looking for a software engineer who balances technical expertise with a human touch, let's connect and build something amazing together!",
+    "A passionate software engineer on a mission to leverage cutting-edge tech to solve real-world challenges. With experience at Amazon and fast-growing startups, I bring a perfect blend of technical finesse and an insatiable drive to learn.",
+    "From optimizing AWS Lambda for ultra-reliability to pioneering AI interview prep platforms, I've honed my skills in delivering solutions that exceed expectations. My secret sauce? Combining a meticulous eye for detail with the ability to see the big picture.",
+    "Let's team up and create software that makes a lasting impact!",
   ],
 };
