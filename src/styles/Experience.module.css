@@ -4,13 +4,13 @@
 }
 
 .topGradient {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
   height: 8rem;
   z-index: 0;
-  background-image: linear-gradient(to bottom, rgb(46, 64, 89) 0%, rgba(46, 64, 89, 0) 100%);
+  background-image: linear-gradient(to bottom, rgb(46, 64, 89) 100%, rgba(46, 64, 89, 0) 0%);
 }
 
 .content {

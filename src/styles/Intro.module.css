@@ -1,7 +1,7 @@
 .hero {
   position: relative;
   min-height: 100vh;
-  margin-top: -20px;
+  margin-top: -75px;
   z-index: 5;
   background-color: #0d1b2a;
 }
@@ -117,7 +117,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 16rem;
+  height: 5rem;
   z-index: 0;
   background-image: linear-gradient(to top, rgb(46, 64, 89) 0%, rgba(46, 64, 89, 0) 100%);
 }
