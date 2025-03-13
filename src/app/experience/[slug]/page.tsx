@@ -1,4 +1,3 @@
-// src/app/experience/[slug]/page.tsx
 import ExperienceDetail from '@/components/ExperienceDetail';
 import { experiences } from '@/data/experience';
 import { Metadata } from 'next';
@@ -30,6 +29,6 @@ export function generateStaticParams() {
   }));
 }
 
-export default function ExperiencePage() {
+export default function ExperiencePage({ }: Props) {
   return <ExperienceDetail />;
 }
