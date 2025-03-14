@@ -46,7 +46,7 @@ export const projectDetails: ProjectDetailMap = {
       'Ensuring real-time responsiveness with heavy calculations'
     ],
     media: [],
-    githubUrl: '#'
+    githubUrl: 'https://github.com/DavidYu75/black-scholes'
   },
   
   'intreview': {
@@ -101,12 +101,11 @@ export const projectDetails: ProjectDetailMap = {
   'classify': {
     overview: 'Classify is a machine learning application that intelligently categorizes Spotify playlists into themed collections, enhancing music discovery through advanced audio feature analysis. This project combines music data analysis with intuitive user interfaces to provide a unique music organization experience.',
     features: [
-      'Automated playlist categorization based on audio features',
-      'Music recommendation engine using similarity metrics',
-      'Custom theme creation for personalized organization',
-      'Seamless Spotify integration',
-      'Visualizations of audio characteristics',
-      'Playlist sharing and collaboration tools'
+      'Advanced ML-powered clustering algorithms analyzing audio features to group 1,000+ songs with sub-second response time',
+      'Automated playlist categorization based on comprehensive audio feature analysis',
+      'Dynamic theme generation adapting to user listening patterns',
+      'Cross-platform music recommendation engine using similarity metrics',
+      'Interactive visualizations of audio characteristics and relationships between tracks',
     ],
     technologies: [
       'Python',
@@ -116,74 +115,68 @@ export const projectDetails: ProjectDetailMap = {
       'Node.js',
       'OpenAI API',
       'Spotify Web API',
-      'OAuth 2.0'
+      'OAuth 2.0',
     ],
     challenges: [
-      'Developing effective clustering algorithms for audio features',
-      'Creating meaningful category definitions from raw audio data',
-      'Implementing secure OAuth for Spotify account access',
-      'Optimizing for performance with large music libraries'
+      'Processing large volumes of audio feature data efficiently: Implemented optimized clustering algorithms capable of handling 1,000+ songs with sub-second response times',
+      'Creating meaningful category definitions from raw audio data: Integrated OpenAI API to generate human-understandable theme descriptions from technical audio features',
+      'Handling diverse music libraries with varying metadata quality: Developed fallback categorization methods using multiple audio feature vectors when primary identifiers were insufficient',
     ],
     media: [
       {
-        type: 'image',
-        url: '/images/projects/classify/categories.png',
-        caption: 'Category view showing playlist organization'
+        type: 'gif',
+        url: '/images/projects/classify/demo.gif',
+        caption: 'Classify in action'
       },
-      {
-        type: 'image',
-        url: '/images/projects/classify/analysis.png',
-        caption: 'Audio feature analysis visualization'
-      },
-      {
-        type: 'video',
-        url: '/videos/projects/classify/walkthrough.mp4',
-        caption: 'Application walkthrough and feature showcase',
-        thumbnail: '/images/projects/classify/walkthrough-thumbnail.jpg'
-      }
     ],
     githubUrl: 'https://github.com/thaninbew/classify'
   },
 
   'platemate': {
-    overview: 'PlateMate is a restaurant analytics platform leveraging data-driven insights to help owners optimize menu offerings, pricing, and inventory management for increased profitability. This comprehensive solution transforms raw restaurant data into actionable business intelligence.',
+    overview: 'PlateMate is a mobile application that revolutionizes restaurant reviews by focusing on what truly matters to diners - the quality of individual dishes. Unlike traditional platforms that rate entire dining experiences, PlateMate delivers dish-by-dish reviews and personalized recommendations to enhance the dining experience for both customers and restaurants.',
     features: [
-      'Sales analytics dashboard with trend identification',
-      'Menu performance metrics and optimization suggestions',
-      'Inventory management and waste reduction tools',
-      'Customer preference analysis',
-      'Pricing strategy recommendations',
-      'Multi-location data aggregation and comparison'
+      'Dish-focused review system with multi-category ratings for portion, taste, value, and overall',
+      'Personalized dish recommendation engine based on user preferences and dietary restrictions',
+      'Discovery feed showcasing highly-rated dishes filtered by cuisine preferences',
+      'Restaurant menu management system allowing verified owners to update dish information',
+      'User profiles with dietary restriction settings that filter incompatible dishes',
+      '"Because you watched" recommendation system suggesting similar dishes across restaurants',
     ],
     technologies: [
+      'React Native',
       'Go',
       'Fiber',
       'MongoDB',
-      'React',
-      'Redux',
-      'D3.js',
-      'Docker',
-      'AWS',
-      'JWT Authentication'
+      'Google Places API',
+      'JWT authentication',
+      'AWS S3',
     ],
     challenges: [
-      'Building scalable architecture for multi-restaurant support',
-      'Implementing secure role-based access control',
-      'Creating meaningful data visualizations for business metrics',
-      'Developing accurate prediction models for inventory management'
+      'Obtaining accurate restaurant menu data: Combined API scraping with restaurant verification system allowing owners to claim and update their menus',
+      'Creating engaging review experience without complexity: Designed intuitive rating interface with optional comments balancing ease-of-use with feedback quality',
+      'Building value for both diners and restaurants: Created dual-sided platform where customers receive personalized recommendations while restaurants gain actionable dish insights'
     ],
     media: [
       {
         type: 'image',
-        url: '/images/projects/platemate/dashboard.png',
-        caption: 'Analytics dashboard overview'
+        url: '/images/projects/platemate/feed.png',
+        caption: 'User\'s feed'
       },
       {
-        type: 'video',
-        url: '/videos/projects/platemate/demo.mp4',
-        caption: 'Platform demonstration with key features',
-        thumbnail: '/images/projects/platemate/demo-thumbnail.jpg'
-      }
+        type: 'image',
+        url: '/images/projects/platemate/restaurantview.png',
+        caption: 'Restaurant page',
+      },
+      {
+        type: 'image',
+        url: '/images/projects/platemate/userrecs.png',
+        caption: 'Recomendations for user',
+      },
+      {
+        type: 'image',
+        url: '/images/projects/platemate/friendrecs.png',
+        caption: 'Recomendations based on user\'s followings',
+      },
     ],
     githubUrl: 'https://github.com/GenerateNU/platemate'
   }

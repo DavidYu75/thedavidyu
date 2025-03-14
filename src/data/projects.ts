@@ -39,7 +39,7 @@ export const projects: Project[] = [
     id: '04',
     title: 'PlateMate',
     description:
-      'A restaurant analytics platform leveraging data-driven insights to help owners optimize menu offerings, pricing, and inventory management for increased profitability.',
+      'A mobile application that revolutionizes restaurant reviews by focusing on what truly matters to diners - the quality of individual dishes.',
     image: '/images/inprogress.png',
     slug: 'platemate',
     link: '/projects/platemate',
