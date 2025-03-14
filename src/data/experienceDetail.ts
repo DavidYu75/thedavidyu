@@ -1,8 +1,13 @@
+export interface Memory {
+  url: string;
+  caption: string;
+}
+
 export interface ExperienceDetail {
   responsibilities: string[];
   technologies: string[];
   achievements: string[];
-  memories?: string[];
+  memories?: Memory[];
 }
 
 export type ExperienceDetailMap = {
@@ -78,12 +83,30 @@ export const experienceDetails: ExperienceDetailMap = {
       'Completed end-to-end ownership of monitoring solution from initial conception to successful production deployment and increased stakeholder value'
     ],
     memories: [
-      '/images/experiences/amazon/setup.JPEG',
-      '/images/experiences/amazon/banana.jpg',
-      '/images/experiences/amazon/team-lunch.jpg',
-      '/images/experiences/amazon/balls.JPEG',
-      '/images/experiences/amazon/seattle.jpg',
-      '/images/experiences/amazon/mountain.jpg'
+      {
+        url: '/images/experiences/amazon/setup.JPEG',
+        caption: 'My office setup at Amazon\'s Bigfoot office'
+      },
+      {
+        url: '/images/experiences/amazon/banana.jpg',
+        caption: 'The famous banana cart'
+      },
+      {
+        url: '/images/experiences/amazon/team-lunch.jpg',
+        caption: 'Lunch with my team at a local Seattle restaurant'
+      },
+      {
+        url: '/images/experiences/amazon/balls.JPEG',
+        caption: 'The Spheres'
+      },
+      {
+        url: '/images/experiences/amazon/seattle.jpg',
+        caption: 'Seattle is so cool!'
+      },
+      {
+        url: '/images/experiences/amazon/mountain.jpg',
+        caption: 'Mount Rainier view from my apartment'
+      }
     ],
   }
 };

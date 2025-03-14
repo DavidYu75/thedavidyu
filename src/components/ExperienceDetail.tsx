@@ -101,12 +101,17 @@ export default function ExperienceDetail({ slug }: ExperienceDetailProps) {
                     {detail.memories.map((memory, index) => (
                       <div key={index} className={styles.memoryContainer}>
                         <Image
-                          src={memory}
-                          alt={`${experience.company} memory ${index + 1}`}
+                          src={memory.url}
+                          alt={memory.caption || `${experience.company} memory ${index + 1}`}
                           width={350}
                           height={220}
                           className={styles.memoryImage}
                         />
+                        {memory.caption && (
+                          <div className={styles.memoryCaption}>
+                            {memory.caption}
+                          </div>
+                        )}
                       </div>
                     ))}
                   </div>
