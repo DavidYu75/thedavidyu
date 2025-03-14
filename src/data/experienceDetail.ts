@@ -16,7 +16,7 @@ export const experienceDetails: ExperienceDetailMap = {
       'Implement secure financial transaction systems',
       'Collaborate with cross-functional teams on digital transformation initiatives'
     ],
-    technologies: ['Java', 'Spring Boot', 'Oracle', 'Docker'],
+    technologies: [],
     achievements: [
       'Incoming role - Summer and Fall 2025'
     ],
@@ -25,45 +25,57 @@ export const experienceDetails: ExperienceDetailMap = {
 
   'generate-product-development': {
     responsibilities: [
-      'Architect and develop a scalable restaurant analytics platform',
-      'Build RESTful APIs with Fiber and MongoDB for data processing',
-      'Implement secure JWT authentication and role-based access control'
+      'Developing restaurant rating and analytics platform using Go/Fiber backend to revolutionize restarant rating and discovery',
+      'Architecting comprehensive RESTful API system leveraging MongoDB for high-performance restaurant metric processing',
+      'Establishing secure authentication infrastructure with JWT implementation and granular role-based access controls',
+      'Designing scalable microservices architecture ensuring seamless data integration across platform components',
+      'Participating in agile development processes including sprint planning, weekly code reviews and standups, and retrospectives'
     ],
-    technologies: ['Go', 'Fiber', 'MongoDB', 'RESTful APIs', 'Microservices'],
+    technologies: ['Go', 'Fiber', 'MongoDB', 'RESTful APIs', 'JWT Authentication', 'Agile Methodologies'],
     achievements: [
-      'Improved inventory efficiency by 20% through data-driven recommendations',
-      'Built APIs with sub-100ms response times for processing over 1000 dish metrics',
-      'Established secure access controls for 50+ restaurants and 1000+ users'
+      'Engineered restaurant analytics platform targeting 20% inventory efficiency improvement across client operations',
+      'Designed and implemented high-performance RESTful APIs processing 1000+ dish metrics with consistent sub-100ms response times',
+      'Established comprehensive security infrastructure supporting 50+ restaurants and 1000+ users while maintaining strict data protection standards',
+      'Constructed resilient microservices architecture achieving 99% uptime during platform scaling phases',
     ],
     memories: [],
   },
 
   'outlier': {
     responsibilities: [
-      'Engineer data pipelines for large language models',
-      'Deploy Python testing frameworks with A/B testing capabilities',
-      'Design prompt engineering systems for diverse training data'
+      'Engineered robust data pipelines for large language models (LLMs) to streamline training and evaluation processes',
+      'Designed and implemented comprehensive testing frameworks with A/B testing capabilities for model performance validation',
+      'Developed innovative prompt engineering systems to generate diverse and high-quality training datasets',
+      'Optimized data processing workflows to accelerate model iteration cycles',
     ],
     technologies: ['Python', 'TensorFlow', 'PyTorch', 'LLMs', 'A/B Testing'],
     achievements: [
-      'Improved response accuracy by 30% through automated metrics analysis',
-      'Reduced iteration cycles by 40% with enhanced testing frameworks',
-      'Generated 5x more diverse training data for better model generalization'
+      'Engineered data processing pipelines that improved model response accuracy by 30% through enhanced quality control',
+      'Deployed testing framework that reduced model iteration cycles by 40% through streamlined evaluation processes',
+      'Designed prompt engineering system that generated 5x more diverse training data, significantly enhancing model generalization capabilities',
+      'Implemented distributed evaluation architecture scaling to 200+ concurrent model tests with 99% reliability',
+      'Reduced model training time by 35% through optimization of data preprocessing steps',
+      'Authored comprehensive documentation that improved knowledge sharing and onboarding efficiency',
     ],
     memories: [],
   },
 
   'amazon': {
     responsibilities: [
-      'Develop high-performance AWS Lambda functions for monitoring',
-      'Implement real-time processing pipelines with CloudWatch',
-      'Optimize AWS costs through improved resource utilization'
+      'Designed and implemented high-performance AWS Lambda functions that processed 100+ daily metrics with precision monitoring capabilities',
+      'Architected real-time processing pipelines utilizing CloudWatch alarms, metrics, and dashboards for comprehensive service health monitoring',
+      'Implemented robust error handling and retry mechanisms achieving 95% reduction in failed data collections',
+      'Created detailed documentation for system architecture and future implementation',
+      'Led code reviews and incorporated constructive feedback to maintain high code quality'
     ],
-    technologies: ['AWS Lambda', 'CloudWatch', 'S3', 'Node.js', 'Cloud Infrastructure'],
+    technologies: ['Java', 'AWS Lambda', 'CloudWatch', 'S3', 'Cloud Infrastructure', 'CI/CD Pipelines'],
     achievements: [
-      'Achieved 99.99% reliability and sub-second latency for monitoring solutions',
-      'Reduced monitoring latency by 60% via real-time processing pipelines',
-      'Cut AWS costs by 40% while handling 3x the volume'
+      'Engineered AWS Lambda functions that maintained 99.99% reliability with sub-second latency while processing 100+ complex metrics weekly and monthly',
+      'Reduced system monitoring latency by 60% through implementation of optimized real-time processing pipelines and custom CloudWatch metrics',
+      'Cut AWS operational costs by 40% through innovative batching algorithms and resource utilization improvements',
+      'Successfully handled 3x monitoring volume while reducing failed collections by 95% through robust error handling',
+      'Created and delivered technical presentation on cloud cost optimization strategies to GCCP (Growth Composite Contributions Profits) team',
+      'Completed end-to-end ownership of monitoring solution from initial conception to successful production deployment and increased stakeholder value'
     ],
     memories: [
       '/images/experiences/amazon/setup.JPEG',
