@@ -1,17 +1,24 @@
-export interface ProjectDetail {
-    overview: string;
-    features: string[];
-    technologies: string[];
-    challenges: string[];
-    screenshots: string[];
-    githubUrl?: string;
-    liveUrl?: string;
+export interface Media {
+  type: 'image' | 'video' | 'gif';
+  url: string;
+  caption?: string;
+  thumbnail?: string;
 }
-  
+
+export interface ProjectDetail {
+  overview: string;
+  features: string[];
+  technologies: string[];
+  challenges: string[];
+  media: Media[];
+  githubUrl?: string;
+  liveUrl?: string;
+}
+
 export type ProjectDetailMap = {
-    [slug: string]: ProjectDetail;
+  [slug: string]: ProjectDetail;
 };
-  
+
 export const projectDetails: ProjectDetailMap = {
   'black-scholes-model': {
     overview: 'The Black-Scholes Model is a sophisticated financial tool that implements the Black-Scholes mathematical model to accurately price options contracts and analyze market volatility. This project combines advanced financial algorithms with intuitive data visualization to help traders and analysts make informed decisions.',
@@ -38,7 +45,7 @@ export const projectDetails: ProjectDetailMap = {
       'Optimizing data processing for large financial datasets',
       'Ensuring real-time responsiveness with heavy calculations'
     ],
-    screenshots: [],
+    media: [],
     githubUrl: '#'
   },
   
@@ -71,10 +78,22 @@ export const projectDetails: ProjectDetailMap = {
       'Speech analysis latency: Split the analysis to perform visual feedback in real-time while conducting deeper speech analysis post-interview',
       'Metric Visualization: Created intuitive visualizations with color-coding and context-appropriate scales (e.g., WPM gauge showing ideal speaking pace)',
     ],
-    screenshots: [
-      '/images/projects/intreview/dashboard.png',
-      '/images/projects/intreview/feedback.png',
-      '/images/projects/intreview/analytics.png'
+    media: [
+      {
+        type: 'image',
+        url: '/images/projects/intreview/dashboard.png',
+        caption: 'User dashboard displaying interview analytics'
+      },
+      {
+        type: 'image',
+        url: '/images/projects/intreview/dashboard2.png',
+        caption: 'Dashboard continued'
+      },
+      {
+        type: 'gif',
+        url: '/images/projects/intreview/demo.gif',
+        caption: 'IntReview in action',
+      }
     ],
     githubUrl: 'https://github.com/DavidYu75/intreview'
   },
@@ -105,10 +124,23 @@ export const projectDetails: ProjectDetailMap = {
       'Implementing secure OAuth for Spotify account access',
       'Optimizing for performance with large music libraries'
     ],
-    screenshots: [
-      '/images/projects/classify/categories.png',
-      '/images/projects/classify/analysis.png',
-      '/images/projects/classify/recommendations.png'
+    media: [
+      {
+        type: 'image',
+        url: '/images/projects/classify/categories.png',
+        caption: 'Category view showing playlist organization'
+      },
+      {
+        type: 'image',
+        url: '/images/projects/classify/analysis.png',
+        caption: 'Audio feature analysis visualization'
+      },
+      {
+        type: 'video',
+        url: '/videos/projects/classify/walkthrough.mp4',
+        caption: 'Application walkthrough and feature showcase',
+        thumbnail: '/images/projects/classify/walkthrough-thumbnail.jpg'
+      }
     ],
     githubUrl: 'https://github.com/thaninbew/classify'
   },
@@ -140,12 +172,19 @@ export const projectDetails: ProjectDetailMap = {
       'Creating meaningful data visualizations for business metrics',
       'Developing accurate prediction models for inventory management'
     ],
-    screenshots: [
-      '/images/projects/platemate/dashboard.png',
-      '/images/projects/platemate/inventory.png',
-      '/images/projects/platemate/analytics.png'
+    media: [
+      {
+        type: 'image',
+        url: '/images/projects/platemate/dashboard.png',
+        caption: 'Analytics dashboard overview'
+      },
+      {
+        type: 'video',
+        url: '/videos/projects/platemate/demo.mp4',
+        caption: 'Platform demonstration with key features',
+        thumbnail: '/images/projects/platemate/demo-thumbnail.jpg'
+      }
     ],
     githubUrl: 'https://github.com/GenerateNU/platemate'
   }
 };
-  

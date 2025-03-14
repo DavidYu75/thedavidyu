@@ -10,6 +10,7 @@ import { projectDetails } from '@/data/projectDetail';
 import styles from '@/styles/ProjectDetail.module.css';
 import NavBar from '@/components/layout/NavBar';
 import Footer from '@/components/layout/Footer';
+import VideoPlayer from '@/components/VideoPlayer';
 
 interface ProjectDetailProps {
   slug: string;
@@ -104,19 +105,35 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
                 </ul>
               </div>
               
-              {detail.screenshots && detail.screenshots.length > 0 && (
+              {detail.media && detail.media.length > 0 && (
                 <div className={styles.section}>
-                  <h2 className={styles.sectionTitle}>Screenshots</h2>
-                  <div className={styles.screenshotGrid}>
-                    {detail.screenshots.map((screenshot, index) => (
-                      <div key={index} className={styles.screenshotContainer}>
-                        <Image
-                          src={screenshot}
-                          alt={`${project.title} screenshot ${index + 1}`}
-                          width={350}
-                          height={200}
-                          className={styles.screenshot}
-                        />
+                  <h2 className={styles.sectionTitle}>Media</h2>
+                  <div className={styles.mediaGrid}>
+                    {detail.media.map((item, index) => (
+                      <div key={index} className={styles.mediaContainer}>
+                        {item.type === 'image' || item.type === 'gif' ? (
+                          <div className={styles.screenshotContainer}>
+                            <Image
+                              src={item.url}
+                              alt={item.caption || `${project.title} ${item.type} ${index + 1}`}
+                              width={350}
+                              height={200}
+                              className={`${styles.screenshot} ${item.type === 'gif' ? styles.gifImage : ''}`}
+                              unoptimized={item.type === 'gif'} // Important for GIFs to show animation
+                            />
+                            {item.caption && (
+                              <div className={styles.imageCaption}>
+                                {item.caption}
+                              </div>
+                            )}
+                          </div>
+                        ) : (
+                          <VideoPlayer 
+                            src={item.url} 
+                            poster={item.thumbnail} 
+                            caption={item.caption}
+                          />
+                        )}
                       </div>
                     ))}
                   </div>
