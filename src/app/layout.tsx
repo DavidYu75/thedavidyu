@@ -37,8 +37,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${dmSans.variable} scroll-smooth`}>
       <body className="min-h-screen bg-[#0D1B2A] overscroll-none">
+
+        <MobileNotice />
+
         <div className="relative min-h-screen bg-[#0D1B2A]">
-          <MobileNotice />
           {children}
         </div>
       </body>
