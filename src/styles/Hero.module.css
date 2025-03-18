@@ -38,7 +38,7 @@
   margin: 0;
   padding: 0;
   background-color: #04080c;
-  height: 100vh;
+  overflow: hidden;
 }
 
 .stickyContainer {
@@ -47,9 +47,9 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 1708px;
   height: 100%;
   z-index: 1;
+  overflow: hidden;
 }
 
 .videoIframe {
@@ -58,17 +58,22 @@
   border: none;
   margin: 0;
   padding: 0;
+  object-fit: cover;
+  object-position: center;
 }
 
+/* Media queries to adjust sizing for different screen widths */
 @media (max-width: 768px) {
-  .videoHeroSection {
-    height: 100vh;
+  .videoIframe {
+    width: 150%;
+    transform: translateX(-16.67%);
   }
 }
 
 @media (max-width: 480px) {
-  .videoHeroSection {
-    height: 100vh;
+  .videoIframe {
+    width: 200%;
+    transform: translateX(-25%);
   }
 }
 
