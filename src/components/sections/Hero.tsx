@@ -1,13 +1,29 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import styles from '@/styles/Hero.module.css';
 
 const Hero = () => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [viewportHeight, setViewportHeight] = useState('100vh');
+  
+  useEffect(() => {
+    const updateViewportHeight = () => {
+      setViewportHeight(`${window.innerHeight}px`);
+    };
+    
+    updateViewportHeight();
+    
+    window.addEventListener('resize', updateViewportHeight);
+    
+    return () => window.removeEventListener('resize', updateViewportHeight);
+  }, []);
   
   return (
-    <section className={styles.videoHeroSection}>
+    <section 
+      className={styles.videoHeroSection} 
+      style={{ height: viewportHeight }}
+    >
       <div className={styles.stickyContainer}>
         <iframe 
           ref={iframeRef}
