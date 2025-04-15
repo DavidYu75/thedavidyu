@@ -40,7 +40,7 @@ export const projects: Project[] = [
     title: 'PlateMate',
     description:
       'A mobile application that revolutionizes restaurant reviews by focusing on what truly matters to diners - the quality of individual dishes.',
-    image: '/images/projects/platemate/platemate.png',
+    image: '/images/projects/platemate/platematebrand.jpeg',
     slug: 'platemate',
     link: '/projects/platemate',
   },
