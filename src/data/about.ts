@@ -1,7 +1,7 @@
 export const aboutContent = {
   description: [
-    "A passionate software engineer on a mission to leverage cutting-edge tech to solve real-world challenges. With experience at Amazon and fast-growing startups, I bring a perfect blend of technical finesse and an insatiable drive to learn.",
-    "From optimizing AWS Lambda for ultra-reliability to pioneering AI interview prep platforms, I've honed my skills in delivering solutions that exceed expectations. My secret sauce? Combining a meticulous eye for detail with the ability to see the big picture.",
-    "Let's team up and create software that makes a lasting impact!",
+    "A passionate software engineer with an insatiable curiosity for solving complex problems through elegant code. I thrive at the intersection of innovation and practicality, constantly seeking ways to build software that creates meaningful impact in the real world.",
+    "My journey in computer science is driven by more than just technical challenges—it's about creating solutions that make a difference. Beyond the keyboard, I'm passionate about continuous learning and collaboration, believing the best innovations emerge when diverse perspectives unite around common goals.",
+    "Scroll down to see how I've been putting these passions into practice!",
   ],
 };
