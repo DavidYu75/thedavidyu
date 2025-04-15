@@ -22,7 +22,7 @@ export const projects: Project[] = [
     title: 'IntReview',
     description:
       'An AI-powered interview preparation platform that provides real-time feedback on verbal and non-verbal communication using computer vision and speech analysis.',
-    image: '/images/projects/intreview/intreview.png',
+    image: '/images/projects/intreview/intreviewbrand.png',
     slug: 'intreview',
     link: '/projects/intreview',
   },
@@ -31,7 +31,7 @@ export const projects: Project[] = [
     title: 'Classify',
     description:
       'A machine learning application that intelligently categorizes Spotify playlists into themed collections to enhance music discovery through audio feature analysis.',
-    image: '/images/projects/classify/classify.png',
+    image: '/images/projects/classify/classifybrand.png',
     slug: 'classify',
     link: '/projects/classify',
   },

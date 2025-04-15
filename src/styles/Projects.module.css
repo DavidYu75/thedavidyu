@@ -94,6 +94,7 @@
 .projectImage {
   margin: 0 auto;
   display: block;
+  border-radius: 0.5rem;
 }
   
 .imageContainer {
@@ -103,9 +104,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
   
 .image {
+  position: relative;
   aspect-ratio: 16/9;
   width: 100%;
   border-radius: 0.5rem;

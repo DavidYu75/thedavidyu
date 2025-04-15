@@ -52,9 +52,8 @@ const Projects = () => {
                     <Image
                       src={project.image}
                       alt={project.title}
+                      fill
                       className={styles.projectImage}
-                      width={350}
-                      height={300}
                     />
                     <div className={styles.imageGradient} />
                   </div>
