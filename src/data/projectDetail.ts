@@ -159,23 +159,13 @@ export const projectDetails: ProjectDetailMap = {
     media: [
       {
         type: 'image',
-        url: '/images/projects/platemate/feed.png',
-        caption: 'User\'s feed'
+        url: '/images/projects/platemate/screens.PNG',
+        caption: 'The Many Screens of PlateMate'
       },
       {
         type: 'image',
-        url: '/images/projects/platemate/restaurantview.png',
-        caption: 'Restaurant page',
-      },
-      {
-        type: 'image',
-        url: '/images/projects/platemate/userrecs.png',
-        caption: 'Recomendations for user',
-      },
-      {
-        type: 'image',
-        url: '/images/projects/platemate/friendrecs.png',
-        caption: 'Recomendations based on user\'s followings',
+        url: '/images/projects/platemate/onboarding.PNG',
+        caption: 'Onboarding Flow',
       },
     ],
     githubUrl: 'https://github.com/GenerateNU/platemate'

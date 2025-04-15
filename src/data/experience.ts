@@ -20,7 +20,7 @@ export const experiences: Experience[] = [
   {
     title: 'Software Engineer @ Generate Product Development',
     company: 'Generate Product Development',
-    period: 'Jan 2025 - Present',
+    period: 'Jan 2025 - Apr 2025',
     description:
       "As part of Generate Product Development, I architected and built a scalable restaurant analytics platform with multiple microservices to optimize business operations through data-driven insights.",
     logo: '/images/companies/generate_logo.jpeg',

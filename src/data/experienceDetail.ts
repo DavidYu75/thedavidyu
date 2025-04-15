@@ -43,7 +43,24 @@ export const experienceDetails: ExperienceDetailMap = {
       'Established comprehensive security infrastructure supporting 50+ restaurants and 1000+ users while maintaining strict data protection standards',
       'Constructed resilient microservices architecture achieving 99% uptime during platform scaling phases',
     ],
-    memories: [],
+    memories: [
+      {
+        url: '/images/experiences/generate/team.PNG',
+        caption: 'My amazing team for PlateMate'
+      },
+      {
+        url: '/images/experiences/generate/showcase.JPEG',
+        caption: 'PlateMate at Generate\'s Spring Showcase presented by our PM Danny Rollo'
+      },
+      {
+        url: '/images/experiences/generate/brand.JPEG',
+        caption: 'Generate and PlateMate branding'
+      },
+      {
+        url: '/images/experiences/generate/presentation.JPEG',
+        caption: 'Tabling for PlateMate'
+      }
+    ],
   },
 
   'outlier': {
