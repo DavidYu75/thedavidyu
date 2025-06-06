@@ -34,7 +34,6 @@ export const projectDetails: ProjectDetailMap = {
       'NumPy',
       'Pandas',
       'Matplotlib',
-      'Django',
       'PostgreSQL',
       'React',
       'TailwindCSS'
