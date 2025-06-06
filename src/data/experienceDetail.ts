@@ -30,11 +30,11 @@ export const experienceDetails: ExperienceDetailMap = {
 
   'generate-product-development': {
     responsibilities: [
-      'Developing restaurant rating and analytics platform using Go/Fiber backend to revolutionize restarant rating and discovery',
-      'Architecting comprehensive RESTful API system leveraging MongoDB for high-performance restaurant metric processing',
-      'Establishing secure authentication infrastructure with JWT implementation and granular role-based access controls',
-      'Designing scalable microservices architecture ensuring seamless data integration across platform components',
-      'Participating in agile development processes including sprint planning, weekly code reviews and standups, and retrospectives'
+      'Developed restaurant rating and analytics platform using Go/Fiber backend to revolutionize restarant rating and discovery',
+      'Architected comprehensive RESTful API system leveraging MongoDB for high-performance restaurant metric processing',
+      'Established secure authentication infrastructure with JWT implementation and granular role-based access controls',
+      'Designed scalable microservices architecture ensuring seamless data integration across platform components',
+      'Participated in agile development processes including sprint planning, weekly code reviews and standups, and retrospectives'
     ],
     technologies: ['Go', 'Fiber', 'MongoDB', 'RESTful APIs', 'JWT Authentication', 'Agile Methodologies'],
     achievements: [
