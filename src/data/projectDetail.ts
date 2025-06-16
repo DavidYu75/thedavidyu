@@ -20,34 +20,6 @@ export type ProjectDetailMap = {
 };
 
 export const projectDetails: ProjectDetailMap = {
-  'black-scholes-model': {
-    overview: 'The Black-Scholes Model is a sophisticated financial tool that implements the Black-Scholes mathematical model to accurately price options contracts and analyze market volatility. This project combines advanced financial algorithms with intuitive data visualization to help traders and analysts make informed decisions.',
-    features: [
-      'Real-time options pricing calculator using the Black-Scholes equation',
-      'Interactive data visualization dashboard for market analysis',
-      'Custom parameter inputs for detailed sensitivity analysis',
-      'Historical volatility tracking and prediction',
-      'API integration for real-time market data'
-    ],
-    technologies: [
-      'Python',
-      'NumPy',
-      'Pandas',
-      'Matplotlib',
-      'PostgreSQL',
-      'React',
-      'TailwindCSS'
-    ],
-    challenges: [
-      'Implementing complex mathematical models with high accuracy',
-      'Designing an intuitive interface for complex financial concepts',
-      'Optimizing data processing for large financial datasets',
-      'Ensuring real-time responsiveness with heavy calculations'
-    ],
-    media: [],
-    githubUrl: 'https://github.com/DavidYu75/black-scholes'
-  },
-  
   'intreview': {
     overview: 'IntReview is an AI-powered interview preparation platform that provides real-time feedback on verbal and non-verbal communication using computer vision and speech analysis. The application helps job seekers improve their interview skills through objective feedback on their performance.',
     features: [
@@ -168,5 +140,39 @@ export const projectDetails: ProjectDetailMap = {
       },
     ],
     githubUrl: 'https://github.com/GenerateNU/platemate'
+  },
+
+  'black-scholes-model': {
+    overview: 'A Black-Scholes options pricing platform designed to make complex financial mathematics accessible to both beginners and advanced users. Features dual interfaces - a simplified calculator for learning and an advanced tool for professional analysis, with plain-language explanations that convert mathematical results into intuitive insights.',
+    features: [
+      'Dual-interface design: Simple calculator for beginners, advanced mode for professionals',
+      'Real-time options pricing using the Black-Scholes formula with Greeks calculations (Delta, Gamma)',
+      'Plain-language explanations that translate complex math into understandable insights',
+      'Interactive P&L charts and volatility visualization',
+      'Educational content system with contextual learning materials',
+      'Calculation history and persistence with PostgreSQL backend',
+      'Extensible architecture for future financial models'
+    ],
+    technologies: [
+      'FastAPI',
+      'Python',
+      'PostgreSQL',
+      'SQLAlchemy',
+      'Pydantic',
+      'React',
+      'TailwindCSS',
+      'Market Data APIs'
+    ],
+    challenges: [
+      'Creating intuitive UX for complex financial mathematics',
+      'Implementing accurate Black-Scholes calculations with proper Greeks',
+      'Designing educational explanations that maintain mathematical accuracy',
+      'Building scalable API architecture with proper data validation',
+      'Balancing simplicity for beginners with power for advanced users'
+    ],
+    media: [],
+    githubUrl: 'https://github.com/DavidYu75/black-scholes'
   }
+
+
 };
