@@ -19,6 +19,15 @@ export const projects: Project[] = [
   },
   {
     id: '02',
+    title: 'Black-Scholes Options Pricing Model',
+    description:
+      'A sophisticated financial tool implementing the Black-Scholes mathematical model to accurately price options contracts and analyze market volatility.',
+    image: '/images/inprogress.png',
+    slug: 'black-scholes-model',
+    link: '/projects/black-scholes-model',
+  },
+  {
+    id: '03',
     title: 'Classify',
     description:
       'A machine learning application that intelligently categorizes Spotify playlists into themed collections to enhance music discovery through audio feature analysis.',
@@ -27,21 +36,12 @@ export const projects: Project[] = [
     link: '/projects/classify',
   },
   {
-    id: '03',
+    id: '04',
     title: 'PlateMate',
     description:
       'A mobile application that revolutionizes restaurant reviews by focusing on what truly matters to diners - the quality of individual dishes.',
     image: '/images/projects/platemate/platematebrand.jpeg',
     slug: 'platemate',
     link: '/projects/platemate',
-  },
-  {
-    id: '04',
-    title: 'Black-Scholes Model',
-    description:
-      'A sophisticated financial tool implementing the Black-Scholes mathematical model to accurately price options contracts and analyze market volatility.',
-    image: '/images/inprogress.png',
-    slug: 'black-scholes-model',
-    link: '/projects/black-scholes-model',
   },
 ];
