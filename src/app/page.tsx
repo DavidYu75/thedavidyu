@@ -13,8 +13,15 @@ const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    
     const checkIfMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      clearTimeout(timeoutId);
+      
+      // Debounce the state update to avoid excessive re-renders
+      timeoutId = setTimeout(() => {
+        setIsMobile(window.innerWidth < 768);
+      }, 100); // 100ms debounce delay
     };
     
     // Initial check
@@ -24,7 +31,10 @@ const useIsMobile = () => {
     window.addEventListener('resize', checkIfMobile);
     
     // Clean up
-    return () => window.removeEventListener('resize', checkIfMobile);
+    return () => {
+      window.removeEventListener('resize', checkIfMobile);
+      clearTimeout(timeoutId);
+    };
   }, []);
   
   return isMobile;
