@@ -170,7 +170,38 @@ export const projectDetails: ProjectDetailMap = {
       'Building scalable API architecture with proper data validation',
       'Balancing simplicity for beginners with power for advanced users'
     ],
-    media: [],
+    media: [
+      {
+        type: 'gif',
+        url: '/images/projects/black-scholes/dashboard.gif',
+        caption: 'Main Dashboard in action'
+      },
+      {
+        type: 'image',
+        url: '/images/projects/black-scholes/calculation.png',
+        caption: 'Calculation using Black-Scholes Formula',
+      },
+      {
+        type: 'image',
+        url: '/images/projects/black-scholes/callheatmap.png',
+        caption: 'Call Option Price Heatmap from Buyer\'s View',
+      },
+      {
+        type: 'image',
+        url: '/images/projects/black-scholes/sellcallheatmap.png',
+        caption: 'Call Option Price Heatmap from Seller\'s View',
+      },
+      {
+        type: 'image',
+        url: '/images/projects/black-scholes/sellputheatmap.png',
+        caption: 'Put Option Price Heatmap from Seller\'s View',
+      },
+      {
+        type: 'image',
+        url: '/images/projects/black-scholes/buyputheatmap.png',
+        caption: 'Put Option Price Heatmap from Buyer\'s View',
+      },
+    ],
     githubUrl: 'https://github.com/DavidYu75/black-scholes'
   }
 

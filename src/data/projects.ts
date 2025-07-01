@@ -22,7 +22,7 @@ export const projects: Project[] = [
     title: 'Black-Scholes Options Pricing Model',
     description:
       'A sophisticated financial tool implementing the Black-Scholes mathematical model to accurately price options contracts and analyze market volatility.',
-    image: '/images/inprogress.png',
+    image: '/images/projects/black-scholes/mainmenu.png',
     slug: 'black-scholes-model',
     link: '/projects/black-scholes-model',
   },
