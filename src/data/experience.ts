@@ -13,7 +13,7 @@ export const experiences: Experience[] = [
     company: 'Citizens Financial Group',
     period: 'Jul 2025 - Dec 2025',
     description:
-      "Incoming Summer and Fall 2025",
+      "Enterprise Automation Platforms, Governance, and Emerging Tech",
     logo: '/images/companies/citizens_logo.jpeg',
     slug: 'citizens-bank'
   },
@@ -40,7 +40,7 @@ export const experiences: Experience[] = [
     company: 'Amazon',
     period: 'May 2024 - Aug 2024',
     description:
-      "Developed high-performance monitoring solutions for critical infrastructure while significantly reducing costs and improving system reliability.",
+      "Growth-Adjusted Composite Contributions Profits (GCCP) | Developed high-performance monitoring solutions for critical infrastructure while significantly reducing costs and improving system reliability.",
     logo: '/images/companies/amazon_logo.jpeg',
     slug: 'amazon'
   },

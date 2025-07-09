@@ -21,11 +21,16 @@ export const experienceDetails: ExperienceDetailMap = {
       'Implement secure financial transaction systems',
       'Collaborate with cross-functional teams on digital transformation initiatives'
     ],
-    technologies: [],
+    technologies: ['UiPath', 'GenAI'],
     achievements: [
-      'Incoming role - Summer and Fall 2025'
+      'In progress'
     ],
-    memories: [],
+    memories: [
+      {
+        url: '/images/experiences/citizens/welcome.JPEG',
+        caption: 'Welcome to Citizens!'
+      },
+    ],
   },
 
   'generate-product-development': {
