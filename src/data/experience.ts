@@ -13,7 +13,7 @@ export const experiences: Experience[] = [
     company: 'Citizens Financial Group',
     period: 'Jul 2025 - Dec 2025',
     description:
-      "Enterprise Automation Platforms, Governance, and Emerging Tech",
+      "Enterprise Automation Platforms, Governance, and Emerging Tech ->\nSpearheaded enterprise automation solutions that reduced deployment times while leading cross-functional GenAI initiatives to drive responsible AI adoption across the organization.",
     logo: '/images/companies/citizens_logo.jpeg',
     slug: 'citizens-bank'
   },
