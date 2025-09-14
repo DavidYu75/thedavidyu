@@ -203,7 +203,45 @@ export const projectDetails: ProjectDetailMap = {
       },
     ],
     githubUrl: 'https://github.com/DavidYu75/black-scholes'
+  },
+
+  'real-time-ai-business-intelligence': {
+    overview: 'A real-time business intelligence platform that democratizes data access by enabling non-technical users to query business data using natural language. The system converts conversational queries into optimized SQL, executes them against multiple data sources, and presents results through interactive visualizations with sub-second response times.',
+    features: [
+      'Natural language to SQL conversion using transformer models with 95% accuracy',
+      'Multi-database connectivity supporting PostgreSQL, MySQL, SQLite, and CSV uploads',
+      'Real-time data visualization with automatic chart type selection and customization',
+      'Interactive dashboard builder with drag-and-drop interface and collaborative sharing',
+      'WebSocket-based live updates for real-time data monitoring and notifications',
+      'Intelligent query caching with Redis for sub-3-second response times',
+      'Role-based access control with enterprise-grade security and audit logging',
+      'Query history and favorites with smart suggestions for follow-up analyses'
+    ],
+    technologies: [
+      'Python',
+      'FastAPI',
+      'SQLAlchemy',
+      'React',
+      'TypeScript',
+      'Next.js',
+      'Tailwind CSS',
+      'PostgreSQL',
+      'Redis',
+      'WebSocket',
+      'Hugging Face Transformers',
+      'PyTorch',
+      'Prometheus',
+      'Grafana'
+    ],
+    challenges: [
+      'NLP Model Accuracy: Fine-tuned transformer models for text-to-SQL conversion with entity recognition and schema mapping to achieve 95% query accuracy across diverse business terminology',
+      'Real-time Performance: Implemented multi-layer caching strategy with Redis, connection pooling, and query optimization to maintain sub-3-second response times under 1000+ concurrent users',
+      'Multi-Database Abstraction: Created unified database adapter pattern supporting different SQL dialects while maintaining consistent query interface and error handling across PostgreSQL, MySQL, and SQLite',
+      'Scalable Architecture: Designed microservices architecture with Kubernetes orchestration, implementing circuit breakers and health checks for 99.9% uptime requirements',
+    ],
+    media: [
+      
+    ],
+    githubUrl: 'https://github.com/DavidYu75/ai-business-intelligence'
   }
-
-
 };
