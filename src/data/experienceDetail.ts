@@ -17,18 +17,25 @@ export type ExperienceDetailMap = {
 export const experienceDetails: ExperienceDetailMap = {
   'citizens-bank': {
     responsibilities: [
-      'Develop automation solutions for banking processes',
-      'Implement secure financial transaction systems',
-      'Collaborate with cross-functional teams on digital transformation initiatives'
+      'Develop comprehensive UiPath package management tool with advanced dev lead approval workflows for enterprise automation deployment',
+      'Automate Nexus deployment pipeline systems to enable seamless distribution of 50+ development packages across enterprise infrastructure',
+      'Build and optimize Azure VDI scripts to streamline virtual desktop operations and reduce manual processing overhead',
+      'Lead cross-functional GenAI initiative to develop artificial intelligence capabilities across diverse organizational roles',
+      'Drive responsible AI adoption practices and establish governance frameworks for enterprise AI implementation'
     ],
-    technologies: ['UiPath', 'GenAI'],
+    technologies: ['UiPath', 'Azure VDI', 'Nexus', 'CI/CD Pipelines', 'Enterprise Automation', 'GenAI'],
     achievements: [
-      'In progress'
+      'Developed UiPath package management solution that reduced deployment time by 60% through streamlined approval workflows',
+      'Engineered automated Nexus deployment pipeline supporting seamless distribution of 50+ development packages enterprise-wide',
+      'Created Azure VDI automation scripts that cut manual processing time by 25% across 100+ virtual desktop environments',
+      'Led pioneering cross-functional initiative to integrate GenAI capabilities across multiple organizational roles and departments',
+      'Established responsible AI governance framework driving ethical AI adoption practices throughout the enterprise',
+      'Delivered end-to-end automation solutions from conception to production deployment with measurable efficiency improvements'
     ],
     memories: [
       {
         url: '/images/experiences/citizens/welcome.JPEG',
-        caption: 'Welcome to Citizens!'
+        caption: 'Citizens Welcome Package'
       },
     ],
   },
