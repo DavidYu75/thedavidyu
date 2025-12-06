@@ -243,5 +243,39 @@ export const projectDetails: ProjectDetailMap = {
       
     ],
     githubUrl: 'https://github.com/DavidYu75/ai-business-intelligence'
+  },
+
+  'constellation': {
+    overview: 'Constellation is an AI-powered business intelligence platform that converts natural language queries into SQL, delivering instant data insights through interactive visualizations.',
+    features: [
+      'Interactive galaxy visualization mapping contacts as stars with proximity based on relationship strength',
+      'On-device CoreML prediction model identifying relationships at risk of decay with 90% accuracy',
+      'Privacy-first architecture processing all contact metadata locally without external servers',
+      'Custom SpriteKit particle system with physics-based animations for immersive navigation',
+      'CoreMotion gesture controls (pinch, pan, rotate) for intuitive galaxy exploration',
+      'Adaptive clustering algorithm handling 10 to 200+ contacts with sub-second performance',
+      'Relationship scoring based on interaction frequency, recency, and communication patterns',
+      'Smart notifications suggesting when to reach out based on predicted relationship decay'
+    ],
+    technologies: [
+      'Swift',
+      'SwiftUI',
+      'SpriteKit',
+      'CoreMotion',
+      'CoreML',
+      'Contacts Framework',
+      'Xcode',
+      'iOS SDK'
+    ],
+    challenges: [
+      'On-Device ML Performance: Optimized CoreML model to run entirely on-device with sub-second inference times while maintaining 90% prediction accuracy for relationship decay across varying contact volumes',
+      'Visual Performance: Implemented efficient SpriteKit rendering with particle systems handling 200+ nodes while maintaining 60fps performance through culling and lazy loading techniques',
+      'Adaptive Algorithms: Designed clustering algorithm with dynamic thresholds that scales from 10 to 200+ contacts, handling edge cases like inactive contacts or sparse interaction data',
+      'Privacy-First Design: Architected entire pipeline to process sensitive contact metadata locally using CoreML and iOS frameworks without any external API calls or data transmission',
+    ],
+    media: [
+      
+    ],
+    
   }
 };
