@@ -43,11 +43,23 @@ const useIsMobile = () => {
 
 export default function Home() {
   const isMobile = useIsMobile();
-  const [isLoading, setIsLoading] = useState(true);
+  // Check if loading screen was already shown this session
+  const [isLoading, setIsLoading] = useState(() => {
+    // On server-side or mobile, don't show loading
+    if (typeof window === "undefined") return false;
+    // Check if already shown this session
+    return !sessionStorage.getItem("loadingScreenShown");
+  });
 
   useEffect(() => {
     // Skip loading screen on mobile since Hero isn't shown
     if (isMobile) {
+      setIsLoading(false);
+      return;
+    }
+
+    // If loading screen was already shown, skip
+    if (sessionStorage.getItem("loadingScreenShown")) {
       setIsLoading(false);
       return;
     }
@@ -57,18 +69,20 @@ export default function Home() {
     const handleMessage = (event: MessageEvent) => {
       if (event.data?.type === "videoReady") {
         videoReady = true;
+        sessionStorage.setItem("loadingScreenShown", "true");
         setIsLoading(false);
       }
     };
 
     window.addEventListener("message", handleMessage);
 
-    // Fallback: hide loading screen after animation completes (2 seconds)
+    // Fallback: hide loading screen after animation completes (3 seconds)
     const fallbackTimer = setTimeout(() => {
       if (!videoReady) {
+        sessionStorage.setItem("loadingScreenShown", "true");
         setIsLoading(false);
       }
-    }, 2500);
+    }, 3000);
 
     return () => {
       window.removeEventListener("message", handleMessage);
