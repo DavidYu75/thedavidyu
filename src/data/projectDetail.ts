@@ -246,7 +246,7 @@ export const projectDetails: ProjectDetailMap = {
   },
 
   'constellation': {
-    overview: 'Constellation is an AI-powered business intelligence platform that converts natural language queries into SQL, delivering instant data insights through interactive visualizations.',
+    overview: 'Constellation is an iOS app that renders your contacts as a navigable galaxy, placing each person as a star whose distance reflects how strong the relationship is. An on-device CoreML model watches for relationships drifting out of orbit and nudges you to reach out before they fade. Every bit of contact data stays on the phone.',
     features: [
       'Interactive galaxy visualization mapping contacts as stars with proximity based on relationship strength',
       'On-device CoreML prediction model identifying relationships at risk of decay with 90% accuracy',
