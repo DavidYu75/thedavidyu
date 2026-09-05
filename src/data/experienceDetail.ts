@@ -42,7 +42,7 @@ export const experienceDetails: ExperienceDetailMap = {
 
   'generate-product-development': {
     responsibilities: [
-      'Developed restaurant rating and analytics platform using Go/Fiber backend to revolutionize restarant rating and discovery',
+      'Developed restaurant rating and analytics platform using Go/Fiber backend to revolutionize restaurant rating and discovery',
       'Architected comprehensive RESTful API system leveraging MongoDB for high-performance restaurant metric processing',
       'Established secure authentication infrastructure with JWT implementation and granular role-based access controls',
       'Designed scalable microservices architecture ensuring seamless data integration across platform components',

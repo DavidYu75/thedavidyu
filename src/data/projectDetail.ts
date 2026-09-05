@@ -26,7 +26,7 @@ export const projectDetails: ProjectDetailMap = {
       'Real-time video and audio analysis during mock interviews',
       'Detailed feedback on verbal communication (pace, clarity, filler words)',
       'Non-verbal cue detection (eye contact, posture, facial expressions)',
-      'Post-inerview detailed analysis with metrics, key moments, and personalized recommendations',
+      'Post-interview detailed analysis with metrics, key moments, and personalized recommendations',
       'Secure user authentication and session management for tracking progress over time',
       'Comprehensive interview transcript generation with timestamps and speech metrics',
       'Interactive dashboard with visual performance metrics and historical session data',
