@@ -43,6 +43,7 @@ export const projectDetails: ProjectDetailMap = {
       'Keeping it fast enough to run inline: embeddings are computed locally and cached in SQLite so ranking does not block the editor or depend on a network round-trip',
     ],
     media: [],
+    githubUrl: 'https://github.com/DavidYu75/distyl'
   },
 
   'intreview': {
