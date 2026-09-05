@@ -46,6 +46,32 @@ export const projectDetails: ProjectDetailMap = {
     githubUrl: 'https://github.com/DavidYu75/distyl'
   },
 
+  'multi-agent-automation': {
+    overview: 'Three specialized agents running 24/7 on my own machine, each with its own job: one runs a content pipeline from trend research all the way to publishing, one handles code, and one runs the day. The constraint that shaped everything is that there is no database and no persistent server. An agent can be killed mid-task at any moment, so every agent rebuilds its entire working context from files on disk the moment it boots.',
+    features: [
+      'Autonomous content pipeline: researches trends from Reddit and TikTok, writes the script, generates AI voice and lip-synced video, and publishes to Instagram through browser automation',
+      'File-based memory that survives a crash, so an agent reconstructs in-progress tasks, past decisions, and scheduled jobs from disk on every boot',
+      'Three specialized agents on scheduled loops, handing tasks to each other asynchronously through the filesystem',
+      'A daily brief that reconciles live Gmail and Calendar data, filtering 300+ weekly emails down to the 5-10 worth reading',
+      'Discord as the control surface, with a separate bot per agent',
+    ],
+    technologies: [
+      'Claude Code',
+      'MCP',
+      'Discord API',
+      'Playwright',
+      'ElevenLabs',
+      'Gmail API',
+      'Google Calendar API',
+    ],
+    challenges: [
+      'Surviving death mid-task: agent sessions end without warning, so the fix was to treat memory as something written continuously during work rather than summarized at the end. State that only exists in a running session is state you are about to lose.',
+      'Agents that cannot talk to each other: there is no message bus between processes, so handoffs happen through task files on disk, which has the useful side effect of leaving an auditable trail of what each agent was asked to do',
+      'Making a signal-to-noise call automatically: the daily brief has to throw away 98% of the inbox without discarding the thing that mattered, which means the filter has to be conservative in the specific direction where a false negative is expensive',
+    ],
+    media: [],
+  },
+
   'intreview': {
     overview: 'IntReview is an AI-powered interview preparation platform that provides real-time feedback on verbal and non-verbal communication using computer vision and speech analysis. The application helps job seekers improve their interview skills through objective feedback on their performance.',
     features: [
