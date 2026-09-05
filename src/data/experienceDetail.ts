@@ -95,20 +95,19 @@ export const experienceDetails: ExperienceDetailMap = {
 
   'amazon': {
     responsibilities: [
-      'Designed and implemented high-performance AWS Lambda functions that processed 100+ daily metrics with precision monitoring capabilities',
-      'Architected real-time processing pipelines utilizing CloudWatch alarms, metrics, and dashboards for comprehensive service health monitoring',
-      'Implemented robust error handling and retry mechanisms achieving 95% reduction in failed data collections',
-      'Created detailed documentation for system architecture and future implementation',
-      'Led code reviews and incorporated constructive feedback to maintain high code quality'
+      'Extended a production AWS Lambda from one supported system to three, automating health reporting for two experimentation and content-optimization platforms that previously relied on manual collection',
+      'Built 7 priority-zero metrics spanning workflow success rate, execution volume, and P50/P90/P99 batch runtime',
+      'Parameterized every metric by reporting window and end date so one implementation feeds both the weekly and the monthly team health review',
+      'Refactored a monolithic Lambda into shared, unit-testable functions so all 7 metrics run through a single abstracted path',
+      'Validated output against manually collected baselines before merge'
     ],
     technologies: ['Java', 'AWS Lambda', 'CloudWatch', 'S3', 'Cloud Infrastructure', 'CI/CD Pipelines'],
     achievements: [
-      'Engineered AWS Lambda functions that maintained 99.99% reliability with sub-second latency while processing 100+ complex metrics weekly and monthly',
-      'Reduced system monitoring latency by 60% through implementation of optimized real-time processing pipelines and custom CloudWatch metrics',
-      'Cut AWS operational costs by 40% through innovative batching algorithms and resource utilization improvements',
-      'Successfully handled 3x monitoring volume while reducing failed collections by 95% through robust error handling',
-      'Created and delivered technical presentation on cloud cost optimization strategies to GCCP (Growth Composite Contributions Profits) team',
-      'Completed end-to-end ownership of monitoring solution from initial conception to successful production deployment and increased stakeholder value'
+      'Took two platforms from zero automated health coverage to recurring weekly and monthly reporting',
+      'Closed a reporting gap on a system that exposed no direct telemetry, deriving execution volume by modeling hourly workflow runs across 15 marketplaces at 360 runs/day',
+      'Delivered all 7 priority-zero metrics through one abstracted path after breaking up the original monolithic Lambda',
+      'Merged after 7 rounds of review with the test suite green and output checked against manual baselines',
+      'Owned the work end to end, from the initial reporting gap through production deployment'
     ],
     memories: [
       {
