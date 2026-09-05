@@ -23,7 +23,7 @@ export const experienceDetails: ExperienceDetailMap = {
       'Turned the privacy and authorization requirements into build-gating tests instead of review-time checklist items',
       'Worked across client and server teams to land one shared contract in place of three separate client implementations',
     ],
-    technologies: ['Java', 'Server-Driven UI', 'REST APIs', 'iOS', 'Android', 'Integration Testing'],
+    technologies: ['Java', 'Kotlin', 'Server-Driven UI', 'REST APIs', 'iOS', 'Android', 'Integration Testing'],
     achievements: [
       'Collapsed three parallel client implementations into one source of truth that ships without a client release',
       'Removed every server round-trip until final submission, so the feature stays responsive and free of reconciliation bugs',
