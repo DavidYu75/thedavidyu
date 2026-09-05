@@ -15,6 +15,24 @@ export type ExperienceDetailMap = {
 };
 
 export const experienceDetails: ExperienceDetailMap = {
+  'linkedin': {
+    responsibilities: [
+      'Built a new Profile feature spanning 6 codebases and 3 native clients (web, iOS, Android), driven entirely by a single server-defined UI description',
+      'Designed the scoring API as a stateless, deterministic service so replay safety falls out of the inputs rather than session tokens',
+      'Modeled persistence as a three-state lifecycle with conditional-write semantics, and backed it with storage-layer invariant tests',
+      'Turned the privacy and authorization requirements into build-gating tests instead of review-time checklist items',
+      'Worked across client and server teams to land one shared contract in place of three separate client implementations',
+    ],
+    technologies: ['Java', 'Server-Driven UI', 'REST APIs', 'iOS', 'Android', 'Integration Testing'],
+    achievements: [
+      'Collapsed three parallel client implementations into one source of truth that ships without a client release',
+      'Removed every server round-trip until final submission, so the feature stays responsive and free of reconciliation bugs',
+      'Guaranteed by test that retakes commit zero writes and that duplicate requests land on identical end states',
+      'Made member identity server-derived and never an API argument, with schema and behavioral tests that fail the build on identity-shaped inputs or cross-member writes',
+    ],
+    memories: [],
+  },
+
   'citizens-bank': {
     responsibilities: [
       'Develop comprehensive UiPath package management tool with advanced dev lead approval workflows for enterprise automation deployment',
