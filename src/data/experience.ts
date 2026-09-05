@@ -12,7 +12,8 @@ export const experiences: Experience[] = [
     title: 'Software Engineer Intern @ LinkedIn',
     company: 'LinkedIn',
     period: 'May 2026 - Aug 2026',
-    description: "👔 Incoming Summer 2026",
+    description:
+      "👔 One Profile feature, three native clients, one server-driven source of truth",
     logo: '/images/companies/linkedin_logo.jpeg',
     slug: 'linkedin'
   },
