@@ -45,15 +45,15 @@ export const experienceDetails: ExperienceDetailMap = {
       'Developed restaurant rating and analytics platform using Go/Fiber backend to revolutionize restarant rating and discovery',
       'Architected comprehensive RESTful API system leveraging MongoDB for high-performance restaurant metric processing',
       'Established secure authentication infrastructure with JWT implementation and granular role-based access controls',
-      'Designed scalable microservices architecture ensuring seamless data integration across platform components',
+      'Designed the client-server split so the React Native app and the Go backend could evolve independently',
       'Participated in agile development processes including sprint planning, weekly code reviews and standups, and retrospectives'
     ],
     technologies: ['Go', 'Fiber', 'MongoDB', 'RESTful APIs', 'JWT Authentication', 'Agile Methodologies'],
     achievements: [
-      'Engineered restaurant analytics platform targeting 20% inventory efficiency improvement across client operations',
-      'Designed and implemented high-performance RESTful APIs processing 1000+ dish metrics with consistent sub-100ms response times',
-      'Established comprehensive security infrastructure supporting 50+ restaurants and 1000+ users while maintaining strict data protection standards',
-      'Constructed resilient microservices architecture achieving 99% uptime during platform scaling phases',
+      'Shipped PlateMate to TestFlight in 3 months, covering 100+ Boston restaurants',
+      'Built the REST API in Go/Fiber and tuned the queries to sub-100ms response times',
+      'Owned the product end to end, from Figma prototype through backend implementation, testing, and deployment',
+      'Built the auth layer with JWT and role-based access so verified owners could manage only their own menus',
     ],
     memories: [
       {
