@@ -60,4 +60,13 @@ export const projects: Project[] = [
     slug: 'platemate',
     link: '/projects/platemate',
   },
+  {
+    id: '07',
+    title: 'Distyl',
+    description:
+      'A VS Code extension that figures out which parts of your workspace an AI coding assistant actually needs, then packs them to fit inside the context window.',
+    image: '/images/inprogress.png',
+    slug: 'distyl',
+    link: '/projects/distyl',
+  },
 ];

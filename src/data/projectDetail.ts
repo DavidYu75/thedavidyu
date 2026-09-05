@@ -20,6 +20,31 @@ export type ProjectDetailMap = {
 };
 
 export const projectDetails: ProjectDetailMap = {
+  'distyl': {
+    overview: 'Every AI coding assistant has the same bottleneck: a fixed context window, and no good sense of which files in your workspace are worth spending it on. Distyl is a VS Code extension that answers that question automatically. It ranks the workspace by relevance to what you are working on, then packs the highest-value material into whatever token budget you have set.',
+    features: [
+      'Automatic workspace context curation, with no manual file picking',
+      'Embedding-based relevance ranking using all-MiniLM-L6-v2, running locally through Transformers.js',
+      'Recency and proximity heuristics layered on top of semantic similarity',
+      'Token-budget optimizer using greedy packing with paragraph-level compression',
+      'Configurable presets from 4k to 16k tokens',
+      'Local SQLite index, so nothing about the workspace leaves the machine',
+    ],
+    technologies: [
+      'TypeScript',
+      'VS Code Extension API',
+      'Transformers.js',
+      'SQLite',
+      'all-MiniLM-L6-v2',
+    ],
+    challenges: [
+      'Measuring whether the ranking was any good: built a hand-curated evaluation set of context selections to score against, and tuned until automatic selection reached 87% overlap with the manual picks',
+      'Fitting more into the same budget: paragraph-level compression cut payloads by 60-70% while keeping the highest-ranked material intact, so a smaller budget still carries the important parts',
+      'Keeping it fast enough to run inline: embeddings are computed locally and cached in SQLite so ranking does not block the editor or depend on a network round-trip',
+    ],
+    media: [],
+  },
+
   'intreview': {
     overview: 'IntReview is an AI-powered interview preparation platform that provides real-time feedback on verbal and non-verbal communication using computer vision and speech analysis. The application helps job seekers improve their interview skills through objective feedback on their performance.',
     features: [
