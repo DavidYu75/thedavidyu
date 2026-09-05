@@ -69,4 +69,13 @@ export const projects: Project[] = [
     slug: 'distyl',
     link: '/projects/distyl',
   },
+  {
+    id: '08',
+    title: 'Multi-Agent Personal Automation System',
+    description:
+      'Three agents running around the clock on my own machine: one researches and publishes content end to end, one handles code, one runs the day. No database, no server, and no memory of anything except what they write down.',
+    image: '/images/inprogress.png',
+    slug: 'multi-agent-automation',
+    link: '/projects/multi-agent-automation',
+  },
 ];
