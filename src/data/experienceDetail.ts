@@ -107,6 +107,7 @@ export const experienceDetails: ExperienceDetailMap = {
       'Closed a reporting gap on a system that exposed no direct telemetry, deriving execution volume by modeling hourly workflow runs across 15 marketplaces at 360 runs/day',
       'Delivered all 7 priority-zero metrics through one abstracted path after breaking up the original monolithic Lambda',
       'Merged after 7 rounds of review with the test suite green and output checked against manual baselines',
+      'Presented on cloud cost optimization strategies to the GCCP (Growth-Adjusted Composite Contributions Profits) team',
       'Owned the work end to end, from the initial reporting gap through production deployment'
     ],
     memories: [
