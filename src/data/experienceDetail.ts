@@ -93,25 +93,6 @@ export const experienceDetails: ExperienceDetailMap = {
     ],
   },
 
-  'outlier': {
-    responsibilities: [
-      'Engineered robust data pipelines for large language models (LLMs) to streamline training and evaluation processes',
-      'Designed and implemented comprehensive testing frameworks with A/B testing capabilities for model performance validation',
-      'Developed innovative prompt engineering systems to generate diverse and high-quality training datasets',
-      'Optimized data processing workflows to accelerate model iteration cycles',
-    ],
-    technologies: ['Python', 'TensorFlow', 'PyTorch', 'LLMs', 'A/B Testing'],
-    achievements: [
-      'Engineered data processing pipelines that improved model response accuracy by 30% through enhanced quality control',
-      'Deployed testing framework that reduced model iteration cycles by 40% through streamlined evaluation processes',
-      'Designed prompt engineering system that generated 5x more diverse training data, significantly enhancing model generalization capabilities',
-      'Implemented distributed evaluation architecture scaling to 200+ concurrent model tests with 99% reliability',
-      'Reduced model training time by 35% through optimization of data preprocessing steps',
-      'Authored comprehensive documentation that improved knowledge sharing and onboarding efficiency',
-    ],
-    memories: [],
-  },
-
   'amazon': {
     responsibilities: [
       'Designed and implemented high-performance AWS Lambda functions that processed 100+ daily metrics with precision monitoring capabilities',
