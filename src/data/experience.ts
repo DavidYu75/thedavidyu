@@ -35,15 +35,6 @@ export const experiences: Experience[] = [
     slug: 'generate-product-development'
   },
   {
-    title: 'Machine Learning Engineer @ Outlier AI',
-    company: 'Outlier AI',
-    period: 'Sep 2024 - Dec 2024',
-    description:
-      "🤖 Engineered robust evaluation systems and testing frameworks for large language models",
-    logo: '/images/companies/outlier_logo.jpeg',
-    slug: 'outlier'
-  },
-  {
     title: 'Software Engineer Intern @ Amazon',
     company: 'Amazon',
     period: 'May 2024 - Aug 2024',
