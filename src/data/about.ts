@@ -1,7 +1,7 @@
 export const aboutContent = {
   description: [
-    "A passionate software engineer with an insatiable curiosity for solving complex problems through elegant code. I thrive at the intersection of innovation and practicality, constantly seeking ways to build software that creates meaningful impact in the real world.",
-    "My journey in computer science is driven by more than just technical challenges—it's about creating solutions that make a difference. Beyond the keyboard, I'm passionate about continuous learning and collaboration, believing the best innovations emerge when diverse perspectives unite around common goals.",
-    "Scroll down to see how I've been putting these passions into practice!",
+    "I'm a CS student at Northeastern who gravitates toward problems where the interesting part isn't the code. Most of what I've built started as a small annoyance: interview prep that gives you no real feedback, restaurant reviews that rate the room instead of the food, an inbox that buries the five emails that matter under three hundred that don't.",
+    "I've spent my last few summers at Amazon and LinkedIn learning how software behaves when a lot of people depend on it, and my semesters building things where I get to make every call myself. Those two teach very different lessons and I'm not finished with either. Lately I'm drawn to early-stage teams, where the distance between deciding something and shipping it is measured in days.",
+    "Scroll down to see what I've been building!",
   ],
 };
