@@ -42,7 +42,14 @@ export const projectDetails: ProjectDetailMap = {
       'Fitting more into the same budget: paragraph-level compression cut payloads by 60-70% while keeping the highest-ranked material intact, so a smaller budget still carries the important parts',
       'Keeping it fast enough to run inline: embeddings are computed locally and cached in SQLite so ranking does not block the editor or depend on a network round-trip',
     ],
-    media: [],
+    media: [
+      {
+        type: 'video',
+        url: '/videos/distyl-brag.mp4',
+        thumbnail: '/images/projects/distyl/brag.jpg',
+        caption: 'Distyl in 21 seconds: the keystroke, the ranking pipeline, the packed payload'
+      },
+    ],
     githubUrl: 'https://github.com/DavidYu75/distyl'
   },
 
