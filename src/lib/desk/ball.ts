@@ -7,7 +7,7 @@ export interface BallEngine {
 }
 
 export function createBall(svg: SVGSVGElement, g: SVGGElement, rot: SVGGElement, sh: SVGEllipseElement, tag: SVGGElement): BallEngine {
-  let x = 0, y = 0, vx = 0, vy = 0, r = 40, hx = 0, hy = 0, W = 1200, floor = 0, ang = 0, active = false, last = 0, tagT = 0;
+  let x = 0, y = 0, vx = 0, vy = 0, r = 40, hx = 0, hy = 0, W = 1200, floor = 0, ang = 0, active = false, last = 0, tagT = 0, raf = 0;
   let drag: { ox: number; oy: number; px: number; py: number; t: number; moved: number; vx: number; vy: number } | null = null;
   const draw = () => {
     g.setAttribute('transform', `translate(${x.toFixed(1)} ${y.toFixed(1)})`);
@@ -33,9 +33,9 @@ export function createBall(svg: SVGSVGElement, g: SVGGElement, rot: SVGGElement,
       }
     }
     if (tagT > 0) { tagT -= dt * 16.7; if (tagT <= 0) tag.setAttribute('visibility', 'hidden'); }
-    draw(); if (active) requestAnimationFrame(step);
+    draw(); if (active) raf = requestAnimationFrame(step);
   };
-  const go = () => { if (!active) { active = true; last = performance.now(); requestAnimationFrame(step); } };
+  const go = () => { if (!active) { active = true; last = performance.now(); raf = requestAnimationFrame(step); } };
   const pt = (e: PointerEvent) => { const p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY; return p.matrixTransform(svg.getScreenCTM()!.inverse()); };
   const showTag = () => { tag.setAttribute('visibility', 'visible'); tagT = 2400; go(); };
   const onDown = (e: PointerEvent) => { if (e.button) return; e.preventDefault(); g.setPointerCapture(e.pointerId); const p = pt(e); drag = { ox: x - p.x, oy: y - p.y, px: p.x, py: p.y, t: performance.now(), moved: 0, vx: 0, vy: 0 }; vx = vy = 0; go(); };
@@ -54,14 +54,14 @@ export function createBall(svg: SVGSVGElement, g: SVGGElement, rot: SVGGElement,
     showTag(); go();
   };
   const onClick = (e: MouseEvent) => { if (e.detail === 0) { vy = -15; vx = (Math.random() - 0.5) * 10; showTag(); go(); } };
-  const onVis = () => { if (!document.hidden && active) { last = performance.now(); requestAnimationFrame(step); } };
+  const onVis = () => { cancelAnimationFrame(raf); if (!document.hidden && active) { last = performance.now(); raf = requestAnimationFrame(step); } };
   g.addEventListener('pointerdown', onDown); g.addEventListener('pointermove', onMove);
   g.addEventListener('pointerup', onUp); g.addEventListener('pointercancel', onUp); g.addEventListener('click', onClick);
   document.addEventListener('visibilitychange', onVis);
   return {
     home(nx, ny, nr, w) { hx = nx; hy = ny; r = nr; W = w; floor = ny + nr; if (!active) { x = hx; y = hy; draw(); } else { x = Math.min(W - r, x); y = Math.min(floor - r, y); } },
     destroy() {
-      active = false;
+      active = false; cancelAnimationFrame(raf);
       g.removeEventListener('pointerdown', onDown); g.removeEventListener('pointermove', onMove);
       g.removeEventListener('pointerup', onUp); g.removeEventListener('pointercancel', onUp); g.removeEventListener('click', onClick);
       document.removeEventListener('visibilitychange', onVis);

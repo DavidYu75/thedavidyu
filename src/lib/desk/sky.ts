@@ -3,6 +3,7 @@
  * drag parallax, stardust, shooting stars and the summer-triangle easter egg.
  * React owns the cards and panels; this engine owns the canvas, the hover label and the star positions.
  */
+import { PHONE_QUERY } from './layout';
 import { clamp, rng } from './util';
 import { makeSkyline, Skyline } from './skyline';
 
@@ -98,7 +99,7 @@ export function createSky(o: SkyOptions): SkyEngine {
     stars.forEach((s) => { const p = ph ? s.m : s.d; s.x = p[0] * SW; s.y = p[1] * H; const b = btnOf(s); if (b) { b.style.left = s.x + 'px'; b.style.top = s.y + 'px'; } });
   }
   function layout() {
-    W = innerWidth; H = innerHeight; dpr = Math.min(2, window.devicePixelRatio || 1); ph = W < 720;
+    W = innerWidth; H = innerHeight; dpr = Math.min(2, window.devicePixelRatio || 1); ph = matchMedia(PHONE_QUERY).matches;
     MX = Math.round(Math.min(90, W * 0.07)); MY = Math.round(Math.min(40, H * 0.05));
     cvs.width = Math.round(W * dpr); cvs.height = Math.round(H * dpr); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     inset = insetT = ph ? 0 : insetT; placeStars();

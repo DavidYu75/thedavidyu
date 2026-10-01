@@ -29,18 +29,23 @@ const NowPlaying = forwardRef<NowPlayingHandle>(function NowPlaying(_, ref) {
   }, []);
   const bop = () => { const b = document.getElementById('phonesBody'); if (!b) return; b.classList.remove('bop'); void (b as unknown as HTMLElement).getBoundingClientRect(); b.classList.add('bop'); };
 
+  const runProgress = useCallback(() => {
+    const l = lofi.current; if (!l) return;
+    cancelAnimationFrame(raf.current);
+    const loop = () => { if (prog.current) prog.current.style.width = ((l.elapsed() % l.LOOP) / l.LOOP * 100).toFixed(2) + '%'; raf.current = requestAnimationFrame(loop); };
+    raf.current = requestAnimationFrame(loop);
+  }, []);
   const setPlay = useCallback((on: boolean) => {
     if (!lofi.current) lofi.current = createLofi();
     const l = lofi.current;
     if (on) {
       try { l.start(); } catch { return; }
-      const loop = () => { if (prog.current) prog.current.style.width = ((l.elapsed() % l.LOOP) / l.LOOP * 100).toFixed(2) + '%'; raf.current = requestAnimationFrame(loop); };
-      raf.current = requestAnimationFrame(loop); notesT.current = window.setInterval(() => spawnNotes(1), 900);
+      runProgress(); notesT.current = window.setInterval(() => spawnNotes(1), 900);
     } else {
       l.stop(); cancelAnimationFrame(raf.current); raf.current = 0; clearInterval(notesT.current); if (prog.current) prog.current.style.width = '0%';
     }
     setPlaying(on); phones()?.classList.toggle('playing', on);
-  }, [spawnNotes]);
+  }, [spawnNotes, runProgress]);
 
   const openNp = useCallback(() => { setOpen(true); phones()?.setAttribute('aria-expanded', 'true'); setTimeout(() => playBtn.current?.focus({ preventScroll: true }), 40); }, []);
   const closeNp = useCallback(() => { if (lofi.current?.running) setPlay(false); setOpen(false); const p = phones(); p?.setAttribute('aria-expanded', 'false'); (p as HTMLElement | null)?.focus?.({ preventScroll: true }); }, [setPlay]);
@@ -49,10 +54,10 @@ const NowPlaying = forwardRef<NowPlayingHandle>(function NowPlaying(_, ref) {
     const p = phones(); if (!p) return;
     const onClick = () => { bop(); spawnNotes(4); if (openRef.current) closeNp(); else openNp(); };
     p.addEventListener('click', onClick);
-    const onVis = () => { if (document.hidden) { cancelAnimationFrame(raf.current); raf.current = 0; } };
+    const onVis = () => { if (document.hidden) { cancelAnimationFrame(raf.current); raf.current = 0; } else if (lofi.current?.running) runProgress(); };
     document.addEventListener('visibilitychange', onVis);
     return () => { p.removeEventListener('click', onClick); document.removeEventListener('visibilitychange', onVis); lofi.current?.stop(); cancelAnimationFrame(raf.current); clearInterval(notesT.current); };
-  }, [closeNp, openNp, spawnNotes]);
+  }, [closeNp, openNp, spawnNotes, runProgress]);
 
   useImperativeHandle(ref, () => ({ escape() { if (open) { closeNp(); return true; } return false; } }), [open, closeNp]);
 
