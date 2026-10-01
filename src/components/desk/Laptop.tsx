@@ -155,11 +155,9 @@ const Laptop = forwardRef<LaptopHandle, Props>(function Laptop({ skyActive, onLi
         <button style={{ background: '#28c840' }} tabIndex={-1} aria-hidden="true" />
         <span className="t">{jobTitle}</span>
       </div>
-      {win?.kind === 'about' ? (
-        <div className="jwin"><div className="jbody txt" tabIndex={0}><AboutWindow /></div></div>
-      ) : (
-        <div className="jwin">
-          <aside className="jside">
+      <div className="jwin">
+        <div className="jbody txt" tabIndex={0} hidden={win?.kind !== 'about'}><AboutWindow /></div>
+        <aside className="jside" hidden={win?.kind === 'about'}>
             <small>Experience</small>
             {experiences.map((e) => (
               <button key={e.slug} type="button" aria-current={jobSlug === e.slug} onClick={() => openWin({ kind: 'job', slug: e.slug })}>
@@ -172,8 +170,7 @@ const Laptop = forwardRef<LaptopHandle, Props>(function Laptop({ skyActive, onLi
               <JobWindow slug={e.slug} onPhoto={(i) => openLightbox(photosOf(e.slug), i)} />
             </div>
           ))}
-        </div>
-      )}
+      </div>
     </div>
   );
 

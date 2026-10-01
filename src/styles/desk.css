@@ -1,5 +1,4 @@
 /* Late-Night Desk: the home page. Ported from the approved prototype (desk-v7). Ids are used by the imperative engines in src/lib/desk. */
-<style>
 :root{--paper:#f7f1e6;--ink:#1c1a17;--accent:#d8613c;--muted:#6b665d;--gold:#ffd166;
   --acc:#f2c879;--acc-rgb:242,200,121;--line:rgba(242,200,121,.28);--panel:rgba(8,13,27,.9);--sky-ink:#eef1f8;--sky-soft:#c7cfdf;--sky-muted:#94a0b8;--sky-dim:#66728c;
   --display:var(--font-fell),'Iowan Old Style',Georgia,serif;--mono:var(--font-dm-mono),ui-monospace,Menlo,monospace;--sans:var(--font-figtree),system-ui,sans-serif}

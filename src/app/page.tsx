@@ -1,107 +1,41 @@
-"use client";
+import type { Metadata } from 'next';
+import DeskScene from '@/components/desk/DeskScene';
+import { contact } from '@/data/contact';
+import { experiences } from '@/data/experience';
+import { projects } from '@/data/projects';
 
-import { useEffect, useState } from "react";
-import Hero from "@/components/sections/Hero";
-import Intro from "@/components/sections/Intro";
-import Projects from "@/components/sections/Projects";
-import Experience from "@/components/sections/Experience";
-import Contact from "@/components/sections/Contact";
-import NavBar from "@/components/layout/NavBar";
-import Footer from "@/components/layout/Footer";
-import LoadingScreen from "@/components/LoadingScreen";
-
-const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-
-    const checkIfMobile = () => {
-      clearTimeout(timeoutId);
-
-      // Debounce the state update to avoid excessive re-renders
-      timeoutId = setTimeout(() => {
-        setIsMobile(window.innerWidth < 768);
-      }, 100); // 100ms debounce delay
-    };
-
-    // Initial check
-    checkIfMobile();
-
-    // Add event listener for window resize
-    window.addEventListener("resize", checkIfMobile);
-
-    // Clean up
-    return () => {
-      window.removeEventListener("resize", checkIfMobile);
-      clearTimeout(timeoutId);
-    };
-  }, []);
-
-  return isMobile;
+export const metadata: Metadata = {
+  title: 'David Yu',
+  description: "David Yu's desk at night in New York: where he's worked (LinkedIn, Citizens, Generate, Amazon), what he's built, and a window onto the rest. CS at Northeastern, class of 2027.",
+  openGraph: {
+    title: 'David Yu',
+    description: "A late-night desk in NYC. Open the laptop for where I've worked, look out the window for what I've built.",
+    url: 'https://yudavid.dev',
+    siteName: 'David Yu',
+    images: [{ url: '/images/hero2.JPEG', width: 2048, height: 1536, alt: 'David Yu' }],
+    type: 'website',
+  },
+  twitter: { card: 'summary_large_image', title: 'David Yu', description: "A late-night desk in NYC. Open the laptop for where I've worked, look out the window for what I've built." },
 };
 
+/**
+ * The home page is David's desk at night. This server component renders the readable shell
+ * (name, links, a plain index of experience and projects) so crawlers and link previews see it
+ * before any JavaScript runs; DeskScene hydrates the room and every interaction.
+ */
 export default function Home() {
-  const isMobile = useIsMobile();
-  // Check if loading screen was already shown this session
-  const [isLoading, setIsLoading] = useState(() => {
-    // On server-side or mobile, don't show loading
-    if (typeof window === "undefined") return false;
-    // Check if already shown this session
-    return !sessionStorage.getItem("loadingScreenShown");
-  });
-
-  useEffect(() => {
-    // Skip loading screen on mobile since Hero isn't shown
-    if (isMobile) {
-      setIsLoading(false);
-      return;
-    }
-
-    // If loading screen was already shown, skip
-    if (sessionStorage.getItem("loadingScreenShown")) {
-      setIsLoading(false);
-      return;
-    }
-
-    let videoReady = false;
-
-    const handleMessage = (event: MessageEvent) => {
-      if (event.data?.type === "videoReady") {
-        videoReady = true;
-        sessionStorage.setItem("loadingScreenShown", "true");
-        setIsLoading(false);
-      }
-    };
-
-    window.addEventListener("message", handleMessage);
-
-    // Fallback: hide loading screen after animation completes (3 seconds)
-    const fallbackTimer = setTimeout(() => {
-      if (!videoReady) {
-        sessionStorage.setItem("loadingScreenShown", "true");
-        setIsLoading(false);
-      }
-    }, 3000);
-
-    return () => {
-      window.removeEventListener("message", handleMessage);
-      clearTimeout(fallbackTimer);
-    };
-  }, [isMobile]);
-
   return (
-    <div className="min-h-screen bg-[#0D1B2A] overflow-x-hidden">
-      <LoadingScreen isLoading={isLoading} />
-      <NavBar />
-      <main className="relative z-0">
-        {!isMobile && <Hero />}
-        <Intro />
-        <Experience />
-        <Projects />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <main className="desk-main">
+      <header className="sr-only">
+        <h1>{contact.name}</h1>
+        <p>{contact.blurb}</p>
+        <p><a href={contact.github}>GitHub</a> <a href={contact.linkedin}>LinkedIn</a> <a href={`mailto:${contact.email}`}>{contact.email}</a></p>
+        <h2>Experience</h2>
+        <ul>{experiences.map((e) => <li key={e.slug}><a href={`/experience/${e.slug}`}>{e.title}</a>, {e.period}</li>)}</ul>
+        <h2>Projects</h2>
+        <ul>{projects.map((p) => <li key={p.slug}><a href={p.link}>{p.title}</a>: {p.description}</li>)}</ul>
+      </header>
+      <DeskScene />
+    </main>
   );
 }
