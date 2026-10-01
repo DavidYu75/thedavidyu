@@ -96,14 +96,16 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
                 </div>
               </div>
               
-              <div className={styles.section}>
-                <h2 className={styles.sectionTitle}>Challenges & Solutions</h2>
-                <ul className={styles.list}>
-                  {detail.challenges.map((challenge, index) => (
-                    <li key={index} className={styles.listItem}>{challenge}</li>
-                  ))}
-                </ul>
-              </div>
+              {detail.challenges.length > 0 && (
+                <div className={styles.section}>
+                  <h2 className={styles.sectionTitle}>Challenges & Solutions</h2>
+                  <ul className={styles.list}>
+                    {detail.challenges.map((challenge, index) => (
+                      <li key={index} className={styles.listItem}>{challenge}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
               
               {detail.media && detail.media.length > 0 && (
                 <div className={styles.section}>

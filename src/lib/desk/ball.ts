@@ -18,7 +18,7 @@ export function createBall(svg: SVGSVGElement, g: SVGGElement, rot: SVGGElement,
   };
   const step = (ts: number) => {
     if (!active) return;
-    const dt = Math.min(2, (ts - last) / 16.7 || 1); last = ts;
+    const dt = clamp((ts - last) / 16.7 || 1, 0, 2); last = ts;
     if (!drag) {
       vy += 0.55 * dt; x += vx * dt; y += vy * dt;
       if (y + r > floor) { y = floor - r; vy = -vy * 0.6; if (Math.abs(vy) < 1.2) vy = 0; vx *= 0.96; }
@@ -42,8 +42,8 @@ export function createBall(svg: SVGSVGElement, g: SVGGElement, rot: SVGGElement,
   const onMove = (e: PointerEvent) => {
     if (!drag) return;
     const p = pt(e), now = performance.now(), dt = Math.max(1, now - drag.t);
+    drag.moved += Math.hypot(p.x - drag.px, p.y - drag.py);
     drag.vx = (p.x - drag.px) / dt * 16.7; drag.vy = (p.y - drag.py) / dt * 16.7; drag.px = p.x; drag.py = p.y; drag.t = now;
-    drag.moved += Math.hypot(e.movementX || 0, e.movementY || 0);
     x = Math.min(W - r, Math.max(r, p.x + drag.ox)); y = Math.min(floor - r, Math.max(r, p.y + drag.oy)); draw();
   };
   const onUp = () => {

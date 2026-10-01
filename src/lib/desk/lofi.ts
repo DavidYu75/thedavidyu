@@ -5,6 +5,8 @@
 export interface Lofi {
   start(): void;
   stop(): void;
+  /** Stop and release the AudioContext; the engine can't be restarted after this. */
+  destroy(): void;
   readonly running: boolean;
   elapsed(): number;
   readonly LOOP: number;
@@ -71,8 +73,9 @@ export function createLofi(): Lofi {
     timer = window.setInterval(schedule, 90);
   }
   function stop() { running = false; clearInterval(timer); bus?.disconnect(); bus = null; if (ac) ac.suspend(); }
+  function destroy() { stop(); ac?.close(); ac = null; master = null; }
   return {
-    start, stop,
+    start, stop, destroy,
     get running() { return running; },
     elapsed() { return ac ? Math.max(0, ac.currentTime - t0) : 0; },
     LOOP,

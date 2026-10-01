@@ -2,6 +2,7 @@
  * The matcha bowl, whisked in place: a square canvas squashed over the bowl's rim ellipse.
  * Zig-zags of the pointer build foam and lighten the tea; at "perfect" a foam heart says hi.
  */
+import { cssFont } from './util';
 export interface BowlOptions {
   canvas: HTMLCanvasElement;
   /** the SVG bowl group; gets .whisking / .whisked classes */
@@ -21,6 +22,7 @@ export interface BowlEngine {
 
 export function createBowl(o: BowlOptions): BowlEngine {
   const { canvas: cv, stage } = o, ctx = cv.getContext('2d')!;
+  const initialLabel = cv.getAttribute('aria-label') || '';
   let foam = document.createElement('canvas'), fctx = foam.getContext('2d')!;
   let W = 0, dpr = 1, cx = 0, cy = 0, R = 0, LR = 0, S = 1;
   let f = 0, revealed = false, artT0 = 0;
@@ -58,7 +60,7 @@ export function createBowl(o: BowlOptions): BowlEngine {
     ctx.save(); ctx.translate(cx, cy + h * 0.08); ctx.scale(sc, sc); ctx.shadowColor = `rgba(250,248,232,${0.7 * a})`; ctx.shadowBlur = 10 * S;
     heart(ctx, h); ctx.fillStyle = `rgba(249,247,235,${0.96 * a})`; ctx.fill(); ctx.shadowBlur = 0;
     ctx.save(); ctx.scale(0.8, 0.8); heart(ctx, h); ctx.restore(); ctx.lineWidth = 2.4 * S; ctx.strokeStyle = `rgba(170,198,118,${0.45 * a})`; ctx.stroke();
-    const fs = h * 0.5; ctx.font = `700 ${fs}px var(--font-caveat), Caveat, cursive`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = `rgba(58,90,36,${a})`; ctx.fillText('hi', 0, -h * 0.06); ctx.restore();
+    const fs = h * 0.5; ctx.font = `700 ${fs}px ${cssFont('--font-caveat', 'Caveat, cursive')}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = `rgba(58,90,36,${a})`; ctx.fillText('hi', 0, -h * 0.06); ctx.restore();
   }
   function drawWhisk() {
     const rw = LR * 0.3, { x, y } = whisk; let lx = -whisk.vx * 0.9, ly = -whisk.vy * 0.9; const ll = Math.hypot(lx, ly), mx = rw * 0.35; if (ll > mx) { lx *= mx / ll; ly *= mx / ll; }
@@ -113,7 +115,7 @@ export function createBowl(o: BowlOptions): BowlEngine {
     if (f >= 1 && !revealed) reveal();
   }
   function reveal() { revealed = true; artT0 = performance.now(); microFoam(); stage.classList.add('whisked'); o.button.textContent = 'Whisk it again'; cv.setAttribute('aria-label', 'The matcha bowl, whisked. A foam heart says hi.'); request(); }
-  function reset() { revealed = false; bubbles = []; fctx.save(); fctx.setTransform(1, 0, 0, 1, 0, 0); fctx.clearRect(0, 0, foam.width, foam.height); fctx.restore(); stageIdx = -1; setProgress(0); o.button.textContent = 'Whisk it for me'; stage.classList.remove('whisked'); request(); }
+  function reset() { revealed = false; bubbles = []; fctx.save(); fctx.setTransform(1, 0, 0, 1, 0, 0); fctx.clearRect(0, 0, foam.width, foam.height); fctx.restore(); stageIdx = -1; setProgress(0); o.button.textContent = 'Whisk it for me'; cv.setAttribute('aria-label', initialLabel); stage.classList.remove('whisked'); request(); }
   let raf = 0, lastFrame = 0, auto: { t0: number; dur: number; f0: number; lx: number; ly: number } | null = null, alive = true;
   function request() { if (!raf && !document.hidden && alive) raf = requestAnimationFrame(frame); }
   function frame(now: number) {

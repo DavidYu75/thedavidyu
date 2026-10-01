@@ -102,7 +102,7 @@ const Laptop = forwardRef<LaptopHandle, Props>(function Laptop({ skyActive, onLi
   const openLaptop = useCallback(() => { st.current.manualOpen = true; updateLid(true); if (sceneRef.current.phone) setTimeout(() => setFocus(true), 520); }, [setFocus, updateLid]);
   const closeLid = useCallback(() => {
     const s = st.current; s.manualOpen = false; if (s.focusOn) setFocus(false);
-    if (s.scrollP > 0.6) { window.scrollTo({ top: 0, behavior: reducedRef.current ? 'auto' : 'smooth' }); updateLid(false); } else updateLid(true);
+    if (s.scrollP > 0.6) { window.scrollTo({ top: 0, behavior: reducedRef.current ? 'instant' : 'smooth' }); updateLid(false); } else updateLid(true);
     setTimeout(() => lidface.current?.focus({ preventScroll: true }), 1000);
   }, [setFocus, updateLid]);
 
@@ -120,6 +120,8 @@ const Laptop = forwardRef<LaptopHandle, Props>(function Laptop({ skyActive, onLi
   useEffect(() => {
     applyLid(0);
     const onScroll = () => { if (sceneRef.current.phone || skyRef.current) return; st.current.scrollP = clamp(window.scrollY / (window.innerHeight * 0.55), 0, 1); updateLid(false); };
+    // a reload or back navigation can restore the page already scrolled; match the lid to it
+    if (window.scrollY > 0) onScroll();
     const onVis = () => { if (!document.hidden && st.current.lidCur !== lidTarget()) updateLid(false); };
     addEventListener('scroll', onScroll, { passive: true }); document.addEventListener('visibilitychange', onVis);
     return () => { removeEventListener('scroll', onScroll); document.removeEventListener('visibilitychange', onVis); cancelAnimationFrame(st.current.lidRaf); };

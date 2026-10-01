@@ -16,14 +16,6 @@ export function rng(seed: number) {
 const hex = (c: string) => [1, 3, 5].map((i) => parseInt(c.slice(i, i + 2), 16));
 
 /** Mix two hex colors, returns hex. */
-export function mixc(a: string, b: string, t: number) {
-  const A = hex(a), B = hex(b);
-  return '#' + A.map((v, i) => Math.round(v + (B[i] - v) * t).toString(16).padStart(2, '0')).join('');
-}
-
-export const prefersReducedMotion = () =>
-  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
 /** Hours since midnight in New York, fractional. */
 export function nyHour(): number {
   try {
@@ -40,3 +32,13 @@ export function nyHour(): number {
 
 export const fmtHour = (h: number) =>
   `${((Math.floor(h) + 11) % 12) + 1}:${String(Math.floor((h % 1) * 60)).padStart(2, '0')} ${h >= 12 ? 'PM' : 'AM'}`;
+
+/**
+ * Canvas font strings can't use CSS variables, so resolve a next/font variable
+ * (e.g. "--font-dm-mono") to its real family list on the desk root.
+ */
+export function cssFont(varName: string, fallback: string): string {
+  const root = document.querySelector('.desk-main') || document.documentElement;
+  const v = getComputedStyle(root).getPropertyValue(varName).trim();
+  return v ? `${v}, ${fallback}` : fallback;
+}

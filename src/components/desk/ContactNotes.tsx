@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { contact } from '@/data/contact';
+import { copyEmail, selectText } from '@/lib/desk/copyEmail';
 import { useDesk } from './DeskContext';
 
 /** Three post-its on the wall: LinkedIn, GitHub, and an Email note that copies the address. */
@@ -16,8 +17,9 @@ export default function ContactNotes() {
   };
   const copy = () => {
     const done = () => { setState('copied'); clearTimeout(t.current); t.current = window.setTimeout(() => setState('idle'), 1800); };
-    const fb = () => { setState('fallback'); setTimeout(() => { try { const a = document.querySelector('#emailNote .addr'); if (!a) return; const r = document.createRange(); r.selectNodeContents(a); const s = getSelection(); s?.removeAllRanges(); s?.addRange(r); } catch { /* ignore */ } }, 0); };
-    try { navigator.clipboard.writeText(contact.email).then(done, fb); } catch { fb(); }
+    // On refusal the note shows the address itself and keeps it up, so it can be copied by hand.
+    const fb = () => { setState('fallback'); setTimeout(() => selectText(document.querySelector('#emailNote .addr')), 0); };
+    copyEmail().then((ok) => (ok ? done() : fb()));
   };
   return (
     <nav className="postits" aria-label="Contact">

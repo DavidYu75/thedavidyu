@@ -4,7 +4,7 @@
  * React owns the cards and panels; this engine owns the canvas, the hover label and the star positions.
  */
 import { PHONE_QUERY } from './layout';
-import { clamp, rng } from './util';
+import { clamp, cssFont, rng } from './util';
 import { makeSkyline, Skyline } from './skyline';
 
 export interface SkyStarInput {
@@ -79,6 +79,7 @@ export function createSky(o: SkyOptions): SkyEngine {
   const byId: Record<string, SkyStar> = {}; stars.forEach((s) => (byId[s.id] = s));
   o.groups.forEach((g) => g.ids.forEach((id) => { const s = byId[id]; if (!s) return; s.groups.push(g.name); g.ids.forEach((other) => { if (other !== id && byId[other] && !s.rel.some((r) => r.to === other)) s.rel.push({ to: other, g: g.name }); }); }));
 
+  let monoFont = 'ui-monospace, monospace';
   let W = 0, H = 0, dpr = 1, ph = false, MX = 0, MY = 0, panX = 0, panY = 0, tpx = 0, tpy = 0, inset = 0, insetT = 0;
   let bg: { c: HTMLCanvasElement } | null = null, sky: Skyline | null = null;
   let bgStars: { x: number; y: number; l: number; r: number; a: number; c: string; sp: number; ph: number; tw: boolean }[] = [];
@@ -99,7 +100,7 @@ export function createSky(o: SkyOptions): SkyEngine {
     stars.forEach((s) => { const p = ph ? s.m : s.d; s.x = p[0] * SW; s.y = p[1] * H; const b = btnOf(s); if (b) { b.style.left = s.x + 'px'; b.style.top = s.y + 'px'; } });
   }
   function layout() {
-    W = innerWidth; H = innerHeight; dpr = Math.min(2, window.devicePixelRatio || 1); ph = matchMedia(PHONE_QUERY).matches;
+    monoFont = cssFont('--font-dm-mono', '"DM Mono", ui-monospace, monospace'); W = innerWidth; H = innerHeight; dpr = Math.min(2, window.devicePixelRatio || 1); ph = matchMedia(PHONE_QUERY).matches;
     MX = Math.round(Math.min(90, W * 0.07)); MY = Math.round(Math.min(40, H * 0.05));
     cvs.width = Math.round(W * dpr); cvs.height = Math.round(H * dpr); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     inset = insetT = ph ? 0 : insetT; placeStars();
@@ -151,7 +152,7 @@ export function createSky(o: SkyOptions): SkyEngine {
   }
   function drawLines() {
     const s = hover || selected; if (!s) { lineFor = null; lineP = 0; return; } if (s !== lineFor) { lineFor = s; lineP = 0; } lineP = Math.min(1, lineP + (reduced() ? 1 : 0.07));
-    const e = 1 - Math.pow(1 - lineP, 3), seen = new Set<string>(); ctx.lineWidth = 1; ctx.font = '500 9.5px var(--font-dm-mono), "DM Mono", ui-monospace, monospace'; ctx.textBaseline = 'middle';
+    const e = 1 - Math.pow(1 - lineP, 3), seen = new Set<string>(); ctx.lineWidth = 1; ctx.font = `500 9.5px ${monoFont}`; ctx.textBaseline = 'middle';
     for (const r of s.rel) {
       const other = byId[r.to], x1 = s.x + panX, y1 = s.y + panY, x2 = other.x + panX, y2 = other.y + panY; const d = Math.hypot(x2 - x1, y2 - y1); if (d < 30) continue; const ux = (x2 - x1) / d, uy = (y2 - y1) / d, gap = 15, len = (d - 2 * gap) * e;
       ctx.strokeStyle = `rgba(${ACC},.38)`; ctx.beginPath(); ctx.moveTo(x1 + ux * gap, y1 + uy * gap); ctx.lineTo(x1 + ux * (gap + len), y1 + uy * (gap + len)); ctx.stroke();
@@ -191,7 +192,7 @@ export function createSky(o: SkyOptions): SkyEngine {
     }
   }
   function frame(now: number) {
-    raf = requestAnimationFrame(frame); const dt = Math.min(50, now - last); last = now; const t = now / 1000; const ox = panX, oy = panY;
+    raf = requestAnimationFrame(frame); const dt = clamp(now - last, 0, 50); last = now; const t = now / 1000; const ox = panX, oy = panY;
     panX += (tpx - panX) * (reduced() ? 1 : 0.12); panY += (tpy - panY) * (reduced() ? 1 : 0.12); if (Math.abs(tpx - panX) < 0.05) panX = tpx; if (Math.abs(tpy - panY) < 0.05) panY = tpy;
     const moved = ox !== panX || oy !== panY; if (moved) layer.style.transform = `translate3d(${panX}px,${panY}px,0)`;
     if (inset !== insetT) { inset += (insetT - inset) * (reduced() ? 1 : 0.16); if (Math.abs(insetT - inset) < 0.5) inset = insetT; placeStars(); if (hover || selected) placeLabel((hover || selected)!); dirty = true; }

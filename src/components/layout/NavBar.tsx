@@ -23,7 +23,7 @@ const NavBar = () => {
     { href: '/', label: 'The desk', external: false },
     { href: contact.github, label: 'GitHub', external: true },
     { href: contact.linkedin, label: 'LinkedIn', external: true },
-    { href: `mailto:${contact.email}`, label: 'Email', external: true },
+    { href: `mailto:${contact.email}`, label: 'Email', external: false },
   ];
 
   return (

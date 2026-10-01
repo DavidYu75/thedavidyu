@@ -56,7 +56,7 @@ const NowPlaying = forwardRef<NowPlayingHandle>(function NowPlaying(_, ref) {
     p.addEventListener('click', onClick);
     const onVis = () => { if (document.hidden) { cancelAnimationFrame(raf.current); raf.current = 0; } else if (lofi.current?.running) runProgress(); };
     document.addEventListener('visibilitychange', onVis);
-    return () => { p.removeEventListener('click', onClick); document.removeEventListener('visibilitychange', onVis); lofi.current?.stop(); cancelAnimationFrame(raf.current); clearInterval(notesT.current); };
+    return () => { p.removeEventListener('click', onClick); document.removeEventListener('visibilitychange', onVis); lofi.current?.destroy(); lofi.current = null; cancelAnimationFrame(raf.current); clearInterval(notesT.current); };
   }, [closeNp, openNp, spawnNotes, runProgress]);
 
   useImperativeHandle(ref, () => ({ escape() { if (open) { closeNp(); return true; } return false; } }), [open, closeNp]);

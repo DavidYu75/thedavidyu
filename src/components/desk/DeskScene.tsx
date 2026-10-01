@@ -45,7 +45,7 @@ export default function DeskScene() {
     const mq = matchMedia(PHONE_QUERY), rm = matchMedia('(prefers-reduced-motion: reduce)');
     const apply = () => { const el = sceneEl.current; setScene(computeScene(el?.clientWidth || innerWidth, el?.clientHeight || innerHeight, mq.matches)); };
     apply(); setReduced(rm.matches);
-    let t = 0; const onResize = () => { clearTimeout(t); t = window.setTimeout(() => { apply(); if (skyRef.current) sky.current?.layout(); }, 150); };
+    let t = 0; const onResize = () => { clearTimeout(t); t = window.setTimeout(apply, 150); };
     const onRM = (e: MediaQueryListEvent) => setReduced(e.matches);
     addEventListener('resize', onResize); mq.addEventListener('change', apply); rm.addEventListener('change', onRM);
     setWinSky(renderWindowSky(1));
