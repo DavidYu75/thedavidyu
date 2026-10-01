@@ -6,6 +6,6 @@ export const contact = {
   github: 'https://github.com/DavidYu75',
   linkedin: 'https://linkedin.com/in/david-t-yu',
   /** Round photo used on the contact card and the night-sky easter egg. */
-  avatar: '/images/hero.jpg',
+  avatar: '/images/avatar.jpg',
   traits: ['Matcha Lover', 'Escape Room Solver', 'Volleyball Player', 'Music Discoverer', 'Hackathon Enthusiast', 'Coding Nerd'],
 };
