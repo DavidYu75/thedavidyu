@@ -40,8 +40,8 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
           transition={{ duration: 0.5 }}
           className={styles.content}
         >
-          <Link href="/#projects" className={styles.backLink}>
-            ← Back to Projects
+          <Link href="/" className={styles.backLink}>
+            ← Back to the desk
           </Link>
           
           <div className={styles.header}>

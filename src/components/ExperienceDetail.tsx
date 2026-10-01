@@ -38,8 +38,8 @@ export default function ExperienceDetail({ slug }: ExperienceDetailProps) {
           transition={{ duration: 0.5 }}
           className={styles.content}
         >
-          <Link href="/#experience" className={styles.backLink}>
-            ← Back to Experience
+          <Link href="/" className={styles.backLink}>
+            ← Back to the desk
           </Link>
           
           <div className={styles.header}>

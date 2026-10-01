@@ -23,23 +23,6 @@
   }
 }
 
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-.typewriter {
-  overflow: hidden; 
-  white-space: nowrap;
-  padding-right: 0em;
-  width: 0;
-  animation: typing 3.5s steps(75, end) forwards;
-}
-
 html, body {
   margin: 0;
   padding: 0;
