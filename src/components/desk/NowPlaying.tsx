@@ -17,14 +17,14 @@ interface SpotifyIFrameAPI {
 }
 declare global { interface Window { onSpotifyIframeApiReady?: (api: SpotifyIFrameAPI) => void } }
 
-/** After this long without a player, show the track link instead; a player that shows up later still replaces it. */
+/** After this long without a player, give up on this attempt and show the track link; the next open tries again. */
 const SLOW_LOAD = 8000;
-let apiPromise: Promise<SpotifyIFrameAPI> | null = null;
-/** Loads Spotify's iFrame API once. Rejects only on a script error, so a later open can retry. */
+let apiPromise: Promise<SpotifyIFrameAPI> | null = null, apiReady = false;
+/** Loads Spotify's iFrame API once. Rejects on a script error, so a later open can retry. */
 function loadSpotifyApi(): Promise<SpotifyIFrameAPI> {
   if (!apiPromise) {
     const p: Promise<SpotifyIFrameAPI> = new Promise((resolve, reject) => {
-      window.onSpotifyIframeApiReady = resolve;
+      window.onSpotifyIframeApiReady = (api) => { apiReady = true; resolve(api); };
       const s = document.createElement('script');
       s.src = 'https://open.spotify.com/embed/iframe-api/v1'; s.async = true;
       s.onerror = () => { s.remove(); if (apiPromise === p) apiPromise = null; reject(new Error('Spotify embed API failed to load')); };
@@ -42,7 +42,7 @@ const NowPlaying = forwardRef<NowPlayingHandle>(function NowPlaying(_, ref) {
   const { scene, reduced } = useDesk();
   const [open, setOpen] = useState(false), [playing, setPlaying] = useState(false), [failed, setFailed] = useState(false);
   const host = useRef<HTMLDivElement>(null), ctrl = useRef<SpotifyController | null>(null), closeBtn = useRef<HTMLButtonElement>(null);
-  const mounting = useRef(false), alive = useRef(true), notesT = useRef(0);
+  const mounting = useRef(false), attempt = useRef(0), slowT = useRef(0), alive = useRef(true), notesT = useRef(0);
   const reducedRef = useRef(reduced); reducedRef.current = reduced;
   const openRef = useRef(open); openRef.current = open;
 
@@ -64,27 +64,33 @@ const NowPlaying = forwardRef<NowPlayingHandle>(function NowPlaying(_, ref) {
     return () => clearInterval(notesT.current);
   }, [playing, spawnNotes]);
 
-  // One player, created on first open. A load already in flight is reused, and a failed load can retry on the next open.
+  // One player, created on first open. Each try is numbered: a try that times out is abandoned, and anything
+  // it produces later (a controller, an error) is ignored or destroyed, so a retry starts clean.
   const mountPlayer = useCallback(() => {
     if (ctrl.current || mounting.current || !host.current) return;
-    mounting.current = true; setFailed(false);
-    const slow = window.setTimeout(() => { if (alive.current && !ctrl.current) setFailed(true); }, SLOW_LOAD);
+    const id = ++attempt.current; mounting.current = true; setFailed(false);
     const el = document.createElement('div'); host.current.replaceChildren(el);
+    const abandon = () => {
+      if (attempt.current !== id) return;
+      attempt.current++; mounting.current = false; clearTimeout(slowT.current);
+      if (!apiReady) apiPromise = null; // the script never became ready; load it again next time
+      if (alive.current) setFailed(true);
+    };
+    slowT.current = window.setTimeout(abandon, SLOW_LOAD);
     loadSpotifyApi().then((api) => {
-      if (!alive.current) { mounting.current = false; clearTimeout(slow); return; }
+      if (attempt.current !== id || !alive.current) return;
       api.createController(el, { uri: `spotify:track:${NOW_PLAYING.spotifyId}`, width: '100%', height: 80 }, (c) => {
-        mounting.current = false; clearTimeout(slow);
-        if (!alive.current) { c.destroy(); return; }
-        ctrl.current = c; setFailed(false);
+        if (attempt.current !== id || !alive.current) { c.destroy(); return; }
+        clearTimeout(slowT.current); mounting.current = false; ctrl.current = c; setFailed(false);
         c.addListener('playback_update', (e) => {
           if (!alive.current) return;
-          // playback that starts after the card was closed (e.g. a buffered play) gets stopped
           const on = !e.data.isPaused && !(e.data.duration > 0 && e.data.position >= e.data.duration);
+          // playback that starts after the card was closed (e.g. a buffered play) gets stopped
           if (on && !openRef.current) { c.pause(); return; }
           setPlaying(on);
         });
       });
-    }, () => { mounting.current = false; clearTimeout(slow); if (alive.current) setFailed(true); });
+    }).catch(abandon);
   }, []);
 
   const openNp = useCallback(() => {
@@ -102,7 +108,7 @@ const NowPlaying = forwardRef<NowPlayingHandle>(function NowPlaying(_, ref) {
     const onClick = () => { bop(); spawnNotes(4); if (openRef.current) closeNp(); else openNp(); };
     p.addEventListener('click', onClick);
     return () => {
-      alive.current = false;
+      alive.current = false; attempt.current++; mounting.current = false; clearTimeout(slowT.current);
       p.removeEventListener('click', onClick);
       ctrl.current?.destroy(); ctrl.current = null;
     };
