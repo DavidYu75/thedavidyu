@@ -63,7 +63,11 @@ export interface SkyEngine {
   setInset(px: number): void;
   pan(key: string): void;
   redraw(): void;
+  /** a star's current screen position (including the parallax pan) */
+  pos(id: string): { x: number; y: number } | null;
   readonly phone: boolean;
+  readonly width: number;
+  readonly height: number;
 }
 
 export function createSky(o: SkyOptions): SkyEngine {
@@ -241,5 +245,8 @@ export function createSky(o: SkyOptions): SkyEngine {
     setInset(px) { insetT = ph ? 0 : px; dirty = true; },
     pan(key) { tpx = clamp(tpx + (key === 'ArrowLeft' ? 20 : key === 'ArrowRight' ? -20 : 0), -MX, MX); tpy = clamp(tpy + (key === 'ArrowUp' ? 12 : key === 'ArrowDown' ? -12 : 0), -MY, MY); dirty = true; },
     redraw() { dirty = true; },
+    pos(id) { const s = byId[id]; return s ? { x: s.x + panX, y: s.y + panY } : null; },
+    get width() { return W; },
+    get height() { return H; },
   };
 }
