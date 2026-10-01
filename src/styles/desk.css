@@ -71,7 +71,7 @@ svg text{user-select:none}
 .app{background:none;border:0;color:#e8ecf5;font:inherit;display:flex;flex-direction:column;align-items:center;gap:.25em;cursor:pointer;border-radius:.4em;padding:.25em .1em}
 .app:hover,.app:focus-visible{background:rgba(255,255,255,.1)}
 .app i{width:2.5em;height:2.5em;border-radius:.65em;display:block;overflow:hidden;box-shadow:0 .2em .5em rgba(0,0,0,.4)}
-.app i img,.jbadge img,.jside b img,.stk img,.np .art img{display:block;width:100%;height:100%;object-fit:cover}
+.app i img,.jbadge img,.jside b img,.stk img{display:block;width:100%;height:100%;object-fit:cover}
 .app span{font-size:.7em;white-space:nowrap}
 .app em{font-style:normal;font-size:.55em;opacity:.7;margin-top:-.15em}
 .dock{position:absolute;left:50%;bottom:.35em;transform:translateX(-50%);display:flex;gap:.4em;padding:.25em .5em;border-radius:.6em;background:rgba(255,255,255,.12)}
@@ -165,27 +165,21 @@ svg text{user-select:none}
 .c1{background:#f6d365}.c2{background:#9fd3f5}.c3{background:#f7a9c4}
 .off .postit{filter:brightness(.6)}
 /* now playing */
-.np{position:absolute;z-index:7;font-size:var(--nf,1cqw);background:rgba(14,18,32,.92);color:#e8ecf5;border:1px solid rgba(255,255,255,.12);border-radius:1em;padding:.9em;box-shadow:0 1.2em 2.4em rgba(0,0,0,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;grid-template-columns:4.6em 1fr;gap:.8em;align-items:center;animation:cardin .3s cubic-bezier(.2,.9,.3,1)}
-.np.on{display:grid}
-.np .art{width:4.6em;height:4.6em;border-radius:.6em;overflow:hidden;background:linear-gradient(135deg,#ff8fc9,#6c5ce7 55%,#1f8a8a);display:grid;place-items:center;box-shadow:0 .3em .8em rgba(0,0,0,.4)}
-.np .art img{width:100%;height:100%;object-fit:cover;display:block}
-.np .art svg{width:2.2em;height:2.2em}
-.np .art.spin svg{animation:spin 4s linear infinite}
+.np{position:absolute;z-index:7;font-size:var(--nf,1cqw);min-width:min(300px,calc(100vw - 24px));background:rgba(14,18,32,.94);color:#e8ecf5;border:1px solid rgba(255,255,255,.12);border-radius:1em;padding:.8em .9em .7em;box-shadow:0 1.2em 2.4em rgba(0,0,0,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;animation:cardin .3s cubic-bezier(.2,.9,.3,1)}
+.np.on{display:grid;gap:.55em}
+.np-head{display:flex;align-items:center;gap:.6em;padding-right:1.6em}
+.np-k{font-family:var(--mono);font-size:.75em;letter-spacing:.08em;text-transform:uppercase;color:#9fb3d6}
+.np-player{min-height:80px;border-radius:12px;overflow:hidden;background:rgba(255,255,255,.04)}
+.np-player iframe{display:block;border:0;border-radius:12px}
+.np-fallback{margin:0;padding:.8em;font-size:.95em}
+.np-fallback a,.np-open{color:#ffd166}
+.np-open{font-size:.8em;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.np-open:hover{text-decoration:underline}
+.np .eq i:nth-child(2){animation-delay:.15s}.np .eq i:nth-child(3){animation-delay:.3s}.np .eq i:nth-child(4){animation-delay:.45s}.np .eq i:nth-child(5){animation-delay:.08s}
 @keyframes spin{to{transform:rotate(360deg)}}
-.np .meta{min-width:0}
-.np .tt{font-weight:700;font-size:1.05em;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.np .ar{font-size:.85em;color:#9fb3d6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.np .ph2{font-family:var(--mono);font-size:.6em;color:#7d8aa5;margin-top:.15em;letter-spacing:.04em}
-.np .row{display:flex;align-items:center;gap:.6em;margin-top:.55em}
-.np .play{width:2.2em;height:2.2em;border-radius:50%;border:0;background:#ffd166;color:#1c1a17;display:grid;place-items:center;cursor:pointer;flex:none}
-.np .play svg{width:1em;height:1em}
-.np .play:hover{filter:brightness(1.08)}
-.np .prog{flex:1;height:.35em;border-radius:99px;background:rgba(255,255,255,.14);overflow:hidden}
-.np .prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff8fc9,#ffd166);border-radius:99px}
 .np .eq{display:flex;align-items:flex-end;gap:.15em;height:1.3em;flex:none}
 .np .eq i{width:.28em;height:.3em;background:#ffd166;border-radius:.1em;transform-origin:bottom}
 .np.playing .eq i{animation:eq .8s ease-in-out infinite alternate}
-.np .eq i:nth-child(2){animation-delay:.15s}.np .eq i:nth-child(3){animation-delay:.3s}.np .eq i:nth-child(4){animation-delay:.45s}.np .eq i:nth-child(5){animation-delay:.08s}
 @keyframes eq{from{height:.3em}to{height:1.3em}}
 .np .npx{position:absolute;right:.3em;top:.15em;border:0;background:none;color:#9fb3d6;font-size:1.2em;cursor:pointer;line-height:1;padding:.1em .3em;border-radius:.3em}
 .np .npx:hover{background:rgba(255,255,255,.1)}
@@ -321,7 +315,7 @@ svg text{user-select:none}
   #egg{top:12%}
 }
 @media (prefers-reduced-motion:reduce){
-  #steam path,#neonGlowLayer,.star-w,.scrollhint span,.mnote,#phonesBody.bop,.card,#skyCard,#egg,.np,.np .eq i,.np .art.spin svg,#gPhones.playing #phonesBody{animation:none}
+  #steam path,#neonGlowLayer,.star-w,.scrollhint span,.mnote,#phonesBody.bop,.card,#skyCard,#egg,.np,.np .eq i,#gPhones.playing #phonesBody{animation:none}
   .np .eq i{height:.8em}
   #steam path{opacity:.4}
   .mnote{display:none}

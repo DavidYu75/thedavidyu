@@ -1,21 +1,45 @@
 'use client';
 
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
-import Image from 'next/image';
-import { NOW_PLAYING } from '@/data/nowPlaying';
-import { createLofi, Lofi } from '@/lib/desk/lofi';
+import { NOW_PLAYING, spotifyTrackUrl } from '@/data/nowPlaying';
 import { useDesk } from './DeskContext';
 
 export interface NowPlayingHandle { escape(): boolean }
 
+/** The parts of Spotify's iFrame API this widget uses. https://developer.spotify.com/documentation/embeds */
+interface SpotifyController {
+  addListener(event: 'playback_update', cb: (e: { data: { isPaused: boolean } }) => void): void;
+  addListener(event: 'ready', cb: () => void): void;
+  pause(): void;
+  destroy(): void;
+}
+interface SpotifyIFrameAPI {
+  createController(el: HTMLElement, opts: { uri: string; width: string; height: number }, cb: (c: SpotifyController) => void): void;
+}
+declare global { interface Window { onSpotifyIframeApiReady?: (api: SpotifyIFrameAPI) => void } }
+
+let apiPromise: Promise<SpotifyIFrameAPI> | null = null;
+function loadSpotifyApi(): Promise<SpotifyIFrameAPI> {
+  if (!apiPromise) {
+    apiPromise = new Promise((resolve, reject) => {
+      window.onSpotifyIframeApiReady = resolve;
+      const s = document.createElement('script');
+      s.src = 'https://open.spotify.com/embed/iframe-api/v1'; s.async = true;
+      s.onerror = () => { apiPromise = null; reject(new Error('Spotify embed API failed to load')); };
+      document.body.appendChild(s);
+    });
+  }
+  return apiPromise;
+}
+
 const NS = 'http://www.w3.org/2000/svg';
 
-/** The "now playing" card the headphones open, with a synthesized lo-fi loop behind the play button. */
+/** The "currently listening to" card the headphones open: Spotify's own player for David's pick. */
 const NowPlaying = forwardRef<NowPlayingHandle>(function NowPlaying(_, ref) {
   const { scene, reduced } = useDesk();
-  const [open, setOpen] = useState(false), [playing, setPlaying] = useState(false);
-  const lofi = useRef<Lofi | null>(null), prog = useRef<HTMLElement>(null), playBtn = useRef<HTMLButtonElement>(null);
-  const raf = useRef(0), notesT = useRef(0);
+  const [open, setOpen] = useState(false), [playing, setPlaying] = useState(false), [failed, setFailed] = useState(false);
+  const host = useRef<HTMLDivElement>(null), ctrl = useRef<SpotifyController | null>(null), closeBtn = useRef<HTMLButtonElement>(null);
+  const notesT = useRef(0);
   const reducedRef = useRef(reduced); reducedRef.current = reduced;
   const openRef = useRef(open); openRef.current = open;
 
@@ -29,59 +53,58 @@ const NowPlaying = forwardRef<NowPlayingHandle>(function NowPlaying(_, ref) {
   }, []);
   const bop = () => { const b = document.getElementById('phonesBody'); if (!b) return; b.classList.remove('bop'); void (b as unknown as HTMLElement).getBoundingClientRect(); b.classList.add('bop'); };
 
-  const runProgress = useCallback(() => {
-    const l = lofi.current; if (!l) return;
-    cancelAnimationFrame(raf.current);
-    const loop = () => { if (prog.current) prog.current.style.width = ((l.elapsed() % l.LOOP) / l.LOOP * 100).toFixed(2) + '%'; raf.current = requestAnimationFrame(loop); };
-    raf.current = requestAnimationFrame(loop);
-  }, []);
-  const setPlay = useCallback((on: boolean) => {
-    if (!lofi.current) lofi.current = createLofi();
-    const l = lofi.current;
-    if (on) {
-      try { l.start(); } catch { return; }
-      runProgress(); notesT.current = window.setInterval(() => spawnNotes(1), 900);
-    } else {
-      l.stop(); cancelAnimationFrame(raf.current); raf.current = 0; clearInterval(notesT.current); if (prog.current) prog.current.style.width = '0%';
-    }
-    setPlaying(on); phones()?.classList.toggle('playing', on);
-  }, [spawnNotes, runProgress]);
+  // the headphones bop and the notes float while Spotify reports the track is playing
+  useEffect(() => {
+    phones()?.classList.toggle('playing', playing);
+    clearInterval(notesT.current);
+    if (playing) notesT.current = window.setInterval(() => spawnNotes(1), 900);
+    return () => clearInterval(notesT.current);
+  }, [playing, spawnNotes]);
 
-  const openNp = useCallback(() => { setOpen(true); phones()?.setAttribute('aria-expanded', 'true'); setTimeout(() => playBtn.current?.focus({ preventScroll: true }), 40); }, []);
-  const closeNp = useCallback(() => { if (lofi.current?.running) setPlay(false); setOpen(false); const p = phones(); p?.setAttribute('aria-expanded', 'false'); (p as HTMLElement | null)?.focus?.({ preventScroll: true }); }, [setPlay]);
+  const mountPlayer = useCallback(() => {
+    if (ctrl.current || !host.current) return;
+    const el = document.createElement('div'); host.current.appendChild(el);
+    loadSpotifyApi().then((api) => {
+      if (ctrl.current || !el.isConnected) return;
+      api.createController(el, { uri: `spotify:track:${NOW_PLAYING.spotifyId}`, width: '100%', height: 80 }, (c) => {
+        ctrl.current = c;
+        c.addListener('playback_update', (e) => setPlaying(!e.data.isPaused));
+      });
+    }, () => setFailed(true));
+  }, []);
+
+  const openNp = useCallback(() => {
+    setOpen(true); mountPlayer(); phones()?.setAttribute('aria-expanded', 'true');
+    setTimeout(() => closeBtn.current?.focus({ preventScroll: true }), 40);
+  }, [mountPlayer]);
+  const closeNp = useCallback(() => {
+    ctrl.current?.pause(); setPlaying(false); setOpen(false);
+    const p = phones(); p?.setAttribute('aria-expanded', 'false'); (p as HTMLElement | null)?.focus?.({ preventScroll: true });
+  }, []);
 
   useEffect(() => {
     const p = phones(); if (!p) return;
     const onClick = () => { bop(); spawnNotes(4); if (openRef.current) closeNp(); else openNp(); };
     p.addEventListener('click', onClick);
-    const onVis = () => { if (document.hidden) { cancelAnimationFrame(raf.current); raf.current = 0; } else if (lofi.current?.running) runProgress(); };
-    document.addEventListener('visibilitychange', onVis);
-    return () => { p.removeEventListener('click', onClick); document.removeEventListener('visibilitychange', onVis); lofi.current?.destroy(); lofi.current = null; cancelAnimationFrame(raf.current); clearInterval(notesT.current); };
-  }, [closeNp, openNp, spawnNotes, runProgress]);
+    return () => { p.removeEventListener('click', onClick); ctrl.current?.destroy(); ctrl.current = null; };
+  }, [closeNp, openNp, spawnNotes]);
 
   useImperativeHandle(ref, () => ({ escape() { if (open) { closeNp(); return true; } return false; } }), [open, closeNp]);
 
+  const url = spotifyTrackUrl(NOW_PLAYING.spotifyId);
   const { L, AX, AY, pctX, pctY } = scene;
   return (
-    <section className={`np${open ? ' on' : ''}${playing ? ' playing' : ''}`} role="dialog" aria-label="Now playing"
+    <section className={`np${open ? ' on' : ''}${playing ? ' playing' : ''}`} role="dialog" aria-label="Currently listening to"
       style={{ left: pctX(AX(L.np)), top: pctY(AY(L.np.y)), width: pctX(L.np.w) }}>
-      <button className="npx" type="button" aria-label="Close" onClick={closeNp}>&times;</button>
-      <div className={`art${playing ? ' spin' : ''}`}>
-        {NOW_PLAYING.art ? <Image src={NOW_PLAYING.art} alt="Album art" width={80} height={80} />
-          : <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18a3 3 0 1 1-2-2.8V6l11-2v11a3 3 0 1 1-2-2.8V7.6l-7 1.3z" fill="#fff" /></svg>}
+      <button ref={closeBtn} className="npx" type="button" aria-label="Close" onClick={closeNp}>&times;</button>
+      <div className="np-head">
+        <span className="np-k">currently listening to</span>
+        <span className="eq" aria-hidden="true"><i /><i /><i /><i /><i /></span>
       </div>
-      <div className="meta">
-        <div className="tt">{NOW_PLAYING.title}</div>
-        <div className="ar">{NOW_PLAYING.artist}</div>
-        <div className="ph2">{NOW_PLAYING.placeholderNote}</div>
-        <div className="row">
-          <button ref={playBtn} className="play" type="button" aria-label={playing ? 'Pause' : 'Play'} aria-pressed={playing} onClick={() => setPlay(!playing)}>
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d={playing ? 'M6 5h4v14H6zM14 5h4v14h-4z' : 'M7 4l13 8-13 8z'} fill="currentColor" /></svg>
-          </button>
-          <div className="prog" aria-hidden="true"><i ref={prog} /></div>
-          <div className="eq" aria-hidden="true"><i /><i /><i /><i /><i /></div>
-        </div>
+      <div className="np-player" ref={host}>
+        {failed && <p className="np-fallback"><a href={url} target="_blank" rel="noopener noreferrer">{NOW_PLAYING.title}</a> by {NOW_PLAYING.artist}</p>}
       </div>
+      <a className="np-open" href={url} target="_blank" rel="noopener noreferrer">{NOW_PLAYING.title} · {NOW_PLAYING.artist} &#8599;</a>
     </section>
   );
 });
