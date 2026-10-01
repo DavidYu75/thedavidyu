@@ -26,8 +26,12 @@
 html, body {
   margin: 0;
   padding: 0;
+}
+
+/* Only the body carries overflow-x so it propagates to the viewport: the home page's
+   scroll-to-open laptop needs the window itself to be the scroll container. */
+body {
   overflow-x: hidden;
-  height: 100%;
 }
 
 main {
