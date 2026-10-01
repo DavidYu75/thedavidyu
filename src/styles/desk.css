@@ -165,20 +165,19 @@ svg text{user-select:none}
 .c1{background:#f6d365}.c2{background:#9fd3f5}.c3{background:#f7a9c4}
 .off .postit{filter:brightness(.6)}
 /* now playing */
-.np{position:absolute;z-index:7;font-size:var(--nf,1cqw);min-width:min(300px,calc(100vw - 24px));background:rgba(14,18,32,.94);color:#e8ecf5;border:1px solid rgba(255,255,255,.12);border-radius:1em;padding:.8em .9em .7em;box-shadow:0 1.2em 2.4em rgba(0,0,0,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;animation:cardin .3s cubic-bezier(.2,.9,.3,1)}
+.np{position:absolute;z-index:7;font-size:var(--nf,1cqw);--np-min:min(300px,calc(100vw - 24px));min-width:var(--np-min);background:rgba(14,18,32,.94);color:#e8ecf5;border:1px solid rgba(255,255,255,.12);border-radius:1em;padding:.8em .9em .7em;box-shadow:0 1.2em 2.4em rgba(0,0,0,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;animation:cardin .3s cubic-bezier(.2,.9,.3,1)}
 .np.on{display:grid;gap:.55em}
 .np-head{display:flex;align-items:center;gap:.6em;padding-right:1.6em}
 .np-k{font-family:var(--mono);font-size:.75em;letter-spacing:.08em;text-transform:uppercase;color:#9fb3d6}
 .np-player{min-height:80px;border-radius:12px;overflow:hidden;background:rgba(255,255,255,.04)}
 .np-player iframe{display:block;border:0;border-radius:12px}
 .np.failed .np-player{display:none}
-.np-open{color:#ffd166}
-.np-open{font-size:.8em;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.np-open{color:#ffd166;font-size:.8em;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .np-open:hover{text-decoration:underline}
-.np .eq i:nth-child(2){animation-delay:.15s}.np .eq i:nth-child(3){animation-delay:.3s}.np .eq i:nth-child(4){animation-delay:.45s}.np .eq i:nth-child(5){animation-delay:.08s}
 .np .eq{display:flex;align-items:flex-end;gap:.15em;height:1.3em;flex:none}
 .np .eq i{width:.28em;height:.3em;background:#ffd166;border-radius:.1em;transform-origin:bottom}
 .np.playing .eq i{animation:eq .8s ease-in-out infinite alternate}
+.np .eq i:nth-child(2){animation-delay:.15s}.np .eq i:nth-child(3){animation-delay:.3s}.np .eq i:nth-child(4){animation-delay:.45s}.np .eq i:nth-child(5){animation-delay:.08s}
 @keyframes eq{from{height:.3em}to{height:1.3em}}
 .np .npx{position:absolute;right:.3em;top:.15em;border:0;background:none;color:#9fb3d6;font-size:1.2em;cursor:pointer;line-height:1;padding:.1em .3em;border-radius:.3em}
 .np .npx:hover{background:rgba(255,255,255,.1)}

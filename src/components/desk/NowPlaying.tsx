@@ -8,7 +8,7 @@ export interface NowPlayingHandle { escape(): boolean }
 
 /** The parts of Spotify's iFrame API this widget uses. https://developer.spotify.com/documentation/embeds */
 interface SpotifyController {
-  addListener(event: 'playback_update', cb: (e: { data: { isPaused: boolean } }) => void): void;
+  addListener(event: 'playback_update', cb: (e: { data: { isPaused: boolean; position: number; duration: number } }) => void): void;
   pause(): void;
   destroy(): void;
 }
@@ -17,20 +17,20 @@ interface SpotifyIFrameAPI {
 }
 declare global { interface Window { onSpotifyIframeApiReady?: (api: SpotifyIFrameAPI) => void } }
 
-const LOAD_TIMEOUT = 8000;
+/** After this long without a player, show the track link instead; a player that shows up later still replaces it. */
+const SLOW_LOAD = 8000;
 let apiPromise: Promise<SpotifyIFrameAPI> | null = null;
-/** Loads Spotify's iFrame API once. Rejects on a script error or if it isn't ready in time, so a later open can retry. */
+/** Loads Spotify's iFrame API once. Rejects only on a script error, so a later open can retry. */
 function loadSpotifyApi(): Promise<SpotifyIFrameAPI> {
   if (!apiPromise) {
-    apiPromise = new Promise<SpotifyIFrameAPI>((resolve, reject) => {
-      const fail = () => { apiPromise = null; reject(new Error('Spotify embed API unavailable')); };
-      const timer = window.setTimeout(fail, LOAD_TIMEOUT);
-      window.onSpotifyIframeApiReady = (api) => { clearTimeout(timer); resolve(api); };
+    const p: Promise<SpotifyIFrameAPI> = new Promise((resolve, reject) => {
+      window.onSpotifyIframeApiReady = resolve;
       const s = document.createElement('script');
       s.src = 'https://open.spotify.com/embed/iframe-api/v1'; s.async = true;
-      s.onerror = () => { clearTimeout(timer); s.remove(); fail(); };
+      s.onerror = () => { s.remove(); if (apiPromise === p) apiPromise = null; reject(new Error('Spotify embed API failed to load')); };
       document.body.appendChild(s);
     });
+    apiPromise = p;
   }
   return apiPromise;
 }
@@ -68,21 +68,23 @@ const NowPlaying = forwardRef<NowPlayingHandle>(function NowPlaying(_, ref) {
   const mountPlayer = useCallback(() => {
     if (ctrl.current || mounting.current || !host.current) return;
     mounting.current = true; setFailed(false);
+    const slow = window.setTimeout(() => { if (alive.current && !ctrl.current) setFailed(true); }, SLOW_LOAD);
     const el = document.createElement('div'); host.current.replaceChildren(el);
     loadSpotifyApi().then((api) => {
-      if (!alive.current) { mounting.current = false; return; }
+      if (!alive.current) { mounting.current = false; clearTimeout(slow); return; }
       api.createController(el, { uri: `spotify:track:${NOW_PLAYING.spotifyId}`, width: '100%', height: 80 }, (c) => {
-        mounting.current = false;
+        mounting.current = false; clearTimeout(slow);
         if (!alive.current) { c.destroy(); return; }
-        ctrl.current = c;
+        ctrl.current = c; setFailed(false);
         c.addListener('playback_update', (e) => {
           if (!alive.current) return;
           // playback that starts after the card was closed (e.g. a buffered play) gets stopped
-          if (!e.data.isPaused && !openRef.current) { c.pause(); return; }
-          setPlaying(!e.data.isPaused);
+          const on = !e.data.isPaused && !(e.data.duration > 0 && e.data.position >= e.data.duration);
+          if (on && !openRef.current) { c.pause(); return; }
+          setPlaying(on);
         });
       });
-    }, () => { mounting.current = false; if (alive.current) setFailed(true); });
+    }, () => { mounting.current = false; clearTimeout(slow); if (alive.current) setFailed(true); });
   }, []);
 
   const openNp = useCallback(() => {
@@ -98,12 +100,10 @@ const NowPlaying = forwardRef<NowPlayingHandle>(function NowPlaying(_, ref) {
     alive.current = true;
     const p = phones(); if (!p) return;
     const onClick = () => { bop(); spawnNotes(4); if (openRef.current) closeNp(); else openNp(); };
-    // start fetching Spotify's script when the visitor reaches for the headphones, so the player is ready on click
-    const warm = () => { loadSpotifyApi().catch(() => {}); };
-    p.addEventListener('click', onClick); p.addEventListener('pointerenter', warm, { once: true }); p.addEventListener('focus', warm, { once: true });
+    p.addEventListener('click', onClick);
     return () => {
       alive.current = false;
-      p.removeEventListener('click', onClick); p.removeEventListener('pointerenter', warm); p.removeEventListener('focus', warm);
+      p.removeEventListener('click', onClick);
       ctrl.current?.destroy(); ctrl.current = null;
     };
   }, [closeNp, openNp, spawnNotes]);
@@ -112,8 +112,8 @@ const NowPlaying = forwardRef<NowPlayingHandle>(function NowPlaying(_, ref) {
 
   const url = spotifyTrackUrl(NOW_PLAYING.spotifyId);
   const { L, AX, AY, pctX, pctY } = scene;
-  // the player needs about 300px; keep the card inside the viewport even when the scene is narrow
-  const left = `min(${pctX(AX(L.np))}, calc(100% - min(300px, 100vw - 24px) - 12px))`;
+  // keep the card inside the scene when it's narrow; --np-min (desk.css) is the width Spotify's player needs
+  const left = `min(${pctX(AX(L.np))}, calc(100% - max(var(--np-min), ${pctX(L.np.w)}) - 12px))`;
   return (
     <section className={`np${open ? ' on' : ''}${playing ? ' playing' : ''}${failed ? ' failed' : ''}`} role="dialog" aria-label="Currently listening to"
       style={{ left, top: pctY(AY(L.np.y)), width: pctX(L.np.w) }}>
