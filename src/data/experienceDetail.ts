@@ -14,6 +14,20 @@ export type ExperienceDetailMap = {
   [slug: string]: ExperienceDetail;
 };
 
+/** What the davidOS job windows on the home page show (desk design). */
+export interface ExperienceWindow {
+  role: string;
+  /** e.g. "May 2026 to Aug 2026" */
+  when: string;
+  where?: string;
+  /** One-line lead shown above the lists, used by Generate for PlateMate. */
+  lead?: string;
+  built: string[];
+  outcomes: string[];
+  tech: string[];
+  photos: Memory[];
+}
+
 export const experienceDetails: ExperienceDetailMap = {
   'linkedin': {
     responsibilities: [
@@ -137,4 +151,88 @@ export const experienceDetails: ExperienceDetailMap = {
       }
     ],
   }
+};
+
+export const experienceWindows: { [slug: string]: ExperienceWindow } = {
+  'linkedin': {
+    role: 'Software Engineer Intern',
+    when: 'May 2026 to Aug 2026',
+    where: 'Mountain View',
+    built: [
+      'A new Profile feature spanning 6 codebases and 3 native clients (web, iOS, Android), driven entirely by one server-defined UI description.',
+      'Designed the scoring API as a stateless, deterministic service, so replay safety comes from the inputs rather than session tokens.',
+      'Modeled persistence as a three-state lifecycle with conditional writes, backed by storage-layer invariant tests.',
+      'Turned the privacy and authorization requirements into build-gating tests instead of review checklist items.',
+    ],
+    outcomes: [
+      'Collapsed three parallel client implementations into one source of truth that ships without a client release.',
+      'Removed every server round-trip until final submission, so the feature stays responsive with no reconciliation bugs.',
+      'Guaranteed by test that retakes commit zero writes and duplicate requests land on identical end states.',
+    ],
+    tech: ['Java', 'Kotlin', 'Server-Driven UI', 'REST APIs', 'iOS', 'Android', 'Integration Testing'],
+    photos: [],
+  },
+  'citizens-bank': {
+    role: 'Automation Software Developer Co-op',
+    when: 'Jul 2025 to Dec 2025',
+    built: [
+      'A UiPath package management tool with dev-lead approval workflows for deploying enterprise automations.',
+      'An automated Nexus deployment pipeline distributing 50+ development packages.',
+      'Azure VDI scripts for virtual desktop operations.',
+      'Part of a cross-functional GenAI initiative and responsible-AI governance work.',
+    ],
+    outcomes: [
+      'Cut deployment time by 60% with streamlined approval workflows.',
+      'Cut manual processing time by 25% across 100+ virtual desktop environments.',
+    ],
+    tech: ['UiPath', 'Azure VDI', 'Nexus', 'CI/CD', 'Enterprise Automation', 'GenAI'],
+    photos: [{ url: '/images/experiences/citizens/welcome.JPEG', caption: 'Citizens welcome package' }],
+  },
+  'generate-product-development': {
+    role: 'Software Engineer',
+    when: 'Jan 2025 to Apr 2025',
+    where: 'Boston',
+    lead: 'Built PlateMate, restaurant reviews for the dish, not the room.',
+    built: [
+      'REST API in Go/Fiber on MongoDB, tuned to sub-100ms responses.',
+      'Auth with JWT and role-based access, so verified owners manage only their own menus.',
+      'Designed the client-server split so the React Native app and Go backend could evolve independently.',
+    ],
+    outcomes: [
+      'Shipped PlateMate to TestFlight in 3 months, covering 100+ Boston restaurants.',
+      'Owned it end to end, from Figma prototype to backend, testing and deployment.',
+    ],
+    tech: ['Go', 'Fiber', 'MongoDB', 'REST', 'JWT', 'React Native'],
+    photos: [
+      { url: '/images/experiences/generate/team.PNG', caption: 'My amazing team for PlateMate' },
+      { url: '/images/experiences/generate/showcase.JPEG', caption: "PlateMate at Generate's Spring Showcase" },
+      { url: '/images/experiences/generate/brand.JPEG', caption: 'Generate and PlateMate branding' },
+      { url: '/images/experiences/generate/presentation.JPEG', caption: 'Tabling for PlateMate' },
+    ],
+  },
+  'amazon': {
+    role: 'Software Engineer Intern',
+    when: 'May 2024 to Aug 2024',
+    where: 'Seattle',
+    built: [
+      'Extended a production AWS Lambda from one supported system to three, automating health reporting for two experimentation and content-optimization platforms that were reported by hand.',
+      '7 priority-zero metrics: workflow success rate, execution volume, P50/P90/P99 batch runtime.',
+      'Refactored a monolithic Lambda into shared, unit-testable functions so all 7 metrics run through one path.',
+    ],
+    outcomes: [
+      'Took two platforms from zero automated health coverage to recurring weekly and monthly reporting.',
+      'Derived execution volume for a system with no direct telemetry by modeling hourly workflow runs across 15 marketplaces at 360 runs/day.',
+      'Merged after 7 rounds of review, output checked against manual baselines.',
+      'Presented on cloud cost optimization to the GCCP team.',
+    ],
+    tech: ['Java', 'AWS Lambda', 'CloudWatch', 'S3'],
+    photos: [
+      { url: '/images/experiences/amazon/setup.JPEG', caption: "My office setup at Amazon's Bigfoot office" },
+      { url: '/images/experiences/amazon/banana.jpg', caption: 'The famous banana cart' },
+      { url: '/images/experiences/amazon/team-lunch.jpg', caption: 'Lunch with my team in Seattle' },
+      { url: '/images/experiences/amazon/balls.JPEG', caption: 'The Spheres' },
+      { url: '/images/experiences/amazon/seattle.jpg', caption: 'Seattle is so cool!' },
+      { url: '/images/experiences/amazon/mountain.jpg', caption: 'Mount Rainier from my apartment' },
+    ],
+  },
 };

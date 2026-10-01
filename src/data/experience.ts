@@ -5,6 +5,8 @@ export interface Experience {
   description: string;
   logo: string;
   slug: string;
+  /** Short name used on the laptop stickers and davidOS icons. */
+  short: string;
 }
   
 export const experiences: Experience[] = [
@@ -15,7 +17,8 @@ export const experiences: Experience[] = [
     description:
       "👔 One Profile feature, three native clients, one server-driven source of truth",
     logo: '/images/companies/linkedin_logo.jpeg',
-    slug: 'linkedin'
+    slug: 'linkedin',
+    short: 'LinkedIn',
   },
   {
     title: 'Automation Software Developer Co-op @ Citizens Financial Group',
@@ -24,7 +27,8 @@ export const experiences: Experience[] = [
     description:
       "🍵 Enterprise Automation Platforms, Governance, and Emerging Tech",
     logo: '/images/companies/citizens_logo.jpeg',
-    slug: 'citizens-bank'
+    slug: 'citizens-bank',
+    short: 'Citizens',
   },
   {
     title: 'Software Engineer @ Generate Product Development Studio',
@@ -33,7 +37,8 @@ export const experiences: Experience[] = [
     description:
       "🍽️ PlateMate, a mobile application that focuses on what truly matters to diners - the quality of individual dishes",
     logo: '/images/companies/generate_logo.jpeg',
-    slug: 'generate-product-development'
+    slug: 'generate-product-development',
+    short: 'Generate',
   },
   {
     title: 'Software Engineer Intern @ Amazon',
@@ -42,6 +47,7 @@ export const experiences: Experience[] = [
     description:
       "☕️ Growth-Adjusted Composite Contributions Profits (GCCP)",
     logo: '/images/companies/amazon_logo.jpeg',
-    slug: 'amazon'
+    slug: 'amazon',
+    short: 'Amazon',
   },
 ];
