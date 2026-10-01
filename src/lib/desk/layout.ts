@@ -30,7 +30,7 @@ export const LAYOUTS: { desktop: DeskLayout; phone: DeskLayout } = {
     bowl: { x: 205, y: 560, s: 1, a: 'L' }, ball: { x: 990, y: 520, r: 40, a: 'R' }, phones: { x: 875, y: 560, s: 1, a: 'C' },
     laptop: { x: 452, y: 560, w: 340, a: 'C' },
     notes: [[100, 300, -5], [212, 312, 4], [152, 404, 3]], noteW: 96,
-    np: { x: 700, y: 330, w: 290, a: 'C' }, wkui: { x: 205, y: 604, a: 'L' },
+    np: { x: 700, y: 330, w: 330, a: 'C' }, wkui: { x: 205, y: 604, a: 'L' },
     fonts: { wf: 'min(1cqw,15px)', nf: 'min(1cqw,15px)' },
   },
   phone: {
@@ -39,7 +39,7 @@ export const LAYOUTS: { desktop: DeskLayout; phone: DeskLayout } = {
     bowl: { x: 78, y: 694, s: 0.85, a: 'L' }, ball: { x: 205, y: 660, r: 34, a: 'C' }, phones: { x: 330, y: 691, s: 0.9, a: 'R' },
     laptop: { x: 20, y: 540, w: 280, a: 'C' },
     notes: [[40, 374, -4], [108, 386, 3], [176, 372, -3]], noteW: 58,
-    np: { x: 14, y: 350, w: 240, a: 'L' }, wkui: { x: 12, y: 746, a: 'L' },
+    np: { x: 14, y: 350, w: 300, a: 'L' }, wkui: { x: 12, y: 746, a: 'L' },
     fonts: { wf: '2.7cqw', nf: '3.1cqw' },
   },
 };
