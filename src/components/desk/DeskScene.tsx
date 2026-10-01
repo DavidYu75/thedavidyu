@@ -128,7 +128,7 @@ export default function DeskScene() {
     <DeskCtx.Provider value={ctx}>
       <div className="stage" id="stage" ref={stageEl}>
         <div className="pin">
-          <div className={sceneClass} id="scene" ref={sceneEl}>
+          <div className={sceneClass} id="scene" ref={sceneEl} style={{ '--wf': L.fonts.wf, '--nf': L.fonts.nf } as React.CSSProperties}>
             <svg id="svg" ref={svg} viewBox={`0 0 ${vbW} ${vbH}`} aria-label="David Yu's desk at night">
               <defs>
                 <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#050818" /><stop offset=".62" stopColor="#0b1330" /><stop offset="1" stopColor="#141d45" /></linearGradient>
