@@ -5,6 +5,8 @@ export interface Project {
   image: string;
   slug: string;
   link: string;
+  /** Year shown on the desk's night-sky star and project panel. */
+  year: string;
 }
   
 export const projects: Project[] = [
@@ -16,14 +18,16 @@ export const projects: Project[] = [
     image: '/images/projects/intreview/intreviewbrand.png',
     slug: 'intreview',
     link: '/projects/intreview',
+    year: '2025',
   },
   {
     id: '02',
     title: 'Real-Time AI Business Intelligence',
-    description: 'An AI-powered business intelligence platform that converts natural language queries into SQL, delivering instant data insights through interactive visualizations.',
+    description: 'Ask your business data questions in plain English and get SQL and charts back. An MVP that is still being built.',
     slug: 'real-time-ai-business-intelligence',
     link: '/projects/real-time-ai-business-intelligence',
-    image: "/images/inprogress.png"
+    image: "/images/inprogress.png",
+    year: 'In progress',
   },
   {
     id: '03',
@@ -31,7 +35,8 @@ export const projects: Project[] = [
     description: 'An iOS app that visualizes your social network as an interactive galaxy, using on-device machine learning to predict which relationships need attention and encouraging meaningful reconnection.',
     slug: 'constellation',
     link: '/projects/constellation',
-    image: "/images/projects/constellation/brand.png"
+    image: "/images/projects/constellation/brand.png",
+    year: '2025',
   },
   {
     id: '04',
@@ -41,6 +46,7 @@ export const projects: Project[] = [
     image: '/images/projects/black-scholes/mainmenu.png',
     slug: 'black-scholes-model',
     link: '/projects/black-scholes-model',
+    year: '2025',
   },
   {
     id: '05',
@@ -50,6 +56,7 @@ export const projects: Project[] = [
     image: '/images/projects/classify/classifybrand.png',
     slug: 'classify',
     link: '/projects/classify',
+    year: '2024',
   },
   {
     id: '06',
@@ -59,6 +66,7 @@ export const projects: Project[] = [
     image: '/images/projects/platemate/platematebrand.jpeg',
     slug: 'platemate',
     link: '/projects/platemate',
+    year: '2025',
   },
   {
     id: '07',
@@ -68,14 +76,16 @@ export const projects: Project[] = [
     image: '/images/projects/distyl/brag.jpg',
     slug: 'distyl',
     link: '/projects/distyl',
+    year: '2026',
   },
   {
     id: '08',
     title: 'Multi-Agent Personal Automation System',
     description:
-      'Three agents running around the clock on my own machine: one researches and publishes content end to end, one handles code, one runs the day. No database, no server, and no memory of anything except what they write down.',
+      'Four agents running around the clock on my own machine: one runs the day, one handles code, one researches and publishes content end to end, one handles career search and outreach. No database, no server, and no memory of anything except what they write down.',
     image: '/images/inprogress.png',
     slug: 'multi-agent-automation',
     link: '/projects/multi-agent-automation',
+    year: '2026',
   },
 ];

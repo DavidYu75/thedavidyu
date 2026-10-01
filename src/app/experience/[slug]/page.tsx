@@ -24,7 +24,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${experience.title} at ${experience.company} | David Yu`,
+    title: `${experience.title} at ${experience.company}`,
     description: experience.description,
   };
 }

@@ -24,7 +24,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${project.title} | David Yu`,
+    title: project.title,
     description: project.description,
   };
 }

@@ -3,7 +3,9 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { contact } from '@/data/contact';
 
+/** Top bar for the detail pages. The home page is the desk and renders no nav. */
 const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,15 +14,17 @@ const NavBar = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu when clicking on a link
-  const handleLinkClick = () => {
-    setIsMenuOpen(false);
-  };
+  const links = [
+    { href: '/', label: 'The desk', external: false },
+    { href: contact.github, label: 'GitHub', external: true },
+    { href: contact.linkedin, label: 'LinkedIn', external: true },
+    { href: `mailto:${contact.email}`, label: 'Email', external: false },
+  ];
 
   return (
     <motion.header
@@ -32,76 +36,50 @@ const NavBar = () => {
       transition={{ duration: 0.3 }}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <Link 
-          href="/" 
+        <Link
+          href="/"
           className="text-xl font-bold text-white hover:text-[#778DA9] transition-colors"
         >
           DY
         </Link>
-        
-        {/* Desktop Navigation */}
+
         <div className="hidden sm:flex sm:space-x-8">
-          <Link 
-            href="#intro" 
-            className="text-[#778DA9] hover:text-white transition-colors"
-          >
-            About
-          </Link>
-          <Link 
-            href="#experience" 
-            className="text-[#778DA9] hover:text-white transition-colors"
-          >
-            Experience
-          </Link>
-          <Link 
-            href="#projects" 
-            className="text-[#778DA9] hover:text-white transition-colors"
-          >
-            Projects
-          </Link>
-          <Link 
-            href="#contact" 
-            className="text-[#778DA9] hover:text-white transition-colors"
-          >
-            Contact
-          </Link>
+          {links.map((l) => (
+            <Link
+              key={l.label}
+              href={l.href}
+              target={l.external ? '_blank' : undefined}
+              rel={l.external ? 'noopener noreferrer' : undefined}
+              className="text-[#778DA9] hover:text-white transition-colors"
+            >
+              {l.label}
+            </Link>
+          ))}
         </div>
-        
-        {/* Mobile Menu Button */}
+
         <button
           className="sm:hidden text-white focus:outline-none"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
         >
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            className="h-6 w-6" 
-            fill="none" 
-            viewBox="0 0 24 24" 
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
             stroke="currentColor"
           >
             {isMenuOpen ? (
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M6 18L18 6M6 6l12 12" 
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             ) : (
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M4 6h16M4 12h16M4 18h16" 
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             )}
           </svg>
         </button>
       </nav>
-      
-      {/* Mobile Menu */}
+
       {isMenuOpen && (
-        <motion.div 
+        <motion.div
           className="sm:hidden bg-[#0D1B2A]/95 backdrop-blur-md"
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
@@ -109,34 +87,18 @@ const NavBar = () => {
           transition={{ duration: 0.3 }}
         >
           <div className="px-4 py-3 space-y-4">
-            <Link 
-              href="#intro" 
-              className="block py-2 text-[#778DA9] hover:text-white transition-colors"
-              onClick={handleLinkClick}
-            >
-              About
-            </Link>
-            <Link 
-              href="#experience" 
-              className="block py-2 text-[#778DA9] hover:text-white transition-colors"
-              onClick={handleLinkClick}
-            >
-              Experience
-            </Link>
-            <Link 
-              href="#projects" 
-              className="block py-2 text-[#778DA9] hover:text-white transition-colors"
-              onClick={handleLinkClick}
-            >
-              Projects
-            </Link>
-            <Link 
-              href="#contact" 
-              className="block py-2 text-[#778DA9] hover:text-white transition-colors"
-              onClick={handleLinkClick}
-            >
-              Contact
-            </Link>
+            {links.map((l) => (
+              <Link
+                key={l.label}
+                href={l.href}
+                target={l.external ? '_blank' : undefined}
+                rel={l.external ? 'noopener noreferrer' : undefined}
+                className="block py-2 text-[#778DA9] hover:text-white transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {l.label}
+              </Link>
+            ))}
           </div>
         </motion.div>
       )}

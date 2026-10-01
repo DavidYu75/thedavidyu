@@ -23,28 +23,15 @@
   }
 }
 
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-.typewriter {
-  overflow: hidden; 
-  white-space: nowrap;
-  padding-right: 0em;
-  width: 0;
-  animation: typing 3.5s steps(75, end) forwards;
-}
-
 html, body {
   margin: 0;
   padding: 0;
+}
+
+/* Only the body carries overflow-x so it propagates to the viewport: the home page's
+   scroll-to-open laptop needs the window itself to be the scroll container. */
+body {
   overflow-x: hidden;
-  height: 100%;
 }
 
 main {

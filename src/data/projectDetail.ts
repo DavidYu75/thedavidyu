@@ -19,6 +19,28 @@ export type ProjectDetailMap = {
   [slug: string]: ProjectDetail;
 };
 
+/** Content for the night-sky project panels on the home page (desk design). */
+export interface ProjectPanelImage {
+  url: string;
+  caption: string;
+}
+
+export interface ProjectPanel {
+  /** Short type line shown in the panel kicker, e.g. "VS Code extension". */
+  kind: string;
+  overview: string;
+  /** Heading for the "what it does" list; defaults to "What it does". */
+  doesLabel?: string;
+  does: string[];
+  hardParts: string[];
+  also: string[];
+  tech: string[];
+  images: ProjectPanelImage[];
+  /** The multi-agent system has no screenshots; the panel draws a diagram instead. */
+  diagram?: boolean;
+  githubUrl?: string;
+}
+
 export const projectDetails: ProjectDetailMap = {
   'distyl': {
     overview: 'Every AI coding assistant has the same bottleneck: a fixed context window, and no good sense of which files in your workspace are worth spending it on. Distyl is a VS Code extension that answers that question automatically. It ranks the workspace by relevance to what you are working on, then packs the highest-value material into whatever token budget you have set.',
@@ -54,11 +76,11 @@ export const projectDetails: ProjectDetailMap = {
   },
 
   'multi-agent-automation': {
-    overview: 'Three specialized agents running 24/7 on my own machine, each with its own job: one runs a content pipeline from trend research all the way to publishing, one handles code, and one runs the day. The constraint that shaped everything is that there is no database and no persistent server. An agent can be killed mid-task at any moment, so every agent rebuilds its entire working context from files on disk the moment it boots.',
+    overview: 'Four specialized agents running 24/7 on my own machine, each with its own job: one runs the day, one handles code, one runs a content pipeline from trend research all the way to publishing, and one handles career search and outreach. The constraint that shaped everything is that there is no database and no persistent server. An agent can be killed mid-task at any moment, so every agent rebuilds its entire working context from files on disk the moment it boots.',
     features: [
       'Autonomous content pipeline: researches trends from Reddit and TikTok, writes the script, generates AI voice and lip-synced video, and publishes to Instagram through browser automation',
       'File-based memory that survives a crash, so an agent reconstructs in-progress tasks, past decisions, and scheduled jobs from disk on every boot',
-      'Three specialized agents on scheduled loops, handing tasks to each other asynchronously through the filesystem',
+      'Four specialized agents on scheduled loops, handing tasks to each other asynchronously through the filesystem',
       'A daily brief that reconciles live Gmail and Calendar data, filtering 300+ weekly emails down to the 5-10 worth reading',
       'Discord as the control surface, with a separate bot per agent',
     ],
@@ -265,42 +287,23 @@ export const projectDetails: ProjectDetailMap = {
   },
 
   'real-time-ai-business-intelligence': {
-    overview: 'A real-time business intelligence platform that democratizes data access by enabling non-technical users to query business data using natural language. The system converts conversational queries into optimized SQL, executes them against multiple data sources, and presents results through interactive visualizations with sub-second response times.',
+    overview: 'Ask your business data questions in plain English and get SQL and charts back. An MVP that is still being built.',
     features: [
-      'Natural language to SQL conversion using transformer models with 95% accuracy',
-      'Multi-database connectivity supporting PostgreSQL, MySQL, SQLite, and CSV uploads',
-      'Real-time data visualization with automatic chart type selection and customization',
-      'Interactive dashboard builder with drag-and-drop interface and collaborative sharing',
-      'WebSocket-based live updates for real-time data monitoring and notifications',
-      'Intelligent query caching with Redis for sub-3-second response times',
-      'Role-based access control with enterprise-grade security and audit logging',
-      'Query history and favorites with smart suggestions for follow-up analyses'
+      'Natural-language questions turned into SQL by an LLM (the Claude API)',
+      'A FastAPI backend with PostgreSQL',
+      'A Next.js frontend',
     ],
     technologies: [
       'Python',
       'FastAPI',
       'SQLAlchemy',
-      'React',
-      'TypeScript',
-      'Next.js',
-      'Tailwind CSS',
       'PostgreSQL',
-      'Redis',
-      'WebSocket',
-      'Hugging Face Transformers',
-      'PyTorch',
-      'Prometheus',
-      'Grafana'
+      'Claude API',
+      'Next.js',
+      'TypeScript',
     ],
-    challenges: [
-      'NLP Model Accuracy: Fine-tuned transformer models for text-to-SQL conversion with entity recognition and schema mapping to achieve 95% query accuracy across diverse business terminology',
-      'Real-time Performance: Implemented multi-layer caching strategy with Redis, connection pooling, and query optimization to maintain sub-3-second response times under 1000+ concurrent users',
-      'Multi-Database Abstraction: Created unified database adapter pattern supporting different SQL dialects while maintaining consistent query interface and error handling across PostgreSQL, MySQL, and SQLite',
-      'Scalable Architecture: Designed microservices architecture with Kubernetes orchestration, implementing circuit breakers and health checks for 99.9% uptime requirements',
-    ],
-    media: [
-      
-    ],
+    challenges: [],
+    media: [],
     githubUrl: 'https://github.com/DavidYu75/ai-business-intelligence'
   },
 
@@ -337,4 +340,165 @@ export const projectDetails: ProjectDetailMap = {
     ],
     
   }
+};
+
+export const projectPanels: { [slug: string]: ProjectPanel } = {
+  'distyl': {
+    kind: 'VS Code extension',
+    overview: "Every AI coding assistant has the same bottleneck: a fixed context window, and no good sense of which files in your workspace are worth spending it on. Distyl answers that automatically. It ranks the workspace by relevance to what you're working on, then packs the highest-value material into whatever token budget you set.",
+    does: [
+      'Automatic workspace context curation, no manual file picking',
+      'Embedding-based relevance ranking with all-MiniLM-L6-v2, running locally through Transformers.js',
+      'Recency and proximity heuristics layered on top of semantic similarity',
+      'Token-budget optimizer with greedy packing and paragraph-level compression',
+      'Local SQLite index, so nothing about the workspace leaves the machine',
+    ],
+    hardParts: [
+      'Measuring whether the ranking was any good: a hand-curated evaluation set, tuned until automatic selection reached 87% overlap with manual picks',
+      'Fitting more into the same budget: paragraph-level compression cut payloads 60-70% while keeping the highest-ranked material',
+      'Staying fast enough to run inline: embeddings computed locally and cached in SQLite',
+    ],
+    also: ['On the VS Code Marketplace', 'VSIX slimmed from 318MB to 45MB'],
+    tech: ['TypeScript', 'VS Code Extension API', 'Transformers.js', 'SQLite', 'all-MiniLM-L6-v2'],
+    images: [{ url: '/images/projects/distyl/brag.jpg', caption: 'Distyl in VS Code: the ranked token list' }],
+    githubUrl: 'https://github.com/DavidYu75/distyl',
+  },
+  'multi-agent-automation': {
+    kind: 'Runs on my own machine',
+    overview: 'Four specialized AI agents running around the clock on my own machine, each with its own job: one runs the day, one handles code, one runs a content pipeline from trend research to publishing, and one handles career search and outreach. There is no database and no persistent server. An agent can be killed mid-task at any moment, so each one rebuilds its working context from files on disk the moment it boots.',
+    does: [
+      'Content pipeline: researches trends, writes the script, generates AI voice and lip-synced video, and publishes through browser automation',
+      'File-based memory that survives a crash: in-progress tasks, past decisions and scheduled jobs are rebuilt from disk on every boot',
+      'Agents hand tasks to each other asynchronously through files on disk',
+      'A daily brief that reconciles live Gmail and Calendar data, filtering 300+ weekly emails down to the 5-10 worth reading',
+      'Discord as the control surface, with a separate bot per agent',
+    ],
+    hardParts: [
+      'Surviving death mid-task: memory is written continuously during work, not summarized at the end',
+      "Agents that can't talk to each other: handoffs happen through task files, which leaves an auditable trail",
+      'Throwing away 98% of an inbox without discarding the one thing that mattered',
+    ],
+    also: [],
+    tech: ['Claude Code', 'MCP', 'Discord API', 'Playwright', 'ElevenLabs', 'Gmail API', 'Google Calendar API'],
+    images: [],
+    diagram: true,
+  },
+  'intreview': {
+    kind: 'Web app',
+    overview: 'AI-powered interview prep that gives real-time feedback on verbal and non-verbal communication using computer vision and speech analysis.',
+    does: [
+      'Real-time video and audio analysis during mock interviews',
+      'Feedback on pace, clarity and filler words',
+      'Eye contact, posture and facial expression detection',
+      'Post-interview analysis with metrics, key moments and recommendations',
+      'Dashboard with performance metrics and session history',
+    ],
+    hardParts: [
+      'Real-time video: WebSockets plus lightweight OpenCV face tracking',
+      'Speech latency: visual feedback runs live, deeper speech analysis runs after the interview',
+      'Making metrics readable: color-coded scales, like a WPM gauge showing the ideal speaking pace',
+    ],
+    also: [],
+    tech: ['Python', 'FastAPI', 'WebSocket', 'React', 'TypeScript', 'Tailwind CSS', 'MongoDB', 'JWT', 'OpenCV', 'AssemblyAI', 'NumPy'],
+    images: [
+      { url: '/images/projects/intreview/dashboard.png', caption: 'Interview analytics dashboard' },
+      { url: '/images/projects/intreview/dashboard2.png', caption: 'Dashboard, continued' },
+    ],
+    githubUrl: 'https://github.com/DavidYu75/intreview',
+  },
+  'constellation': {
+    kind: 'iOS app',
+    overview: 'An iOS app that renders your contacts as a navigable galaxy. Each person is a star whose distance reflects how strong the relationship is. An on-device CoreML model watches for relationships drifting out of orbit and nudges you to reach out before they fade. All contact data stays on the phone.',
+    does: [
+      'Galaxy visualization with distance based on relationship strength',
+      'On-device CoreML model predicting relationships at risk of fading',
+      'Privacy-first: contact metadata is processed locally, no external servers',
+      'SpriteKit particle system with physics-based animation',
+      'Pinch, pan and rotate gestures to explore',
+    ],
+    hardParts: [
+      'Running the ML model entirely on-device with sub-second inference',
+      'Keeping 200+ animated nodes at 60fps with culling and lazy loading',
+      'A clustering algorithm that scales from 10 to 200+ contacts',
+    ],
+    also: ['This whole sky is a nod to it'],
+    tech: ['Swift', 'SwiftUI', 'SpriteKit', 'CoreMotion', 'CoreML', 'Contacts framework'],
+    images: [{ url: '/images/projects/constellation/brand.png', caption: 'Constellation' }],
+  },
+  'classify': {
+    kind: 'Web app, team project',
+    overview: "Sorts your Spotify playlists into themed collections using the songs' audio features.",
+    does: [
+      'Clusters 1,000+ songs by audio features with sub-second response',
+      'Automatic playlist categorization',
+      'Human-readable theme names generated with the OpenAI API',
+      'Visualizations of audio characteristics across tracks',
+    ],
+    hardParts: [
+      'Clustering large libraries fast',
+      'Turning raw audio features into categories people understand',
+      'Handling libraries with messy metadata',
+    ],
+    also: [],
+    tech: ['Python', 'Flask', 'scikit-learn', 'React', 'Node.js', 'OpenAI API', 'Spotify Web API', 'OAuth 2.0'],
+    images: [{ url: '/images/projects/classify/demo-frame.jpg', caption: "Classify's start screen" }],
+    githubUrl: 'https://github.com/thaninbew/classify',
+  },
+  'platemate': {
+    kind: 'iOS app, built at Generate',
+    overview: 'Restaurant reviews for the dish, not the room. Dish-by-dish ratings and personalized dish recommendations.',
+    does: [
+      'Dish-level ratings for portion, taste, value and overall',
+      'Personalized dish recommendations that respect dietary restrictions',
+      'A discovery feed of highly rated dishes by cuisine',
+      'Menu management for verified restaurant owners',
+    ],
+    hardParts: [
+      'Getting accurate menu data: API data plus an owner verification flow to claim and update menus',
+      'Keeping reviews quick without losing useful detail',
+    ],
+    also: ['100+ Boston restaurants', 'TestFlight in 3 months (the full story is on the laptop, in the Generate app)'],
+    tech: ['React Native', 'Go', 'Fiber', 'MongoDB', 'Google Places API', 'JWT', 'AWS S3'],
+    images: [
+      { url: '/images/projects/platemate/screens.PNG', caption: 'The many screens of PlateMate' },
+      { url: '/images/projects/platemate/onboarding.PNG', caption: 'Onboarding' },
+    ],
+    githubUrl: 'https://github.com/GenerateNU/platemate',
+  },
+  'black-scholes-model': {
+    kind: 'Web app',
+    overview: 'An options pricing platform that makes the Black-Scholes model approachable, with a simple calculator for learning and an advanced mode for deeper analysis, plus plain-language explanations of the results.',
+    does: [
+      'Real-time options pricing with Greeks (Delta, Gamma)',
+      'Plain-language explanations of the math',
+      'Interactive P&L charts and volatility heatmaps',
+      'Calculation history saved in PostgreSQL',
+    ],
+    hardParts: [
+      'A UX for complex financial math that beginners can use',
+      'Explanations that stay mathematically accurate',
+    ],
+    also: [],
+    tech: ['FastAPI', 'Python', 'PostgreSQL', 'SQLAlchemy', 'Pydantic', 'React', 'Tailwind CSS'],
+    images: [
+      { url: '/images/projects/black-scholes/mainmenu.png', caption: 'Main dashboard' },
+      { url: '/images/projects/black-scholes/callheatmap.png', caption: 'Call option price heatmap' },
+    ],
+    githubUrl: 'https://github.com/DavidYu75/black-scholes',
+  },
+  'real-time-ai-business-intelligence': {
+    kind: 'Web app, MVP',
+    overview: "Ask your business data questions in plain English and get SQL and charts back. An MVP that's still being built.",
+    doesLabel: 'What it does, as it exists in the repo today',
+    does: [
+      'Natural-language questions turned into SQL by an LLM (the Claude API)',
+      'A FastAPI backend with PostgreSQL',
+      'A Next.js frontend',
+    ],
+    hardParts: [],
+    also: [],
+    tech: ['Python', 'FastAPI', 'SQLAlchemy', 'PostgreSQL', 'Claude API', 'Next.js', 'TypeScript'],
+    images: [],
+    githubUrl: 'https://github.com/DavidYu75/ai-business-intelligence',
+  },
 };

@@ -5,3 +5,6 @@ export const aboutContent = {
     "Scroll down to see what I've been building!",
   ],
 };
+
+/** The two paragraphs shown in about.txt on the davidOS desktop (home page). */
+export const aboutTxt: string[] = aboutContent.description.slice(0, 2);
