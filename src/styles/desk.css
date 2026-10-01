@@ -171,12 +171,11 @@ svg text{user-select:none}
 .np-k{font-family:var(--mono);font-size:.75em;letter-spacing:.08em;text-transform:uppercase;color:#9fb3d6}
 .np-player{min-height:80px;border-radius:12px;overflow:hidden;background:rgba(255,255,255,.04)}
 .np-player iframe{display:block;border:0;border-radius:12px}
-.np-fallback{margin:0;padding:.8em;font-size:.95em}
-.np-fallback a,.np-open{color:#ffd166}
+.np.failed .np-player{display:none}
+.np-open{color:#ffd166}
 .np-open{font-size:.8em;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .np-open:hover{text-decoration:underline}
 .np .eq i:nth-child(2){animation-delay:.15s}.np .eq i:nth-child(3){animation-delay:.3s}.np .eq i:nth-child(4){animation-delay:.45s}.np .eq i:nth-child(5){animation-delay:.08s}
-@keyframes spin{to{transform:rotate(360deg)}}
 .np .eq{display:flex;align-items:flex-end;gap:.15em;height:1.3em;flex:none}
 .np .eq i{width:.28em;height:.3em;background:#ffd166;border-radius:.1em;transform-origin:bottom}
 .np.playing .eq i{animation:eq .8s ease-in-out infinite alternate}

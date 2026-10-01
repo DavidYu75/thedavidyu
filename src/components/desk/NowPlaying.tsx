@@ -9,7 +9,6 @@ export interface NowPlayingHandle { escape(): boolean }
 /** The parts of Spotify's iFrame API this widget uses. https://developer.spotify.com/documentation/embeds */
 interface SpotifyController {
   addListener(event: 'playback_update', cb: (e: { data: { isPaused: boolean } }) => void): void;
-  addListener(event: 'ready', cb: () => void): void;
   pause(): void;
   destroy(): void;
 }
@@ -18,14 +17,18 @@ interface SpotifyIFrameAPI {
 }
 declare global { interface Window { onSpotifyIframeApiReady?: (api: SpotifyIFrameAPI) => void } }
 
+const LOAD_TIMEOUT = 8000;
 let apiPromise: Promise<SpotifyIFrameAPI> | null = null;
+/** Loads Spotify's iFrame API once. Rejects on a script error or if it isn't ready in time, so a later open can retry. */
 function loadSpotifyApi(): Promise<SpotifyIFrameAPI> {
   if (!apiPromise) {
-    apiPromise = new Promise((resolve, reject) => {
-      window.onSpotifyIframeApiReady = resolve;
+    apiPromise = new Promise<SpotifyIFrameAPI>((resolve, reject) => {
+      const fail = () => { apiPromise = null; reject(new Error('Spotify embed API unavailable')); };
+      const timer = window.setTimeout(fail, LOAD_TIMEOUT);
+      window.onSpotifyIframeApiReady = (api) => { clearTimeout(timer); resolve(api); };
       const s = document.createElement('script');
       s.src = 'https://open.spotify.com/embed/iframe-api/v1'; s.async = true;
-      s.onerror = () => { apiPromise = null; reject(new Error('Spotify embed API failed to load')); };
+      s.onerror = () => { clearTimeout(timer); s.remove(); fail(); };
       document.body.appendChild(s);
     });
   }
@@ -39,7 +42,7 @@ const NowPlaying = forwardRef<NowPlayingHandle>(function NowPlaying(_, ref) {
   const { scene, reduced } = useDesk();
   const [open, setOpen] = useState(false), [playing, setPlaying] = useState(false), [failed, setFailed] = useState(false);
   const host = useRef<HTMLDivElement>(null), ctrl = useRef<SpotifyController | null>(null), closeBtn = useRef<HTMLButtonElement>(null);
-  const notesT = useRef(0);
+  const mounting = useRef(false), alive = useRef(true), notesT = useRef(0);
   const reducedRef = useRef(reduced); reducedRef.current = reduced;
   const openRef = useRef(open); openRef.current = open;
 
@@ -61,16 +64,25 @@ const NowPlaying = forwardRef<NowPlayingHandle>(function NowPlaying(_, ref) {
     return () => clearInterval(notesT.current);
   }, [playing, spawnNotes]);
 
+  // One player, created on first open. A load already in flight is reused, and a failed load can retry on the next open.
   const mountPlayer = useCallback(() => {
-    if (ctrl.current || !host.current) return;
-    const el = document.createElement('div'); host.current.appendChild(el);
+    if (ctrl.current || mounting.current || !host.current) return;
+    mounting.current = true; setFailed(false);
+    const el = document.createElement('div'); host.current.replaceChildren(el);
     loadSpotifyApi().then((api) => {
-      if (ctrl.current || !el.isConnected) return;
+      if (!alive.current) { mounting.current = false; return; }
       api.createController(el, { uri: `spotify:track:${NOW_PLAYING.spotifyId}`, width: '100%', height: 80 }, (c) => {
+        mounting.current = false;
+        if (!alive.current) { c.destroy(); return; }
         ctrl.current = c;
-        c.addListener('playback_update', (e) => setPlaying(!e.data.isPaused));
+        c.addListener('playback_update', (e) => {
+          if (!alive.current) return;
+          // playback that starts after the card was closed (e.g. a buffered play) gets stopped
+          if (!e.data.isPaused && !openRef.current) { c.pause(); return; }
+          setPlaying(!e.data.isPaused);
+        });
       });
-    }, () => setFailed(true));
+    }, () => { mounting.current = false; if (alive.current) setFailed(true); });
   }, []);
 
   const openNp = useCallback(() => {
@@ -83,27 +95,34 @@ const NowPlaying = forwardRef<NowPlayingHandle>(function NowPlaying(_, ref) {
   }, []);
 
   useEffect(() => {
+    alive.current = true;
     const p = phones(); if (!p) return;
     const onClick = () => { bop(); spawnNotes(4); if (openRef.current) closeNp(); else openNp(); };
-    p.addEventListener('click', onClick);
-    return () => { p.removeEventListener('click', onClick); ctrl.current?.destroy(); ctrl.current = null; };
+    // start fetching Spotify's script when the visitor reaches for the headphones, so the player is ready on click
+    const warm = () => { loadSpotifyApi().catch(() => {}); };
+    p.addEventListener('click', onClick); p.addEventListener('pointerenter', warm, { once: true }); p.addEventListener('focus', warm, { once: true });
+    return () => {
+      alive.current = false;
+      p.removeEventListener('click', onClick); p.removeEventListener('pointerenter', warm); p.removeEventListener('focus', warm);
+      ctrl.current?.destroy(); ctrl.current = null;
+    };
   }, [closeNp, openNp, spawnNotes]);
 
   useImperativeHandle(ref, () => ({ escape() { if (open) { closeNp(); return true; } return false; } }), [open, closeNp]);
 
   const url = spotifyTrackUrl(NOW_PLAYING.spotifyId);
   const { L, AX, AY, pctX, pctY } = scene;
+  // the player needs about 300px; keep the card inside the viewport even when the scene is narrow
+  const left = `min(${pctX(AX(L.np))}, calc(100% - min(300px, 100vw - 24px) - 12px))`;
   return (
-    <section className={`np${open ? ' on' : ''}${playing ? ' playing' : ''}`} role="dialog" aria-label="Currently listening to"
-      style={{ left: pctX(AX(L.np)), top: pctY(AY(L.np.y)), width: pctX(L.np.w) }}>
+    <section className={`np${open ? ' on' : ''}${playing ? ' playing' : ''}${failed ? ' failed' : ''}`} role="dialog" aria-label="Currently listening to"
+      style={{ left, top: pctY(AY(L.np.y)), width: pctX(L.np.w) }}>
       <button ref={closeBtn} className="npx" type="button" aria-label="Close" onClick={closeNp}>&times;</button>
       <div className="np-head">
         <span className="np-k">currently listening to</span>
         <span className="eq" aria-hidden="true"><i /><i /><i /><i /><i /></span>
       </div>
-      <div className="np-player" ref={host}>
-        {failed && <p className="np-fallback"><a href={url} target="_blank" rel="noopener noreferrer">{NOW_PLAYING.title}</a> by {NOW_PLAYING.artist}</p>}
-      </div>
+      <div className="np-player" ref={host} />
       <a className="np-open" href={url} target="_blank" rel="noopener noreferrer">{NOW_PLAYING.title} · {NOW_PLAYING.artist} &#8599;</a>
     </section>
   );
