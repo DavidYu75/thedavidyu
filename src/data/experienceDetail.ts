@@ -47,11 +47,11 @@ export const experienceDetails: ExperienceDetailMap = {
     memories: [
       {
         url: '/images/experiences/linkedin/sign.jpg',
-        caption: "Building 1 at LinkedIn's Mountain View campus"
+        caption: 'obligatory linkedin logo photo'
       },
       {
         url: '/images/experiences/linkedin/interns.jpg',
-        caption: 'LinkedIntern class of 2026'
+        caption: 'profile team'
       },
     ],
   },
@@ -180,8 +180,8 @@ export const experienceWindows: { [slug: string]: ExperienceWindow } = {
     ],
     tech: ['Java', 'Kotlin', 'Server-Driven UI', 'REST APIs', 'iOS', 'Android', 'Integration Testing'],
     photos: [
-      { url: '/images/experiences/linkedin/sign.jpg', caption: 'Building 1, Mountain View' },
-      { url: '/images/experiences/linkedin/interns.jpg', caption: 'LinkedIntern class of 2026' },
+      { url: '/images/experiences/linkedin/sign.jpg', caption: 'obligatory linkedin logo photo' },
+      { url: '/images/experiences/linkedin/interns.jpg', caption: 'profile team' },
     ],
   },
   'citizens-bank': {
