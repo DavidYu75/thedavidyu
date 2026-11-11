@@ -1,16 +1,23 @@
 import type { Metadata } from 'next';
-import { Caveat, DM_Mono, Figtree, Pacifico } from 'next/font/google';
+import localFont from 'next/font/local';
 import DeskScene from '@/components/desk/DeskScene';
 import { contact } from '@/data/contact';
 import { experiences } from '@/data/experience';
 import { projects } from '@/data/projects';
 
-// The desk's faces, loaded only on the home page: a neon script for the name, a clean sans for cards, handwriting for the post-its,
-// an old-style serif for the night sky and a mono for labels.
-const pacifico = Pacifico({ subsets: ['latin'], weight: '400', variable: '--font-pacifico' })
-const caveat = Caveat({ subsets: ['latin'], weight: ['500', '700'], variable: '--font-caveat' })
-const figtree = Figtree({ subsets: ['latin'], weight: ['400', '500', '600', '700', '800'], variable: '--font-figtree' })
-const dmMono = DM_Mono({ subsets: ['latin'], weight: ['400', '500'], variable: '--font-dm-mono' })
+// The desk's faces, loaded only on the home page: a neon script for the name and the sky's title, a clean sans for cards,
+// handwriting for the post-its and the sky, and a mono for labels. Self-hosted from the Fontsource packages so the build never
+// fetches Google Fonts (its occasional /l/font URLs fail Turbopack builds: vercel/next.js#99114).
+const pacifico = localFont({ src: '../../node_modules/@fontsource/pacifico/files/pacifico-latin-400-normal.woff2', weight: '400', variable: '--font-pacifico' })
+const caveat = localFont({ src: '../../node_modules/@fontsource-variable/caveat/files/caveat-latin-wght-normal.woff2', weight: '400 700', variable: '--font-caveat' })
+const figtree = localFont({ src: '../../node_modules/@fontsource-variable/figtree/files/figtree-latin-wght-normal.woff2', weight: '300 900', variable: '--font-figtree' })
+const dmMono = localFont({
+  src: [
+    { path: '../../node_modules/@fontsource/dm-mono/files/dm-mono-latin-400-normal.woff2', weight: '400' },
+    { path: '../../node_modules/@fontsource/dm-mono/files/dm-mono-latin-500-normal.woff2', weight: '500' },
+  ],
+  variable: '--font-dm-mono',
+})
 
 export const metadata: Metadata = {
   title: 'David Yu',
