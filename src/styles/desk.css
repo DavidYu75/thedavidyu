@@ -1,7 +1,7 @@
 /* Late-Night Desk: the home page. Ported from the approved prototype (desk-v7). Ids are used by the imperative engines in src/lib/desk. */
 .desk-main{font-family:var(--sans);--paper:#f7f1e6;--ink:#1c1a17;--accent:#d8613c;--muted:#6b665d;--gold:#ffd166;
   --acc:#f2c879;--acc-rgb:242,200,121;--line:rgba(242,200,121,.28);--panel:rgba(8,13,27,.9);--sky-ink:#eef1f8;--sky-soft:#c7cfdf;--sky-muted:#94a0b8;--sky-dim:#66728c;
-  --display:var(--font-fell),'Iowan Old Style',Georgia,serif;--mono:var(--font-dm-mono),ui-monospace,Menlo,monospace;--sans:var(--font-figtree),system-ui,sans-serif}
+  --display:var(--font-caveat),cursive;--mono:var(--font-dm-mono),ui-monospace,Menlo,monospace;--sans:var(--font-figtree),system-ui,sans-serif}
 *{box-sizing:border-box}
 body.desk-home{margin:0;background:#0d1b2a;color:#e8ecf5;font-family:var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 body.insky,body.modal{overflow:hidden}
@@ -225,8 +225,8 @@ svg text{user-select:none}
 #skyHero{position:absolute;z-index:2;left:clamp(20px,4vw,64px);top:clamp(70px,12vh,110px);max-width:min(460px,40vw);pointer-events:none}
 .eyebrow{margin:0 0 10px;font:500 11px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--sky-muted)}
 .eyebrow .n{color:var(--acc)}
-#skyHero h1{margin:0 0 12px;font:400 clamp(44px,5.4vw,78px)/.9 var(--display);letter-spacing:-.012em;color:#fcf7ee;text-shadow:0 0 34px rgba(255,232,190,.16)}
-#skyHero h1 i{color:var(--acc)}
+#skyHero h1{margin:0 0 12px;font:400 clamp(44px,5.4vw,80px)/1.05 var(--font-pacifico),cursive;color:#ffe1f1;text-shadow:0 0 6px #ff8fc9,0 0 18px rgba(255,123,191,.75),0 0 40px rgba(255,123,191,.45)}
+#skyHero h1 i{font-style:normal}
 #skyHero .intro{margin:0 0 6px;font-size:15px;line-height:1.5;color:var(--sky-soft);max-width:26em}
 .legend{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:8px;font:400 11px/1.35 var(--mono);letter-spacing:.03em;color:var(--sky-muted)}
 .legend li{display:flex;align-items:center;gap:10px}
@@ -244,7 +244,7 @@ svg text{user-select:none}
 #skyCard[hidden]{display:none}
 @keyframes pop{from{opacity:0;transform:translateY(6px) scale(.98)}to{opacity:1;transform:none}}
 .kicker{margin:0;font:500 10px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
-#skyCard h2{margin:6px 34px 4px 0;font:400 31px/1.02 var(--display);color:#fff}
+#skyCard h2{margin:6px 34px 4px 0;font:700 36px/1.02 var(--display);color:#fff}
 #skyCard h2:focus{outline:none}
 #skyCard .txt{margin:8px 0 10px;font-size:15px;line-height:1.5;color:#d3dae7}
 #cardImg{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,.07);margin:10px 0 4px;background:#0a1020}
@@ -268,7 +268,7 @@ svg text{user-select:none}
 /* project panel (docked right on desktop, bottom sheet on phone) */
 #projPanel{position:absolute;z-index:6;right:16px;top:16px;bottom:16px;width:min(440px,calc(100vw - 32px));overflow:auto;overscroll-behavior:contain;padding:22px 22px 26px;border-radius:14px;background:var(--panel);border:1px solid rgba(var(--acc-rgb),.24);box-shadow:0 24px 70px rgba(0,0,0,.55);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);animation:pop .22s ease-out;scrollbar-width:thin;scrollbar-color:rgba(var(--acc-rgb),.35) transparent}
 #projPanel[hidden]{display:none}
-#projPanel h2{margin:6px 36px 6px 0;font:400 34px/1.02 var(--display);color:#fff}
+#projPanel h2{margin:6px 36px 6px 0;font:700 38px/1.02 var(--display);color:#fff}
 #projPanel h2:focus{outline:none}
 #projPanel .over{margin:8px 0 12px;font-size:14.5px;line-height:1.55;color:#d3dae7}
 #projPanel h3{margin:16px 0 6px;font:500 10.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
@@ -287,12 +287,12 @@ svg text{user-select:none}
 .pp-rel button:hover{border-color:var(--acc);color:var(--acc)}
 .pp-diagram{display:block;width:100%;margin:8px 0 4px;border:1px solid rgba(255,255,255,.08);border-radius:8px;background:rgba(10,16,32,.6)}
 .pp-handle{display:none}
-#comet{position:absolute;left:0;top:0;z-index:9;pointer-events:none;white-space:nowrap;font:italic 20px var(--display);color:#fff4dc;text-shadow:0 0 14px rgba(255,214,150,.9);opacity:0;will-change:transform}
+#comet{position:absolute;left:0;top:0;z-index:9;pointer-events:none;white-space:nowrap;font:700 24px var(--display);color:#fff4dc;text-shadow:0 0 14px rgba(255,214,150,.9);opacity:0;will-change:transform}
 #comet small{font:400 11px var(--mono);letter-spacing:.08em;color:var(--acc);margin-left:8px;font-style:normal}
 #egg{position:absolute;z-index:9;left:50%;top:16%;transform:translateX(-50%);width:min(390px,calc(100vw - 32px));padding:26px 24px 22px;text-align:center;border-radius:16px;background:var(--panel);border:1px solid rgba(var(--acc-rgb),.45);box-shadow:0 0 0 6px rgba(var(--acc-rgb),.05),0 30px 90px rgba(0,0,0,.6);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);animation:pop .3s ease-out}
 #egg[hidden]{display:none}
 #egg img{width:68px;height:68px;border-radius:50%;object-fit:cover;border:1px solid var(--acc);background:#0a1020}
-#egg h3{margin:10px 0 8px;font:400 30px/1.05 var(--display)}
+#egg h3{margin:10px 0 8px;font:700 34px/1.05 var(--display)}
 #egg p.t{margin:0 0 16px;font-size:14.5px;line-height:1.55;color:var(--sky-soft)}
 #egg .email-row{justify-content:center}
 @media (max-width:700px){
@@ -308,7 +308,7 @@ svg text{user-select:none}
   .legend{display:none}
   .star{width:44px;height:44px;margin:-22px 0 0 -22px}
   #projPanel{left:0;right:0;top:auto;bottom:0;width:auto;max-height:80vh;border-radius:18px 18px 0 0;padding:10px 18px 28px;animation:sheetin .35s cubic-bezier(.2,.9,.3,1)}
-  #projPanel h2{font-size:28px}
+  #projPanel h2{font-size:32px}
   .pp-handle{display:block;width:40px;height:4px;border-radius:2px;background:rgba(255,255,255,.3);margin:4px auto 12px}
   #skyCard{left:12px!important;right:12px;top:auto!important;bottom:12px;width:auto;max-width:none;max-height:52vh}
   #egg{top:12%}
