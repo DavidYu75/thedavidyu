@@ -11,6 +11,16 @@ export interface Experience {
   
 export const experiences: Experience[] = [
   {
+    title: 'Software Engineer Intern @ Amperesand',
+    company: 'Amperesand',
+    period: 'Oct 2026 - Dec 2026',
+    description:
+      "⚡️ Series A startup building solid-state transformers for AI data centers",
+    logo: '/images/companies/amperesand_logo.jpeg',
+    slug: 'amperesand',
+    short: 'Amperesand',
+  },
+  {
     title: 'Software Engineer Intern @ LinkedIn',
     company: 'LinkedIn',
     period: 'May 2026 - Aug 2026',

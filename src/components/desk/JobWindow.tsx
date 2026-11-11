@@ -30,12 +30,9 @@ export default function JobWindow({ slug, onPhoto }: { slug: string; onPhoto(ind
         </div>
       )}
       {w.lead && <p><b>{w.lead}</b></p>}
-      <h4>Built</h4>
-      <ul>{w.built.map((b) => <li key={b}>{b}</li>)}</ul>
-      <h4>Outcomes</h4>
-      <ul>{w.outcomes.map((b) => <li key={b}>{b}</li>)}</ul>
-      <h4>Tech</h4>
-      <div className="chips">{w.tech.map((t) => <span key={t}>{t}</span>)}</div>
+      {w.built.length > 0 && <><h4>Built</h4><ul>{w.built.map((b) => <li key={b}>{b}</li>)}</ul></>}
+      {w.outcomes.length > 0 && <><h4>Outcomes</h4><ul>{w.outcomes.map((b) => <li key={b}>{b}</li>)}</ul></>}
+      {w.tech.length > 0 && <><h4>Tech</h4><div className="chips">{w.tech.map((t) => <span key={t}>{t}</span>)}</div></>}
     </>
   );
 }

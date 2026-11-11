@@ -154,6 +154,15 @@ export const experienceDetails: ExperienceDetailMap = {
 };
 
 export const experienceWindows: { [slug: string]: ExperienceWindow } = {
+  'amperesand': {
+    role: 'Software Engineer Intern',
+    when: 'Oct 2026 to Dec 2026',
+    lead: 'Series A startup ($80M, co-led by Temasek and Walden Catalyst) building solid-state transformers for AI data centers.',
+    built: [],
+    outcomes: [],
+    tech: [],
+    photos: [],
+  },
   'linkedin': {
     role: 'Software Engineer Intern',
     when: 'May 2026 to Aug 2026',
