@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
-import { DM_Sans } from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.css'
 
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
+// Self-hosted (Fontsource) so the build never fetches Google Fonts; see the note in app/page.tsx.
+const dmSans = localFont({
+  src: '../../node_modules/@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2',
+  weight: '100 1000',
   variable: '--font-dm-sans',
 })
 
