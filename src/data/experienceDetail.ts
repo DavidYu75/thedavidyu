@@ -44,7 +44,16 @@ export const experienceDetails: ExperienceDetailMap = {
       'Guaranteed by test that retakes commit zero writes and that duplicate requests land on identical end states',
       'Made member identity server-derived and never an API argument, with schema and behavioral tests that fail the build on identity-shaped inputs or cross-member writes',
     ],
-    memories: [],
+    memories: [
+      {
+        url: '/images/experiences/linkedin/sign.jpg',
+        caption: "Building 1 at LinkedIn's Mountain View campus"
+      },
+      {
+        url: '/images/experiences/linkedin/interns.jpg',
+        caption: 'LinkedIntern class of 2026'
+      },
+    ],
   },
 
   'citizens-bank': {
@@ -170,7 +179,10 @@ export const experienceWindows: { [slug: string]: ExperienceWindow } = {
       'Guaranteed by test that retakes commit zero writes and duplicate requests land on identical end states.',
     ],
     tech: ['Java', 'Kotlin', 'Server-Driven UI', 'REST APIs', 'iOS', 'Android', 'Integration Testing'],
-    photos: [],
+    photos: [
+      { url: '/images/experiences/linkedin/sign.jpg', caption: 'Building 1, Mountain View' },
+      { url: '/images/experiences/linkedin/interns.jpg', caption: 'LinkedIntern class of 2026' },
+    ],
   },
   'citizens-bank': {
     role: 'Automation Software Developer Co-op',
