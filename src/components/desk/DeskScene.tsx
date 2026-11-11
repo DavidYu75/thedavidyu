@@ -30,6 +30,7 @@ export default function DeskScene() {
   const [lidOpen, setLidOpen] = useState(false);
   const [skyActive, setSkyActive] = useState(false);
   const [cardOpen, setCardOpen] = useState(false);
+  const [skySeen, setSkySeen] = useState(false);
   const [lb, setLb] = useState<{ images: LightboxImage[]; index: number } | null>(null);
   const [winSky, setWinSky] = useState<string>('');
   const sceneEl = useRef<HTMLDivElement>(null), stageEl = useRef<HTMLDivElement>(null), svg = useRef<SVGSVGElement>(null);
@@ -74,7 +75,7 @@ export default function DeskScene() {
     el.style.transformOrigin = `${r.left + r.width / 2 - sr.left}px ${r.top + r.height / 2 - sr.top}px`;
     el.style.setProperty('--fs', (sr.width / Math.max(1, r.width) * 1.25).toFixed(2));
     document.body.classList.add('insky'); if (stageEl.current) stageEl.current.inert = true;
-    setSkyActive(true);
+    setSkyActive(true); setSkySeen(true);
     setTimeout(() => document.getElementById('skyBack')?.focus({ preventScroll: true }), reduced ? 0 : 950);
   }, [reduced]);
   const leaveSky = useCallback(() => {
@@ -151,7 +152,7 @@ export default function DeskScene() {
               <g id="gAmb" transform={tr(lx - 110 * L.lamp.s, ly - 190 * L.lamp.s, L.lamp.s)}><ellipse rx="420" ry="320" fill="url(#ambGrad)" /></g>
 
               {/* window */}
-              <g id="gWindow" ref={winG} transform={tr(wx, wy, L.win.s)} tabIndex={0} role="button" aria-label="The window. Look outside: fly into the night sky where the projects live" onClick={enterSky}>
+              <g id="gWindow" ref={winG} className={skySeen ? 'seen' : undefined} transform={tr(wx, wy, L.win.s)} tabIndex={0} role="button" aria-label="The window. Look outside: fly into the night sky where the projects live" onClick={enterSky}>
                 <rect x="-14" y="-14" width="548" height="330" rx="6" fill="#2b3150" />
                 <rect x="-8" y="-8" width="536" height="318" rx="3" fill="#1b2038" />
                 <g clipPath="url(#skyClip)">
@@ -168,7 +169,7 @@ export default function DeskScene() {
                 <rect x="-26" y="300" width="572" height="18" rx="3" fill="#3b4160" />
                 <rect x="-26" y="316" width="572" height="6" fill="#2a2f48" />
                 <g transform="translate(470 300)"><path d="M-16,0 L-12,-26 L12,-26 L16,0Z" fill="#b8654a" /><path d="M0,-26 C-6,-44 -22,-40 -20,-56 C-6,-52 -2,-40 0,-30 C2,-44 14,-54 22,-52 C20,-40 8,-34 0,-26Z" fill="#5f9a5a" /><path d="M0,-28 C-2,-46 -10,-60 -4,-70 C4,-62 4,-46 0,-28Z" fill="#7cb56f" /></g>
-                <text id="lookOut" className="hand" x="60" y="346" fontSize="22" fill="#c9d6ee">look outside &#10022;</text>
+                <text id="lookOut" className="hand" x="40" y="350" fontSize="27" fill="#c9d6ee">{scene.phone ? 'tap' : 'click'} the window: what I&apos;ve built <tspan className="twinkle">&#10022;</tspan></text>
               </g>
 
               {/* lamp */}

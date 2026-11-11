@@ -37,9 +37,14 @@ svg text{user-select:none}
 .mnote{font-size:18px;fill:#fff;animation:rise 1.4s ease-out forwards}
 @keyframes rise{to{transform:translate(0,-70px) rotate(14deg);opacity:0}}
 #winGlass{opacity:0;transition:opacity .25s}
-#gWindow:hover #winGlass{opacity:.07}
-#lookOut{opacity:.75;transition:opacity .25s}
+/* the glass breathes until the sky has been opened once, so the window reads as something to tap */
+#gWindow:not(.seen) #winGlass{animation:winPulse 3.2s ease-in-out infinite}
+@keyframes winPulse{50%{opacity:.09}}
+#gWindow:hover #winGlass{animation:none;opacity:.07}
+#lookOut{opacity:.92;transition:opacity .25s}
 #gWindow:hover #lookOut{opacity:1}
+.twinkle{animation:twinkle 1.8s ease-in-out infinite}
+@keyframes twinkle{50%{opacity:.3}}
 /* laptop */
 .laptop{position:absolute;aspect-ratio:1/0.92;perspective:2000px;perspective-origin:50% 0%;transform-origin:50% 50%;transition:transform .7s cubic-bezier(.2,.8,.2,1);z-index:5}
 .laptop.focus{z-index:20}
@@ -314,6 +319,7 @@ svg text{user-select:none}
 }
 @media (prefers-reduced-motion:reduce){
   #steam path,#neonGlowLayer,.star-w,.scrollhint span,.mnote,#phonesBody.bop,.card,#skyCard,#egg,.np,.np .eq i,#gPhones.playing #phonesBody{animation:none}
+  #gWindow:not(.seen) #winGlass,.twinkle{animation:none}
   .np .eq i{height:.8em}
   #steam path{opacity:.4}
   .mnote{display:none}
