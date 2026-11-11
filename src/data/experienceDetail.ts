@@ -53,6 +53,14 @@ export const experienceDetails: ExperienceDetailMap = {
         url: '/images/experiences/linkedin/interns.jpg',
         caption: 'The profile team'
       },
+      {
+        url: '/images/experiences/linkedin/recruiter.jpg',
+        caption: 'Goat recruiter'
+      },
+      {
+        url: '/images/experiences/linkedin/golden-gate.jpg',
+        caption: 'Peak SF larp'
+      },
     ],
   },
 
@@ -182,6 +190,8 @@ export const experienceWindows: { [slug: string]: ExperienceWindow } = {
     photos: [
       { url: '/images/experiences/linkedin/sign.jpg', caption: 'Obligatory linkedin logo photo' },
       { url: '/images/experiences/linkedin/interns.jpg', caption: 'The profile team' },
+      { url: '/images/experiences/linkedin/recruiter.jpg', caption: 'Goat recruiter' },
+      { url: '/images/experiences/linkedin/golden-gate.jpg', caption: 'Peak SF larp' },
     ],
   },
   'citizens-bank': {
