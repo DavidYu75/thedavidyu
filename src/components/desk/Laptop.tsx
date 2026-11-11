@@ -208,7 +208,7 @@ const Laptop = forwardRef<LaptopHandle, Props>(function Laptop({ skyActive, onLi
               {!phoneSheet && windowBody}
             </div>
           </div>
-          <button className="lidface" id="lidface" ref={lidface} type="button" aria-label="Open the laptop. Stickers on the lid: LinkedIn, Citizens, Generate, Amazon" onClick={() => { if (!lidface.current?.disabled) openLaptop(); }}>
+          <button className="lidface" id="lidface" ref={lidface} type="button" aria-label={`Open the laptop. Stickers on the lid: ${experiences.map((e) => e.short).join(', ')}`} onClick={() => { if (!lidface.current?.disabled) openLaptop(); }}>
             {experiences.map((e, i) => (
               <span key={e.slug} className={`stk stk${i + 1}`}><Image src={e.logo} alt={e.short} width={64} height={64} /></span>
             ))}

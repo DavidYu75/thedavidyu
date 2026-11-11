@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     default: 'David Yu',
     template: '%s | David Yu',
   },
-  description: "David Yu: CS at Northeastern, class of 2027, in New York City. Software engineer, past LinkedIn, Citizens, Generate and Amazon.",
+  description: "David Yu: CS at Northeastern, class of 2027, in New York City. Software engineer, interning at Amperesand, past LinkedIn, Citizens, Generate and Amazon.",
   icons: {
     icon: '/logo.svg',
   },

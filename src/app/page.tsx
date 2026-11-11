@@ -15,7 +15,7 @@ const dmMono = DM_Mono({ subsets: ['latin'], weight: ['400', '500'], variable: '
 
 export const metadata: Metadata = {
   title: 'David Yu',
-  description: "David Yu's desk at night in New York: where he's worked (LinkedIn, Citizens, Generate, Amazon), what he's built, and a window onto the rest. CS at Northeastern, class of 2027.",
+  description: "David Yu's desk at night in New York: where he's worked (Amperesand, LinkedIn, Citizens, Generate, Amazon), what he's built, and a window onto the rest. CS at Northeastern, class of 2027.",
   openGraph: {
     title: 'David Yu',
     description: "A late-night desk in NYC. Open the laptop for where I've worked, look out the window for what I've built.",
