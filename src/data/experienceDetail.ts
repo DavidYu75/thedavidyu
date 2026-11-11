@@ -44,7 +44,24 @@ export const experienceDetails: ExperienceDetailMap = {
       'Guaranteed by test that retakes commit zero writes and that duplicate requests land on identical end states',
       'Made member identity server-derived and never an API argument, with schema and behavioral tests that fail the build on identity-shaped inputs or cross-member writes',
     ],
-    memories: [],
+    memories: [
+      {
+        url: '/images/experiences/linkedin/sign.jpg',
+        caption: 'Obligatory linkedin logo photo'
+      },
+      {
+        url: '/images/experiences/linkedin/interns.jpg',
+        caption: 'The profile team'
+      },
+      {
+        url: '/images/experiences/linkedin/recruiter.jpg',
+        caption: 'Goat recruiter'
+      },
+      {
+        url: '/images/experiences/linkedin/golden-gate.jpg',
+        caption: 'Peak SF larp'
+      },
+    ],
   },
 
   'citizens-bank': {
@@ -179,7 +196,12 @@ export const experienceWindows: { [slug: string]: ExperienceWindow } = {
       'Guaranteed by test that retakes commit zero writes and duplicate requests land on identical end states.',
     ],
     tech: ['Java', 'Kotlin', 'Server-Driven UI', 'REST APIs', 'iOS', 'Android', 'Integration Testing'],
-    photos: [],
+    photos: [
+      { url: '/images/experiences/linkedin/sign.jpg', caption: 'Obligatory linkedin logo photo' },
+      { url: '/images/experiences/linkedin/interns.jpg', caption: 'The profile team' },
+      { url: '/images/experiences/linkedin/recruiter.jpg', caption: 'Goat recruiter' },
+      { url: '/images/experiences/linkedin/golden-gate.jpg', caption: 'Peak SF larp' },
+    ],
   },
   'citizens-bank': {
     role: 'Automation Software Developer Co-op',
