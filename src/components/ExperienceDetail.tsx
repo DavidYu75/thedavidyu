@@ -1,10 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import { experiences, Experience } from '@/data/experience';
+import { experiences } from '@/data/experience';
 import { experienceDetails } from '@/data/experienceDetail';
 import styles from '@/styles/ExperienceDetail.module.css';
 import NavBar from '@/components/layout/NavBar';
@@ -15,12 +14,7 @@ interface ExperienceDetailProps {
 }
 
 export default function ExperienceDetail({ slug }: ExperienceDetailProps) {
-  const [experience, setExperience] = useState<Experience | undefined>(undefined);
-  
-  useEffect(() => {
-    const foundExperience = experiences.find(exp => exp.slug === slug);
-    setExperience(foundExperience);
-  }, [slug]);
+  const experience = experiences.find(exp => exp.slug === slug);
 
   if (!experience) {
     return <div className={styles.loading}>Loading...</div>;

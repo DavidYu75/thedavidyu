@@ -24,6 +24,14 @@ const STARS: SkyStarInput[] = [
   ...projectStars.map((s) => { const p = projects.find((x) => x.slug === s.slug)!; return { id: s.slug, name: s.name, full: p.title, kind: 'project' as const, when: p.year, col: s.col, d: s.d, m: s.m }; }),
   ...hobbies.map((h) => ({ id: h.id, name: h.name, full: h.full, kind: 'hobby' as const, col: h.col, d: h.d, m: h.m })),
 ];
+/** Each star's "see also" list: every other star it shares a group with, in the order the sky engine draws them. */
+const NAMES: Record<string, string> = Object.fromEntries(STARS.map((s) => [s.id, s.name]));
+const RELATED: Record<string, { id: string; name: string }[]> = {};
+starGroups.forEach((g) => g.ids.forEach((id) => {
+  if (!NAMES[id]) return; const r = (RELATED[id] ??= []);
+  g.ids.forEach((o) => { if (o !== id && NAMES[o] && !r.some((x) => x.id === o)) r.push({ id: o, name: NAMES[o] }); });
+}));
+const relatedOf = (id: string) => RELATED[id] ?? [];
 const KIND = { project: 'Something I built', hobby: 'Off hours' };
 const PANEL_W = 472;
 
@@ -33,11 +41,13 @@ const SkyView = forwardRef<SkyHandle, { active: boolean; onBack(): void }>(funct
   const root = useRef<HTMLDivElement>(null), canvas = useRef<HTMLCanvasElement>(null), layer = useRef<HTMLDivElement>(null);
   const label = useRef<HTMLDivElement>(null), comet = useRef<HTMLDivElement>(null), card = useRef<HTMLElement>(null), panel = useRef<HTMLElement>(null);
   const eng = useRef<SkyEngine | null>(null);
-  const reducedRef = useRef(reduced); reducedRef.current = reduced;
+  const reducedRef = useRef(reduced);
+  useLayoutEffect(() => { reducedRef.current = reduced; }, [reduced]);
   const [selected, setSelected] = useState<SkyStar | null>(null);
   const [eggOpen, setEggOpen] = useState(false);
   const [phone, setPhone] = useState(false);
-  const selRef = useRef(selected); selRef.current = selected;
+  const selRef = useRef(selected);
+  useLayoutEffect(() => { selRef.current = selected; }, [selected]);
 
   const placeCard = useCallback(() => {
     const s = selRef.current, c = card.current, e = eng.current; if (!s || !c || !e || s.kind !== 'hobby') return;
@@ -97,8 +107,6 @@ const SkyView = forwardRef<SkyHandle, { active: boolean; onBack(): void }>(funct
     pan(key) { eng.current?.pan(key); },
   }), [eggOpen, selected, close, closeEgg, placeCard]);
 
-  const star = (id: string) => eng.current?.byId[id];
-  const relatedOf = (id: string) => (star(id)?.rel ?? []).map((r) => ({ id: r.to, name: star(r.to)?.name ?? r.to }));
   const activateRelated = (id: string) => eng.current?.click(id, true);
   const hobby = selected?.kind === 'hobby' ? hobbies.find((h) => h.id === selected.id) : null;
   const projectOpen = selected?.kind === 'project' ? selected.id : null;

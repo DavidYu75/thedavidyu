@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import '@/styles/desk.css';
 import { contact } from '@/data/contact';
 import { computeScene, PHONE_QUERY, Scene } from '@/lib/desk/layout';
@@ -16,6 +16,9 @@ import ContactNotes from './ContactNotes';
 import DeskCard from './DeskCard';
 import Lightbox, { LightboxImage } from './Lightbox';
 
+const REDUCED_QUERY = '(prefers-reduced-motion: reduce)';
+const subscribeReduced = (cb: () => void) => { const m = matchMedia(REDUCED_QUERY); m.addEventListener('change', cb); return () => m.removeEventListener('change', cb); };
+
 /** 40 small stars in the window, placed once with a fixed seed so server and client agree. */
 const WINDOW_STARS = (() => { const R = rng(7); return Array.from({ length: 40 }, () => ({ cx: (R() * 520).toFixed(0), cy: (R() * 150).toFixed(0), r: (0.7 + R() * 1.1).toFixed(1), delay: (R() * 3).toFixed(1) + 's', op: (0.4 + R() * 0.6).toFixed(2) })); })();
 
@@ -25,7 +28,7 @@ const WINDOW_STARS = (() => { const R = rng(7); return Array.from({ length: 40 }
  */
 export default function DeskScene() {
   const [scene, setScene] = useState<Scene>(defaultScene);
-  const [reduced, setReduced] = useState(false);
+  const reduced = useSyncExternalStore(subscribeReduced, () => matchMedia(REDUCED_QUERY).matches, () => false);
   const [lightsOff, setLightsOff] = useState(false);
   const [lidOpen, setLidOpen] = useState(false);
   const [skyActive, setSkyActive] = useState(false);
@@ -37,20 +40,21 @@ export default function DeskScene() {
   const ballG = useRef<SVGGElement>(null), ballRot = useRef<SVGGElement>(null), ballSh = useRef<SVGEllipseElement>(null), ballTag = useRef<SVGGElement>(null);
   const laptop = useRef<LaptopHandle>(null), sky = useRef<SkyHandle>(null), np = useRef<NowPlayingHandle>(null);
   const ball = useRef<BallEngine | null>(null);
-  const locks = useRef(new Set<string>()), kb = useRef(false), skyRef = useRef(false); skyRef.current = skyActive;
+  const locks = useRef(new Set<string>()), kb = useRef(false), skyRef = useRef(false);
+  useLayoutEffect(() => { skyRef.current = skyActive; }, [skyActive]);
   const lbOpener = useRef<Element | null>(null);
 
   // viewport-driven layout
   useEffect(() => {
-    const mq = matchMedia(PHONE_QUERY), rm = matchMedia('(prefers-reduced-motion: reduce)');
+    const mq = matchMedia(PHONE_QUERY);
     const apply = () => { const el = sceneEl.current; setScene(computeScene(el?.clientWidth || innerWidth, el?.clientHeight || innerHeight, mq.matches)); };
-    apply(); setReduced(rm.matches);
+    apply();
     let t = 0; const onResize = () => { clearTimeout(t); t = window.setTimeout(apply, 150); };
-    const onRM = (e: MediaQueryListEvent) => setReduced(e.matches);
-    addEventListener('resize', onResize); mq.addEventListener('change', apply); rm.addEventListener('change', onRM);
+    addEventListener('resize', onResize); mq.addEventListener('change', apply);
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- drawn on a canvas, so it can only happen in the browser after mount; runs once
     setWinSky(renderWindowSky(1));
     document.body.classList.add('desk-home');
-    return () => { removeEventListener('resize', onResize); mq.removeEventListener('change', apply); rm.removeEventListener('change', onRM); document.body.classList.remove('desk-home', 'insky', 'modal'); };
+    return () => { removeEventListener('resize', onResize); mq.removeEventListener('change', apply); document.body.classList.remove('desk-home', 'insky', 'modal'); };
   }, []);
 
   // volleyball
