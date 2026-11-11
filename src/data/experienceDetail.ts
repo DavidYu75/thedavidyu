@@ -47,11 +47,11 @@ export const experienceDetails: ExperienceDetailMap = {
     memories: [
       {
         url: '/images/experiences/linkedin/sign.jpg',
-        caption: 'obligatory linkedin logo photo'
+        caption: 'Obligatory linkedin logo photo'
       },
       {
         url: '/images/experiences/linkedin/interns.jpg',
-        caption: 'profile team'
+        caption: 'The profile team'
       },
     ],
   },
@@ -180,8 +180,8 @@ export const experienceWindows: { [slug: string]: ExperienceWindow } = {
     ],
     tech: ['Java', 'Kotlin', 'Server-Driven UI', 'REST APIs', 'iOS', 'Android', 'Integration Testing'],
     photos: [
-      { url: '/images/experiences/linkedin/sign.jpg', caption: 'obligatory linkedin logo photo' },
-      { url: '/images/experiences/linkedin/interns.jpg', caption: 'profile team' },
+      { url: '/images/experiences/linkedin/sign.jpg', caption: 'Obligatory linkedin logo photo' },
+      { url: '/images/experiences/linkedin/interns.jpg', caption: 'The profile team' },
     ],
   },
   'citizens-bank': {
