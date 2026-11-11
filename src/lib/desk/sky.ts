@@ -86,8 +86,8 @@ export function createSky(o: SkyOptions): SkyEngine {
   const LF = [0.15, 0.35, 0.6];
   let hover: SkyStar | null = null, selected: SkyStar | null = null, lineFor: SkyStar | null = null, lineP = 0;
   let seq: string[] = [], eggDone = false, egg = false;
-  let parts: { x: number; y: number; vx: number; vy: number; life: number; dec: number; r: number; c: string }[] = [];
-  let shoots: { x0: number; y0: number; x1: number; y1: number; t: number; dur: number; len: number; special?: boolean }[] = [];
+  const parts: { x: number; y: number; vx: number; vy: number; life: number; dec: number; r: number; c: string }[] = [];
+  const shoots: { x0: number; y0: number; x1: number; y1: number; t: number; dur: number; len: number; special?: boolean }[] = [];
   let nextShoot = 0, introStart = 0, dirty = true, raf = 0, last = 0;
   const reduced = () => o.reduced();
 

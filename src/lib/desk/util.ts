@@ -13,9 +13,6 @@ export function rng(seed: number) {
   };
 }
 
-const hex = (c: string) => [1, 3, 5].map((i) => parseInt(c.slice(i, i + 2), 16));
-
-/** Mix two hex colors, returns hex. */
 /** Hours since midnight in New York, fractional. */
 export function nyHour(): number {
   try {

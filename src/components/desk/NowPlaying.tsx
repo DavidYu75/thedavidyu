@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react';
 import { NOW_PLAYING, spotifyTrackUrl } from '@/data/nowPlaying';
 import { useDesk } from './DeskContext';
 
@@ -43,8 +43,8 @@ const NowPlaying = forwardRef<NowPlayingHandle>(function NowPlaying(_, ref) {
   const [open, setOpen] = useState(false), [playing, setPlaying] = useState(false), [failed, setFailed] = useState(false);
   const host = useRef<HTMLDivElement>(null), ctrl = useRef<SpotifyController | null>(null), closeBtn = useRef<HTMLButtonElement>(null);
   const mounting = useRef(false), attempt = useRef(0), slowT = useRef(0), alive = useRef(true), notesT = useRef(0);
-  const reducedRef = useRef(reduced); reducedRef.current = reduced;
-  const openRef = useRef(open); openRef.current = open;
+  const reducedRef = useRef(reduced), openRef = useRef(open);
+  useLayoutEffect(() => { reducedRef.current = reduced; openRef.current = open; }, [reduced, open]);
 
   const phones = () => document.getElementById('gPhones');
   const spawnNotes = useCallback((n: number) => {
@@ -108,6 +108,7 @@ const NowPlaying = forwardRef<NowPlayingHandle>(function NowPlaying(_, ref) {
     const onClick = () => { bop(); spawnNotes(4); if (openRef.current) closeNp(); else openNp(); };
     p.addEventListener('click', onClick);
     return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps -- attempt is a counter, not a DOM ref; bumping its live value cancels any mount in flight
       alive.current = false; attempt.current++; mounting.current = false; clearTimeout(slowT.current);
       p.removeEventListener('click', onClick);
       ctrl.current?.destroy(); ctrl.current = null;

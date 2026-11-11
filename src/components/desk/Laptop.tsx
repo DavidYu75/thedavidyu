@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { experiences } from '@/data/experience';
 import { experienceWindows } from '@/data/experienceDetail';
@@ -34,9 +34,8 @@ const Laptop = forwardRef<LaptopHandle, Props>(function Laptop({ skyActive, onLi
   const zoomBtn = useRef<HTMLButtonElement>(null), winX = useRef<HTMLButtonElement>(null);
   const st = useRef({ scrollP: 0, lidCur: 0, manualOpen: false, focusOn: false, lidRaf: 0, animT: 0, wasOpen: false,
     zoomed: null as null | { s: number; tx: number; ty: number; committed: boolean } });
-  const sceneRef = useRef(scene); sceneRef.current = scene;
-  const reducedRef = useRef(reduced); reducedRef.current = reduced;
-  const skyRef = useRef(skyActive); skyRef.current = skyActive;
+  const sceneRef = useRef(scene), reducedRef = useRef(reduced), skyRef = useRef(skyActive);
+  useLayoutEffect(() => { sceneRef.current = scene; reducedRef.current = reduced; skyRef.current = skyActive; }, [scene, reduced, skyActive]);
   const [win, setWin] = useState<Win>(null);
   const [zoomUi, setZoomUi] = useState(false);
   const [clock, setClock] = useState('');
@@ -56,9 +55,12 @@ const Laptop = forwardRef<LaptopHandle, Props>(function Laptop({ skyActive, onLi
     syncFlat();
   }, [onLidOpen, syncFlat]);
   const lidTick = useCallback(() => {
-    const s = st.current, t = lidTarget();
-    s.lidCur += (t - s.lidCur) * (reducedRef.current ? 1 : 0.16); if (Math.abs(t - s.lidCur) < 0.002) s.lidCur = t;
-    applyLid(s.lidCur); s.lidRaf = s.lidCur !== t ? requestAnimationFrame(lidTick) : 0;
+    const tick = () => {
+      const s = st.current, t = lidTarget();
+      s.lidCur += (t - s.lidCur) * (reducedRef.current ? 1 : 0.16); if (Math.abs(t - s.lidCur) < 0.002) s.lidCur = t;
+      applyLid(s.lidCur); s.lidRaf = s.lidCur !== t ? requestAnimationFrame(tick) : 0;
+    };
+    tick();
   }, [applyLid]);
   const updateLid = useCallback((anim: boolean) => {
     const s = st.current;
@@ -113,18 +115,20 @@ const Laptop = forwardRef<LaptopHandle, Props>(function Laptop({ skyActive, onLi
     if (s.focusOn) { s.focusOn = false; s.zoomed = null; l.classList.remove('focus'); if (veil.current) veil.current.hidden = true; l.style.transition = 'none'; l.style.transform = ''; }
     applyBase(); void l.offsetWidth; l.style.transition = '';
     if (hint.current) { hint.current.style.top = scene.pctY(scene.phone ? scene.AY(scene.L.laptop.y) - 36 : scene.AY(scene.L.laptop.y) + scene.L.laptop.w * 0.3 + 22); }
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- re-zooms after the new layout is measured; only when the laptop was zoomed
     if (wasZ) setFocus(true);
   }, [scene, applyBase, setFocus]);
 
   // scroll-to-open on desktop; initial closed state
   useEffect(() => {
+    const s = st.current;
     applyLid(0);
-    const onScroll = () => { if (sceneRef.current.phone || skyRef.current) return; st.current.scrollP = clamp(window.scrollY / (window.innerHeight * 0.55), 0, 1); updateLid(false); };
+    const onScroll = () => { if (sceneRef.current.phone || skyRef.current) return; s.scrollP = clamp(window.scrollY / (window.innerHeight * 0.55), 0, 1); updateLid(false); };
     // a reload or back navigation can restore the page already scrolled; match the lid to it
     if (window.scrollY > 0) onScroll();
-    const onVis = () => { if (!document.hidden && st.current.lidCur !== lidTarget()) updateLid(false); };
+    const onVis = () => { if (!document.hidden && s.lidCur !== lidTarget()) updateLid(false); };
     addEventListener('scroll', onScroll, { passive: true }); document.addEventListener('visibilitychange', onVis);
-    return () => { removeEventListener('scroll', onScroll); document.removeEventListener('visibilitychange', onVis); cancelAnimationFrame(st.current.lidRaf); };
+    return () => { removeEventListener('scroll', onScroll); document.removeEventListener('visibilitychange', onVis); cancelAnimationFrame(s.lidRaf); };
   }, [applyLid, updateLid]);
 
   const phoneSheet = scene.phone && win !== null;

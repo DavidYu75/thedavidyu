@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 import { createBowl, BowlEngine } from '@/lib/desk/bowl';
 import { useDesk } from './DeskContext';
 
@@ -12,7 +12,8 @@ export default function MatchaBowl() {
   const { scene, reduced } = useDesk();
   const cv = useRef<HTMLCanvasElement>(null), fill = useRef<HTMLSpanElement>(null), lbl = useRef<HTMLSpanElement>(null), btn = useRef<HTMLButtonElement>(null);
   const eng = useRef<BowlEngine | null>(null);
-  const reducedRef = useRef(reduced); reducedRef.current = reduced;
+  const reducedRef = useRef(reduced);
+  useLayoutEffect(() => { reducedRef.current = reduced; }, [reduced]);
 
   useEffect(() => {
     const stage = document.getElementById('gBowl'), chasen = document.getElementById('chasen');

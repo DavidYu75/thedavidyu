@@ -1,11 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
-import { projects, Project } from '@/data/projects';
+import { projects } from '@/data/projects';
 import { projectDetails } from '@/data/projectDetail';
 import styles from '@/styles/ProjectDetail.module.css';
 import NavBar from '@/components/layout/NavBar';
@@ -17,12 +16,7 @@ interface ProjectDetailProps {
 }
 
 export default function ProjectDetail({ slug }: ProjectDetailProps) {
-  const [project, setProject] = useState<Project | undefined>(undefined);
-  
-  useEffect(() => {
-    const foundProject = projects.find(proj => proj.slug === slug);
-    setProject(foundProject);
-  }, [slug]);
+  const project = projects.find(proj => proj.slug === slug);
 
   if (!project) {
     return <div className={styles.loading}>Loading...</div>;
